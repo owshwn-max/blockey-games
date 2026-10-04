@@ -64,6 +64,13 @@ select,input,textarea{background:var(--s);color:var(--tx);border:1px solid var(-
 h1,h2,h3,.logo{font-weight:800;letter-spacing:.4px}h3{font-size:14px}
 .hdl{cursor:grab;touch-action:none;padding:6px 10px;font-size:20px;color:var(--mu);user-select:none}.dr{background:var(--s)}
 .dg5{display:grid;grid-template-columns:repeat(5,minmax(112px,1fr));gap:10px;overflow-x:auto;padding:6px 2px}.dcell{cursor:pointer;border-radius:14px;padding:4px;border:2px solid transparent;text-align:center}.dcell.sel{border-color:var(--ac);box-shadow:0 0 18px color-mix(in srgb,var(--ac) 50%,transparent)}.dpr{font:800 20px "Barlow Condensed";margin-bottom:4px;color:var(--ac)}
+.mo-w{width:min(780px,100%);display:flex;flex-direction:column;gap:12px;position:relative;z-index:2}
+.msc{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;gap:10px;background:#0b1020;border:1px solid #2a3350;border-radius:14px;padding:14px}.msc b{font:800 clamp(34px,8vw,56px) "Barlow Condensed";display:block;line-height:1}.msc .n{font-size:13px;color:#9aa6bd;display:block}
+.mclk{font:800 22px "Barlow Condensed";color:#6ee7f9}.mwp{height:10px;border-radius:6px;background:#ef4444;overflow:hidden}.mwp i{display:block;height:100%;background:#22c55e;transition:width .5s}
+.mst{min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:14px;background:#0b1020;border:1px solid #2a3350;border-radius:14px}.mhd{font:800 clamp(24px,6vw,42px) "Barlow Condensed";letter-spacing:.5px}.mhd.goal{color:#ffc83d}.mhd.ogoal{color:#ff7b7b}
+.mtr{position:relative;width:min(520px,92%);height:34px;background:#1a2030;border-radius:8px;overflow:hidden;border:1px solid #2a3350}.mzn{position:absolute;top:0;bottom:0;background:#22c55e66;border:2px solid #22c55e}.mcr{position:absolute;top:0;bottom:0;width:5px;background:#fff;border-radius:3px;box-shadow:0 0 10px #fff}
+.mlg{max-height:170px;overflow:auto;background:#0b1020;border:1px solid #2a3350;border-radius:14px;padding:8px 14px;font-size:13px}.mlg div{padding:3px 0;border-bottom:1px solid #1a2030}.mlg .g{color:#ffc83d;font-weight:800}.mlg .o{color:#ff7b7b;font-weight:800}
+.gflash{animation:gfl .9s ease-out}@keyframes gfl{0%{background:#ffc83d66}100%{background:#0b1020}}
 /* wordmark */
 .logo{display:flex;align-items:center;gap:12px}
 .lmark{width:42px;height:42px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(145deg,var(--ac),color-mix(in srgb,var(--ac) 40%,#000));color:var(--on);font:800 21px "Barlow Condensed";letter-spacing:1px;box-shadow:0 6px 18px color-mix(in srgb,var(--ac) 35%,transparent),inset 0 0 0 1px #ffffff55,inset 0 -10px 14px #0003}
@@ -87,7 +94,7 @@ h1,h2,h3,.logo{font-weight:800;letter-spacing:.4px}h3{font-size:14px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head><body><div id="fx"></div>
 <div class="top"><div class="hdr"><div class="logo" id="logo"></div><div style="display:flex;gap:6px;align-items:center"><span id="bb" class="box" style="margin:0;padding:6px 11px;font-weight:800"></span><select id="th" style="width:auto" onchange="setTheme(this.value)"></select></div></div><nav id="tabs"></nav></div>
-<main class="wrap" id="view"></main><div id="ov" class="ov"></div><div id="modal" class="modal" onclick="if(event.target===this)closeM()"></div>
+<main class="wrap" id="view"></main><div id="ov" class="ov"></div><div id="mo" class="ov"></div><div id="modal" class="modal" onclick="if(event.target===this)closeM()"></div>
 <script>
 const CFG={CAP:90,BB:1500,CMIN:4500,CMAX:45000,GMIN:7500,GMAX:18000,TIERS:[70,80,90],BUDGET:15,
 LG:{BHL:{by:'r',min:60,max:99},NAMHL:{by:'r',min:62,max:89},JBHL:{by:'r',min:55,max:79}},
@@ -184,7 +191,7 @@ LG.forEach(lg=>P.filter(p=>p.league===lg).sort((a,b)=>b.rating-a.rating||b.pts-a
 const grp=l=>P.filter(p=>p.league===l).sort((a,b)=>a.rank-b.rank);
 let S=null,SK='';
 const save=()=>{if(SK)try{localStorage.setItem(SK,JSON.stringify(S))}catch(e){}};
-function loadS(){SK='bh_state_'+USER.mc.toLowerCase();S=null;try{S=JSON.parse(localStorage.getItem(SK))}catch(e){}if(!S)S={bb:0,owned:{},fan:Array(7).fill(''),granted:0};if(!S.fan)S.fan=Array(7).fill('');if(!S.owned)S.owned={};save()}
+function loadS(){SK='bh_state_'+USER.mc.toLowerCase();S=null;try{S=JSON.parse(localStorage.getItem(SK))}catch(e){}if(!S)S={bb:0,owned:{},fan:Array(7).fill(''),granted:0};if(!S.fan)S.fan=Array(7).fill('');if(!S.owned)S.owned={};ensureUT();save()}
 function applyG(){const g=(DB.grants||{})[USER.mc.toLowerCase()]||0,d=g-(S.granted||0);if(d>0){S.bb+=d;S.granted=g;save()}}
 /* accounts (browser-only, not secure) */
 const ACC={get(){try{return JSON.parse(localStorage.getItem('bh_acc'))||{users:[],cur:''}}catch(e){return{users:[],cur:''}}},set(a){localStorage.setItem('bh_acc',JSON.stringify(a))}};
@@ -196,7 +203,7 @@ if(!crypto.subtle)return aMsg('Open the site over https to log in.');const h=awa
 if(AM==='login'){if(!u||u.hash!==h)return aMsg('Wrong username or password.');a.cur=u.mc}
 else{if(!/^\w{3,16}$/.test(mc)||!/\S+@\S+\.\S+/.test(em)||pw.length<6)return aMsg('Enter a Minecraft username, a valid email and a password of 6+ characters.');if(u)return aMsg('That username already has an account.');a.users.push({mc,email:em,hash:h});a.cur=mc}
 ACC.set(a);render()}
-function logout(){const a=ACC.get();a.cur='';ACC.set(a);tab='Fantasy';render()}
+function logout(){UPUB=false;UFR={};UMATCH=null;const a=ACC.get();a.cur='';ACC.set(a);tab='Fantasy';render()}
 function vAuth(){return `<div class="box" style="max-width:380px;margin:40px auto"><h2 style="margin-top:0">${AM==='login'?'Log in':'Create account'}</h2><div class="row"><input id="au" placeholder="Minecraft username"></div>${AM==='login'?'':'<div class="row"><input id="ae" type="email" placeholder="Email"></div>'}<div class="row"><input id="ap" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')doAuth()"></div><p class="warn" id="am"></p><div class="row"><button class="pri" onclick="doAuth()">${AM==='login'?'Log in':'Sign up'}</button><button onclick="AM=AM==='login'?'reg':'login';render()">${AM==='login'?'Need an account?':'Have an account?'}</button></div></div>`}
 /* themes + effects */
 function fx(id){const f=$('#fx');let h='';const rn=(a,b)=>a+Math.random()*(b-a);
@@ -256,6 +263,116 @@ function setOrder(n){DB.rank[RL]=n;saveDB()}
 function moveBy(n,d){const g=grp(RL).map(p=>p.name),i=g.indexOf(n),j=i+d;if(j<0||j>=g.length)return;g.splice(i,1);g.splice(j,0,n);setOrder(g)}
 function moveTo(n,r){const g=grp(RL).map(p=>p.name);g.splice(g.indexOf(n),1);g.splice(Math.max(0,Math.min(g.length,(+r||1)-1)),0,n);setOrder(g)}
 function pasteOrder(){const g=grp(RL),m=new Map(g.map(p=>[p.name.toLowerCase(),p.name])),f=[];$('#rkp').value.split(/\r?\n/).forEach(l=>{const n=m.get(l.trim().replace(/^\d+[.)]?\s*/,'').toLowerCase());if(n&&!f.includes(n))f.push(n)});if(f.length)setOrder([...f,...g.map(p=>p.name).filter(n=>!f.includes(n))])}
+/* ULTIMATE TEAM: packs + squad builder + friends + simulated matches */
+let UTT='packs',UFR={},UMATCH=null,UMSG='',UBUSY=false,UPT=null,UPUB=false;
+const ukey=n=>String(n).toLowerCase().replace(/[^a-z0-9_]/g,'_'),ULAB=['C1','W1','D1','C2','W2','D2','G'],avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
+function ensureUT(){if(!S.ut)S.ut={};const u=S.ut;if(!u.sq)u.sq=Array(7).fill('');if(!u.fr)u.fr=[];if(!u.hist)u.hist=[];u.w=u.w||0;u.l=u.l||0;u.dn=u.dn||0;u.day=u.day||''}
+function utEff(sq){const ps=sq.map(n=>BN[n]||null);return ps.map((p,i)=>{if(!p)return null;const m=Math.min(3,ps.filter((q,j)=>j!==i&&q&&q.team===p.team).length);return{p,pos:FS[i],chem:m,eff:p.rating+m}})}
+const utOvr=sq=>{const e=utEff(sq).filter(Boolean);return e.length?Math.round(avg(e.map(x=>x.eff))):0};
+function utPub(){if(!CL.url||!USER)return;clearTimeout(UPT);UPT=setTimeout(()=>{const u=S.ut;fetch(CL.url+'/ut/'+ukey(USER.mc)+'.json',{method:'PUT',body:JSON.stringify({n:USER.mc,sq:u.sq,w:u.w,l:u.l,t:Date.now()})}).catch(()=>{})},500)}
+async function utGet(n){const k=ukey(n);
+ if(CL.url){try{const r=await fetch(CL.url+'/ut/'+k+'.json',{cache:'no-store'}),j=await r.json();if(j&&j.n)return{n:j.n,sq:Array.from({length:7},(_,i)=>(j.sq&&j.sq[i])||''),w:j.w||0,l:j.l||0}}catch(e){}}
+ const a=ACC.get().users.find(u=>ukey(u.mc)===k);if(a){try{const l=JSON.parse(localStorage.getItem('bh_state_'+a.mc.toLowerCase()));if(l&&l.ut)return{n:a.mc,sq:l.ut.sq||[],w:l.ut.w||0,l:l.ut.l||0}}catch(e){}}return null}
+function utSet(i,v){S.ut.sq[i]=v;save();utPub();render()}
+function utAuto(){const u=S.ut,used=new Set;u.sq=FS.map(pos=>{const c=Object.keys(S.owned).map(n=>BN[n]).filter(p=>p&&p.pos===pos&&!used.has(p.name)).sort((a,b)=>b.rating-a.rating)[0];if(c)used.add(c.name);return c?c.name:''});save();utPub();render()}
+function vSquad(){const u=S.ut,e=utEff(u.sq),used=new Set(u.sq.filter(Boolean)),own=Object.keys(S.owned).map(n=>BN[n]).filter(Boolean).sort((a,b)=>b.rating-a.rating);
+ return `<div class="box stat"><div>Team OVR<b>${utOvr(u.sq)}</b></div><div>Record<b>${u.w}-${u.l}</b></div><div>Cards owned<b>${own.length}</b></div></div><p class="mu">Fill all 7 slots from cards you own. Teammates from the same team give each other chemistry (+1 overall each, up to +3).</p>
+ ${FS.map((pos,i)=>{const x=e[i],opts=own.filter(p=>p.pos===pos&&(!used.has(p.name)||p.name===u.sq[i]));return `<div class="rw"><span class="sp">${ULAB[i]}</span>${x?head(x.p):''}<div class="l"><b>${x?esc(x.p.name):'Empty'}</b><span class="mu">${x?esc(x.p.team)+' · OVR '+x.p.rating+(x.chem?' +'+x.chem+' chem':''):PN[pos]}</span></div><select style="width:170px" onchange="utSet(${i},this.value)"><option value="">${x?'Remove':'Choose '+PN[pos]}</option>${opts.map(p=>`<option value="${esc(p.name)}" ${p.name===u.sq[i]?'selected':''}>${esc(p.name)} (${p.rating})</option>`).join('')}</select></div>`}).join('')}
+ <div class="row"><button class="pri" onclick="utAuto()">Auto-fill best</button></div>`}
+const frRow=(r,btns)=>`<div class="rw"><img class="hd" alt="" src="${hsrc({name:r.n},34)}" onerror="this.style.visibility='hidden'"><div class="l"><b>${esc(r.n)}</b><span class="mu">${r.sq&&r.sq.every(n=>BN[n])?'Team OVR '+utOvr(r.sq):'Squad not finished'} · ${r.w}-${r.l}</span></div>${btns}</div>`;
+function frHTML(){const u=S.ut;return u.fr.length?u.fr.map(n=>{const r=UFR[ukey(n)]||{n,sq:[],w:0,l:0};return frRow(r,`<button class="pri" data-n="${esc(n)}" onclick="utPlay(this.dataset.n)">Play</button><button data-n="${esc(n)}" onclick="utDel(this.dataset.n)">✕</button>`)}).join(''):'<p class="mu">No friends yet. Add someone by their Minecraft username.</p>'}
+function dirHTML(){const u=S.ut,l=Object.entries(UFR).filter(([k,r])=>k!==ukey(USER.mc)&&!u.fr.some(f=>ukey(f)===k));return l.length?l.map(([k,r])=>frRow(r,`<button data-n="${esc(r.n)}" onclick="utAddName(this.dataset.n)">Add</button>`)).join(''):'<p class="mu">Nobody else yet. Players show up here once they open Ultimate Team while logged in.</p>'}
+async function utRefresh(){if(UTT!=='friends'||!USER)return;
+ if(CL.url){try{const r=await fetch(CL.url+'/ut.json',{cache:'no-store'}),j=await r.json();Object.entries(j||{}).forEach(([k,v])=>{if(v&&v.n)UFR[k]={n:v.n,sq:Array.from({length:7},(_,i)=>(v.sq&&v.sq[i])||''),w:v.w||0,l:v.l||0}})}catch(e){}}
+ ACC.get().users.forEach(a=>{const k=ukey(a.mc);if(UFR[k])return;try{const l=JSON.parse(localStorage.getItem('bh_state_'+a.mc.toLowerCase()));if(l&&l.ut)UFR[k]={n:a.mc,sq:l.ut.sq||[],w:l.ut.w||0,l:l.ut.l||0}}catch(e){}});
+ const a=$('#frl'),b=$('#fdir');if(a&&UTT==='friends'){a.innerHTML=frHTML();b.innerHTML=dirHTML()}}
+function vFriends(){setTimeout(utRefresh,0);return `<p class="mu">Your username here is your account name, which is your Minecraft username. Friends play against your saved squad even when you are offline.</p><div class="row"><input id="fadd" placeholder="Friend's Minecraft username" onkeydown="if(event.key==='Enter')utAdd()"><button class="pri" onclick="utAdd()">Add friend</button></div>${UMSG?`<p class="warn">${esc(UMSG)}</p>`:''}<div id="frl">${frHTML()}</div><h3>Players on the site</h3><div id="fdir">${dirHTML()}</div>`}
+async function utAddName(n){UMSG='';ensureUT();const u=S.ut,k=ukey(n);if(k===ukey(USER.mc)){UMSG='That is you.';return render()}if(u.fr.some(f=>ukey(f)===k)){UMSG='Already friends.';return render()}
+ const r=await utGet(n);if(!r){UMSG='No player named '+n+' found. They need to open Ultimate Team once while logged in.';return render()}u.fr.push(r.n);UFR[k]=r;save();render()}
+function utAdd(){utAddName(($('#fadd').value||'').trim())}
+function utDel(n){S.ut.fr=S.ut.fr.filter(f=>f!==n);save();render()}
+const utSide=sq=>{const e=utEff(sq);if(e.some(x=>!x))return null;return{e,off:avg(e.filter(x=>x.pos==='C'||x.pos==='W').map(x=>x.eff)),def:avg(e.filter(x=>x.pos==='D').map(x=>x.eff)),g:e[6].eff}};
+const pGoal=(X,Y,sd)=>Math.min(.2,Math.max(.06,(.115+(sd.eff-Y.g)*.003+(X.off-Y.def)*.0016)*(1+(X.form||0))*(1-(Y.gf||0))));
+const pickShooter=X=>{const pool=X.e.filter(x=>x.pos!=='G'),w=pool.map(x=>Math.pow(x.eff/60,3)*(x.pos==='D'?.45:1)),t=w.reduce((a,b)=>a+b,0);let r=Math.random()*t;for(let i=0;i<pool.length;i++){r-=w[i];if(r<=0)return pool[i]}return pool[0]};
+const pickAssist=(X,sd)=>{if(Math.random()>.8)return'';const m=X.e.filter(x=>x.pos!=='G'&&x!==sd);return m[Math.floor(Math.random()*m.length)].p.name};
+const setForm=(A,B)=>{A.form=(Math.random()-.5)*.24;B.form=(Math.random()-.5)*.24;A.gf=(Math.random()-.5)*.3;B.gf=(Math.random()-.5)*.3};
+const nAtt=(X,Y)=>Math.max(4,Math.min(11,Math.round(7+(X.off-Y.def)*.06+Math.random()*3-1.5)));
+function simGame(A,B){setForm(A,B);const R=Math.random,sc={A:0,B:0},sh={A:0,B:0},ev=[],per=[];
+ const shoot=(X,Y,t,pr)=>{const sd=pickShooter(X);sh[t]++;if(R()<pGoal(X,Y,sd)){sc[t]++;ev.push({pr,t,s:sd.p.name,a:pickAssist(X,sd)})}};
+ for(let i=1;i<=3;i++){const nA=nAtt(A,B),nB=nAtt(B,A);for(let k=0;k<nA;k++)shoot(A,B,'A','P'+i);for(let k=0;k<nB;k++)shoot(B,A,'B','P'+i);per.push([sc.A,sc.B])}
+ let ot=false;if(sc.A===sc.B){ot=true;for(let k=0;k<8&&sc.A===sc.B;k++){shoot(A,B,'A','OT');if(sc.A!==sc.B)break;shoot(B,A,'B','OT')}if(sc.A===sc.B){const w=R()<.5+(A.g-B.g)*.004?'A':'B';sc[w]++;ev.push({pr:'SO',t:w,s:'Shootout winner',a:''})}per.push([sc.A,sc.B])}
+ return{sc,sh,ev,per,ot}}
+function utOdds(A,B){let w=0;const N=600;for(let i=0;i<N;i++){const r=simGame(A,B);if(r.sc.A>r.sc.B)w++}return w/N}
+function utFinish(res,rec,A,B,bonus){const u=S.ut,win=res.sc.A>res.sc.B,td=new Date().toDateString();if(u.day!==td){u.day=td;u.dn=0}
+ let rw=0;if(u.dn<10){rw=(win?150:40)+(bonus||0);u.dn++;S.bb+=rw}if(win)u.w++;else u.l++;
+ UMATCH={...res,opp:rec.n,win,rw,oa:utOvr(u.sq),ob:utOvr(rec.sq)};u.hist.unshift({o:rec.n,s:res.sc.A+'-'+res.sc.B+(res.ot?' OT':''),w:win});u.hist=u.hist.slice(0,15);save();utPub();return UMATCH}
+/* ---- live match ---- */
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));let M=null,UREC=null;
+const mOpen=h=>{const o=$('#mo');o.className='ov show';o.innerHTML='<div class="mo-w">'+h+'</div>'};
+function mClose(){const o=$('#mo');o.className='ov';o.innerHTML='';M=null}
+async function utPlay(name){if(UBUSY)return;ensureUT();const u=S.ut;UMSG='';
+ if(!u.sq.every(n=>BN[n])){UMSG='Fill all 7 squad slots first (Squad tab).';UTT='squad';return render()}
+ UBUSY=true;const rec=await utGet(name);UBUSY=false;if(!rec||!rec.sq.every(n=>BN[n])){UMSG=name+' has not finished their squad yet.';return render()}
+ const A=utSide(u.sq),B=utSide(rec.sq),pw=utOdds(A,B);UREC=rec;
+ mOpen(`<div class="msc"><div><span class="n">${esc(USER.mc)}</span><b>${utOvr(u.sq)}</b><span class="n">OVR</span></div><div class="mclk">VS</div><div><span class="n">${esc(rec.n)}</span><b>${utOvr(rec.sq)}</b><span class="n">OVR</span></div></div><div class="mst"><div class="mhd">${Math.round(pw*100)}% win chance</div><div class="mwp"><i style="width:${pw*100}%"></i></div><div class="mu" style="max-width:520px">Even the favorite can lose. In a live match you can swing it: win face-offs, time your shots and make saves. Win 150 BB, lose 40 BB, +5 BB for every perfect mini-game.</div><div class="row" style="justify-content:center"><button class="pri" onclick="utKick()">Kick off (live)</button><button onclick="utQuick()">Quick sim</button><button onclick="mClose()">Cancel</button></div></div>`)}
+function utQuick(){const rec=UREC,u=S.ut,A=utSide(u.sq),B=utSide(rec.sq);utFinish(simGame(A,B),rec,A,B,0);mClose();UTT='match';render();scrollTo(0,0)}
+const wait=ms=>M&&M.skip?Promise.resolve():sleep(ms);
+function mUp(){if(!M)return;$('#msa').textContent=M.sc.A;$('#msb').textContent=M.sc.B;$('#mws').textContent='Shots '+M.sh.A+' - '+M.sh.B;
+ const rem=M.ot?.05:1-((M.pd-1)+M.t/20)/3,lead=M.sc.A-M.sc.B,p0=Math.min(.98,Math.max(.02,M.p0)),lg=Math.log(p0/(1-p0))*Math.max(0,rem)+lead*(1+1.7*(1-Math.max(0,rem))),wp=1/(1+Math.exp(-lg));
+ $('#mwp').style.width=Math.round(wp*100)+'%';$('#mwt').textContent=Math.round(wp*100)+'% win chance';const rm=Math.max(0,20-M.t),mm=Math.floor(rm),ss=Math.floor((rm-mm)*60);$('#mclk').textContent=(M.ot?'OT':'P'+M.pd)+'  '+mm+':'+String(ss).padStart(2,'0')}
+const mSay=(h,sub,cls)=>{const e=$('#mst');if(e)e.innerHTML='<div class="mhd '+(cls||'')+'">'+h+'</div>'+(sub?'<div class="mu">'+sub+'</div>':'')};
+const mClk=()=>{const rm=Math.max(0,20-M.t),mm=Math.floor(rm),ss=Math.floor((rm-mm)*60);return(M.ot?'OT':'P'+M.pd)+' '+mm+':'+String(ss).padStart(2,'0')};
+const mLog=(t,c)=>{const l=$('#mlg');if(l)l.insertAdjacentHTML('afterbegin','<div class="'+(c||'')+'">'+t+'</div>')};
+function mgTiming(title,sub,btn,zw,speed){return new Promise(res=>{if(M.skip)return res('none');const zl=12+Math.random()*(76-zw),cz=zl+zw/2;
+ $('#mst').innerHTML=`<div class="mhd">${title}</div><div class="mu">${sub}</div><div class="mtr"><i class="mzn" style="left:${zl}%;width:${zw}%"></i><i class="mcr" id="mcr"></i></div><button class="pri" id="mgb" style="padding:12px 30px;font-size:18px">${btn}</button>`;
+ const cr=$('#mcr'),b=$('#mgb'),t0=performance.now();let done=false,pos=0,raf,to;
+ const fin=g=>{if(done)return;done=true;cancelAnimationFrame(raf);document.removeEventListener('keydown',kd);clearTimeout(to);M.cancel=null;res(g)};
+ const hit=()=>{const d=Math.abs(pos-cz);fin(d<=zw*.22?'perfect':d<=zw/2?'good':'miss')},kd=e=>{if((e.code==='Space'||e.key==='Enter')&&!e.repeat){e.preventDefault();hit()}};
+ document.addEventListener('keydown',kd);b.onpointerdown=hit;to=setTimeout(()=>fin('late'),3200);M.cancel=()=>fin('none');
+ const loop=()=>{const p=((performance.now()-t0)/1000*speed)%2;pos=(p<1?p:2-p)*100;cr.style.left=pos+'%';raf=requestAnimationFrame(loop)};loop()})}
+function mgMash(sec){return new Promise(res=>{if(M.skip)return res(-1);let n=0,left=sec,iv;
+ $('#mst').innerHTML=`<div class="mhd">FACE-OFF!</div><div class="mu">Tap as fast as you can</div><button class="pri" id="mgb" style="padding:18px 44px;font-size:22px">TAP! <span id="mgn">0</span></button><div class="mu" id="mgt">${sec}s</div>`;
+ const tap=()=>{n++;$('#mgn').textContent=n},kd=e=>{if(e.code==='Space'&&!e.repeat){e.preventDefault();tap()}},end=v=>{clearInterval(iv);document.removeEventListener('keydown',kd);M.cancel=null;res(v)};
+ $('#mgb').onpointerdown=tap;document.addEventListener('keydown',kd);M.cancel=()=>end(-1);
+ iv=setInterval(()=>{left-=.25;const t=$('#mgt');if(t)t.textContent=Math.max(0,left).toFixed(1)+'s';if(left<=0)end(n)},250)})}
+const GR={perfect:'PERFECT!',good:'Nice!',late:'Too slow!',miss:'Missed it!'};
+async function mChance(a){const R=Math.random,mine=a.s==='A',X=mine?M.A:M.B,Y=mine?M.B:M.A,sd=pickShooter(X),pn=sd.p.name,gk=Y.e[6].p.name;M.t=a.t;mUp();M.sh[a.s]++;
+ let big=!!(a.pp||(!M.skip&&(mine?M.bA<5:M.bB<5)&&R()<.34));if(big&&!a.pp){mine?M.bA++:M.bB++}
+ let p=pGoal(X,Y,sd);p=big?Math.min(.6,p*2.1):p*.8;
+ if(big){mSay(mine?esc(pn)+' is in on a breakaway!':'Danger! '+esc(M.nameB)+' is attacking',mine?'Get ready to shoot...':'Get ready to save...');await wait(1100);
+  const mg=mine?await mgTiming('SHOOT!','Hit the green zone to beat '+esc(gk),'SHOOT',Math.max(12,24-(Y.g-60)*.25),1.1+R()*.6):await mgTiming('SAVE!','Stop the shot with '+esc(M.A.e[6].p.name),'SAVE',Math.max(12,Math.min(28,14+(M.A.g-60)*.3)),1.1+R()*.6);
+  const mult=(mine?{perfect:1.8,good:1.3,miss:.7,late:.6,none:1}:{perfect:.28,good:.62,miss:1.2,late:1.25,none:1})[mg];p=Math.min(.85,Math.max(.02,p*mult));if(mg==='perfect')M.perf++;
+  if(mg!=='none'){mSay(GR[mg],mine?'The shot is on its way...':'Here it comes...',mg==='perfect'?'goal':'');await wait(1000)}}
+ else{mSay(mine?esc(pn)+' shoots':esc(M.nameB)+' shoots','');await wait(420)}
+ if(R()<p){M.sc[a.s]++;const as=pickAssist(X,sd);M.ev.push({pr:M.ot?'OT':'P'+M.pd,t:a.s,s:pn,a:as});mUp();mSay('GOAL! '+esc(pn),as?'Assist: '+esc(as):'Unassisted',mine?'goal':'ogoal');const st=$('#mst');if(st){st.classList.remove('gflash');void st.offsetWidth;st.classList.add('gflash')}
+  mLog(mClk()+' GOAL '+esc(mine?M.nameA:M.nameB)+': '+esc(pn),mine?'g':'o');await wait(2000)}
+ else{const r=R();const k=r<.7?'Saved by '+esc(gk)+'!':r<.85?'Shot wide.':'Blocked!';mSay(k,'');mLog(mClk()+' '+esc(pn)+': '+k.replace(/!$/,''),'');await wait(big?1200:380)}
+ mUp()}
+async function utKick(){const rec=UREC,u=S.ut,A=utSide(u.sq),B=utSide(rec.sq);setForm(A,B);
+ M={A,B,sc:{A:0,B:0},sh:{A:0,B:0},ev:[],per:[],skip:false,bA:0,bB:0,perf:0,p0:utOdds(A,B),t:0,pd:1,ot:false,nameA:USER.mc,nameB:rec.n};
+ mOpen(`<div class="msc"><div><span class="n">${esc(USER.mc)}</span><b id="msa">0</b></div><div><div class="mclk" id="mclk">P1 20:00</div><span class="n" id="mws"></span></div><div><span class="n">${esc(rec.n)}</span><b id="msb">0</b></div></div><div class="mwp"><i id="mwp" style="width:50%"></i></div><div class="mu" style="text-align:center" id="mwt"></div><div class="mst" id="mst"></div><div class="mlg" id="mlg"></div><div class="row" style="justify-content:center"><button onclick="M.skip=true;M.cancel&&M.cancel()">Skip to final</button></div>`);
+ const R=Math.random;mUp();
+ for(let pd=1;pd<=3;pd++){M.pd=pd;M.t=0;mUp();mSay('Period '+pd,pd===1?'Puck drop...':'Back on the ice');await wait(1300);
+  const taps=await mgMash(3),opp=11+(B.off-A.off)*.15+R()*6,fw=taps<0?R()<.5:taps>opp;mSay(fw?'You win the face-off!':'They win the face-off',fw?'Extra pressure this period':'They have the early edge');mLog('P'+pd+' face-off: '+(fw?'won':'lost'),'');await wait(1100);
+  let nA=nAtt(A,B)+(fw?1:-1),nB=nAtt(B,A)+(fw?-1:1);const L=[];for(let i=0;i<nA;i++)L.push({t:R()*20,s:'A'});for(let i=0;i<nB;i++)L.push({t:R()*20,s:'B'});
+  if(R()<.55){const on=R()<.5?'A':'B',pp=on==='A'?'B':'A',t0=2+R()*13;L.push({t:t0,type:'pen',on,pp});for(let i=0;i<2;i++)L.push({t:t0+R()*2,s:pp,pp:true})}
+  L.sort((x,y)=>x.t-y.t);
+  for(const it of L){if(it.type==='pen'){M.t=it.t;mUp();const nm=it.on==='A'?M.nameA:M.nameB;mSay('PENALTY!',esc(nm)+' goes to the box. Power play for '+esc(it.pp==='A'?M.nameA:M.nameB));mLog(mClk()+' Penalty on '+esc(nm),'');await wait(1500)}else await mChance(it)}
+  M.t=20;mUp();M.per.push([M.sc.A,M.sc.B]);mSay('End of period '+pd,M.sc.A+' - '+M.sc.B);mLog('End of P'+pd+': '+M.sc.A+'-'+M.sc.B,'');await wait(1500)}
+ if(M.sc.A===M.sc.B){M.ot=true;M.pd=4;mSay('OVERTIME','Next goal wins it. Sudden death.');mLog('Overtime!','');await wait(1800);
+  for(let k=0;k<6&&M.sc.A===M.sc.B;k++){await mChance({t:Math.min(19,k*3+1),s:'A',pp:true});if(M.sc.A!==M.sc.B)break;await mChance({t:Math.min(19,k*3+2),s:'B',pp:true})}
+  if(M.sc.A===M.sc.B){mSay('SHOOTOUT','It comes down to the skills competition...');await wait(1800);const w=R()<.5+(A.g-B.g)*.004?'A':'B';M.sc[w]++;M.ev.push({pr:'SO',t:w,s:'Shootout winner',a:''});mUp()}M.per.push([M.sc.A,M.sc.B])}
+ const res={sc:M.sc,sh:M.sh,ev:M.ev,per:M.per,ot:M.ot},bonus=Math.min(40,M.perf*5),m=utFinish(res,rec,A,B,bonus);mUp();
+ mSay(m.win?'VICTORY!':'DEFEAT',(m.ot?'Overtime. ':'')+(m.rw?'+'+m.rw+' BB'+(M.perf?' (incl. '+bonus+' for '+M.perf+' perfect mini-games)':''):'Daily reward limit reached'),m.win?'goal':'ogoal');
+ const e=$('#mst');if(e)e.insertAdjacentHTML('beforeend','<button class="pri" onclick="mClose();UTT=\'match\';render();scrollTo(0,0)">Continue</button>')}
+function vMatch(){const u=S.ut,m=UMATCH;let h='';
+ if(m){const gl=t=>m.ev.filter(e=>e.t===t).map(e=>`${esc(e.s)}${e.a?' (A: '+esc(e.a)+')':''} · ${e.pr}`).join('<br>')||'<span class="mu">No goals</span>';
+  h+=`<div class="box" style="text-align:center"><p class="mu">${m.ot?'Final (overtime)':'Final'} · OVR ${m.oa} vs ${m.ob}</p><div style="font:800 52px 'Barlow Condensed';display:flex;justify-content:center;gap:20px;align-items:center;flex-wrap:wrap"><span>${esc(USER.mc)} ${m.sc.A}</span><span class="mu">-</span><span>${m.sc.B} ${esc(m.opp)}</span></div><p class="${m.win?'':'warn'}"><b>${m.win?'Victory':'Defeat'}</b> · ${m.rw?'+'+m.rw+' BB':'daily reward limit reached (10 matches)'}</p><p class="mu">Shots ${m.sh.A}-${m.sh.B} · After each period: ${m.per.map((p,i)=>(i<3?'P'+(i+1):'OT')+' '+p[0]+'-'+p[1]).join(' · ')}</p></div><div class="split two" style="display:grid;gap:12px"><div class="box"><h3 style="margin-top:0">${esc(USER.mc)} goals</h3><p>${gl('A')}</p></div><div class="box"><h3 style="margin-top:0">${esc(m.opp)} goals</h3><p>${gl('B')}</p></div></div>`}
+ else h+='<p class="mu">No match played yet. Go to Friends and press Play.</p>';
+ return h+`<h3>Recent matches</h3>${u.hist.length?u.hist.map(x=>`<div class="rw"><span class="sp">${x.w?'W':'L'}</span><div class="l"><b>vs ${esc(x.o)}</b></div><span class="mu">${esc(x.s)}</span></div>`).join(''):'<p class="mu">Nothing yet.</p>'}`}
+function vUltimate(){ensureUT();if(!UPUB){UPUB=true;utPub()}
+ const T=[['packs','Packs'],['squad','Squad'],['friends','Friends'],['match','Matches']],td=new Date().toDateString();
+ return `<h2>Ultimate Team</h2><div class="row" style="justify-content:space-between"><div class="chips" style="margin:0">${T.map(([k,v])=>`<button class="${UTT===k?'on':''}" onclick="UTT='${k}';UMSG='';render()">${v}</button>`).join('')}</div>${S.day!==td?'<button class="pri" onclick="daily()">Claim daily reward +500 BB</button>':''}</div>${UTT==='packs'?vPacks():UTT==='squad'?vSquad():UTT==='friends'?vFriends():vMatch()}`}
 /* PACKS */
 function effW(k){const pool=P.filter(p=>p.league===k),w=[...CFG.PK[k].w];for(let t=3;t>0;t--)if(!pool.some(p=>p.tier===t)){w[t-1]+=w[t];w[t]=0}return w}
 function vPacks(){const ow=Object.keys(S.owned).map(n=>BN[n]).filter(Boolean).sort((a,b)=>b.rating-a.rating),dv=ow.reduce((a,p)=>a+(S.owned[p.name]-1)*p.rating*2,0);
@@ -340,14 +457,21 @@ function skinFig(im){const k=im.width/64,old=im.height*2===im.width,S=document.c
  d(8,8,8,8,4,0);d(40,8,8,8,4,0);
  const h=document.createElement('canvas');h.width=8;h.height=8;const hx=h.getContext('2d');hx.imageSmoothingEnabled=false;hx.drawImage(S,8*k,8*k,8*k,8*k,0,0,8,8);hx.drawImage(S,40*k,8*k,8*k,8*k,0,0,8,8);
  return{b:c.toDataURL('image/png'),h:h.toDataURL('image/png')}}
-async function fetchSkin(name){const n=encodeURIComponent(name);let id='',ex=null;
- try{const r=await fetch('https://playerdb.co/api/player/minecraft/'+n),j=await r.json();ex=!!(j&&j.success);if(ex)id=String(j.data.player.raw_id||j.data.player.id||'').replace(/-/g,'')}catch(e){}
+const okSkin=im=>im.width>=64&&(im.height===im.width||im.height*2===im.width);
+async function blobImg(u,chk){const r=await fetch(u);if(!r.ok)throw 0;if(chk&&!chk(r))throw 0;const url=URL.createObjectURL(await r.blob());try{return await loadImg(url)}finally{setTimeout(()=>URL.revokeObjectURL(url),5000)}}
+async function fetchSkin(name){const n=encodeURIComponent(name);let id='',ex=null,tex='';
+ try{const r=await fetch('https://playerdb.co/api/player/minecraft/'+n),j=await r.json();ex=!!(j&&j.success);if(ex){const p=j.data.player;id=String(p.raw_id||p.id||'').replace(/-/g,'');tex=String(p.skin_texture||'').replace(/^http:/,'https:')}}catch(e){}
  if(ex===false)return{x:1};
- const urls=[];if(id)urls.push('https://crafatar.com/skins/'+id);urls.push('https://minotar.net/skin/'+n,'https://mc-heads.net/skin/'+n);
- for(const u of urls){try{const im=await loadImg(u);if(im.width>=64&&(im.height===im.width||im.height*2===im.width))return skinFig(im)}catch(e){}}
+ if(ex===null)return null;
+ /* 1) the real skin straight from Mojang's texture server (cannot be a default skin) */
+ if(tex){try{const im=await blobImg(tex);if(okSkin(im))return skinFig(im)}catch(e){}}
+ /* 2) crafatar, only if it says it has the real skin (a 404 or "local" means it sent a default skin) */
+ if(id){try{const im=await blobImg('https://crafatar.com/skins/'+id,r=>{const t=r.headers.get('x-storage-type');return t!=='local'});if(okSkin(im))return skinFig(im)}catch(e){}}
+ /* 3) no custom skin on the account: the default skin is the correct answer */
+ if(!tex){for(const u of ['https://minotar.net/skin/'+n,'https://mc-heads.net/skin/'+n]){try{const im=await blobImg(u);if(okSkin(im))return skinFig(im)}catch(e){}}}
  return null}
 let SKRUN=false;
-async function fetchSkins(all){if(SKRUN)return;DB.skins=DB.skins||{};const names=[...new Set(DB.players.map(p=>String(p.mc||p.name)))].filter(n=>all||!(DB.skins[n.toLowerCase()]||{}).b);
+async function fetchSkins(all){if(SKRUN)return;DB.skins=DB.skins||{};if(all)DB.skins={};const names=[...new Set(DB.players.map(p=>String(p.mc||p.name)))].filter(n=>all||!(DB.skins[n.toLowerCase()]||{}).b);
  if(!names.length){AD.msg='Every player already has a saved skin.';return render()}
  SKRUN=true;let ok=0,miss=0;const fail=[];
  try{for(let i=0;i<names.length;i++){const st=$('#skst');if(st)st.textContent='Fetching '+(i+1)+' of '+names.length+': '+names[i];const r=await fetchSkin(names[i]);
@@ -377,18 +501,18 @@ return `<h2>Admin</h2>${SRC==='demo'?`<div class="box">Demo players are showing.
 <div class="box"><h3 style="margin-top:0">3. Edit teams</h3><p class="mu">Change a name, league, color or logo. Renaming moves the team's players with it. Logo files can also go in <code>logos/team-name.png</code>.</p>${tm.map(t=>`<div class="rw" data-t="${esc(t)}" style="flex-wrap:wrap"><img class="tl" alt="" src="${esc(logo(t))}" data-t="${esc(t)}" onerror="lerr(this)"><input style="flex:1 1 150px" value="${esc(t)}" onchange="renTeam(this)"><select style="width:92px" onchange="teamLg(this)">${LG.map(l=>`<option ${DB.teams[t].league===l?'selected':''}>${l}</option>`).join('')}</select><input type="color" style="width:44px;padding:2px" value="${/^#[0-9a-f]{6}$/i.test(tcol(t))?tcol(t):'#475569'}" onchange="setCol(this)"><label class="box" style="margin:0;padding:7px 11px;cursor:pointer">Logo<input type="file" accept="image/*" hidden onchange="upLogo(this)"></label><button class="dg" onclick="delTeam(this)">✕</button></div>`).join('')||'<p class="mu">No teams yet.</p>'}</div>
 <div class="box"><h3 style="margin-top:0">4. Manage players</h3><div class="chips">${['All',...LG].map(l=>`<button class="${AD.mg===l?'on':''}" onclick="AD.mg='${l}';render()">${l}</button>`).join('')}</div>${mg.slice(0,100).map(p=>`<div class="rw" data-n="${esc(p.name)}" style="flex-wrap:wrap">${head(p)}<div class="l" style="flex:1 1 110px"><b>${esc(p.name)}</b></div><select style="width:70px" onchange="editP(this,'pos')">${['C','W','D','G'].map(x=>`<option ${p.pos===x?'selected':''}>${x}</option>`).join('')}</select><select style="width:150px" onchange="editP(this,'team')">${tm.map(t=>`<option value="${esc(t)}" ${p.team===t?'selected':''}>${esc(t)}</option>`).join('')}</select><select style="width:100px" title="Overall" onchange="editP(this,'ovr')"><option value="">Auto (${(BN[p.name]||{}).auto||''})</option>${[...Array(60)].map((_,i)=>99-i).map(n=>`<option ${p.ovr===n?'selected':''}>${n}</option>`).join('')}</select>${p.league!=='JBHL'?`<input style="width:80px" title="Contract" value="${p.contract?fC(p.contract).slice(1):''}" onchange="editP(this,'contract')">`:''}<input style="width:120px" title="Skin name, only if different from the username" placeholder="Skin name" value="${esc(p.mc||'')}" onchange="editP(this,'mc')"><button class="dg" onclick="delP(this)">✕</button></div>`).join('')||'<p class="mu">No players.</p>'}${mg.length>100?`<p class="mu">Showing 100 of ${mg.length}.</p>`:''}</div>
 <div class="box"><h3 style="margin-top:0">5. Stats</h3><p class="mu">Copy the whole stats table from the main page (headers included) and paste it here. Each player you have already imported is matched by username and updated. BHL overalls are mostly set by contract (4.5K lowest to 45K best), then stats separate players on similar contracts, with goals weighted a little heavier. Players on 4.5K (BHL minimum and all of NAMHL) are ranked against each other mainly by goals and assists, with goals counting a bit more; other stats only break ties. A player with clearly outstanding stats far above their contract gets a breakout boost. NAMHL and JBHL overalls use stats only. Players who are not imported yet are skipped.</p><textarea id="bulk" placeholder="name,g,a,sog,gp&#10;Steve12,4,6,20,10"></textarea><div class="row"><button onclick="bulkStats()">Import stats</button></div></div>
-<div class="box"><h3 style="margin-top:0">Player skins</h3><p class="mu">Downloads each player's skin once, redraws the character itself and saves a tiny copy inside <code>data.json</code>, so the site never needs a skin website while people browse. Run it after importing players, then export data.json (step 6) to publish. ${DB.players.filter(p=>(skOf(p)||{}).b).length} of ${DB.players.length} players saved. Usernames that don't exist get the gray silhouette.</p><div class="row"><button class="pri" onclick="fetchSkins(false)">Fetch missing skins</button><button onclick="fetchSkins(true)">Re-fetch all</button></div><p class="mu" id="skst"></p><div class="row"><input id="skn" list="skl" placeholder="Username (to upload a skin file by hand)"><datalist id="skl">${DB.players.slice(0,500).map(p=>`<option value="${esc(p.mc||p.name)}">`).join('')}</datalist><label class="box" style="margin:0;padding:8px 13px;cursor:pointer;flex:0 0 auto">Upload skin PNG<input type="file" accept="image/png" hidden onchange="upSkin(this)"></label></div></div>
+<div class="box"><h3 style="margin-top:0">Player skins</h3><p class="mu">Downloads each player's skin once, redraws the character itself and saves a tiny copy inside <code>data.json</code>, so the site never needs a skin website while people browse. Run it after importing players, then export data.json (step 6) to publish. ${DB.players.filter(p=>(skOf(p)||{}).b).length} of ${DB.players.length} players saved. Usernames that don't exist get the gray silhouette.</p><div class="row"><button class="pri" onclick="fetchSkins(false)">Fetch missing skins</button><button onclick="fetchSkins(true)">Clear and re-fetch all</button><button class="dg" onclick="ask('Delete every saved skin?',()=>{DB.skins={};AD.msg='All saved skins cleared.';saveDB()})">Clear all skins</button></div><p class="mu" id="skst"></p><div class="row"><input id="skn" list="skl" placeholder="Username (to upload a skin file by hand)"><datalist id="skl">${DB.players.slice(0,500).map(p=>`<option value="${esc(p.mc||p.name)}">`).join('')}</datalist><label class="box" style="margin:0;padding:8px 13px;cursor:pointer;flex:0 0 auto">Upload skin PNG<input type="file" accept="image/png" hidden onchange="upSkin(this)"></label></div></div>
 <div class="box"><h3 style="margin-top:0">Pack art</h3><p class="mu">Upload the picture used for each league's pack, both in the Packs tab and in the opening animation. Use a tall PNG (about 2:3) with a transparent background. The pack tears open along a line about 14% down from the top, so keep the crimped top edge above that. Without an upload, the site uses <code>bhlpack.png</code>, <code>namhlpack.png</code> or <code>jbhlpack.png</code> from your repo if they exist, then a plain colored pack.</p><div class="packs">${LG.map(k=>`<div class="box pt">${packImg(k)?`<img class="mini2" src="${packImg(k)}" alt="${k}">`:`<div class="mini" style="--pa:${CFG.PK[k].c[0]};--pb:${CFG.PK[k].c[1]}">${k}</div>`}<b>${k} pack</b><span class="mu">${(DB.packs||{})[k]?'Custom upload':PKIMG[k]?'Default file':'No art'}</span><div class="row" style="justify-content:center"><label class="box" style="margin:0;padding:7px 11px;cursor:pointer;flex:0 0 auto">Upload<input type="file" accept="image/*" hidden onchange="upPack(this,'${k}')"></label>${(DB.packs||{})[k]?`<button class="dg" onclick="resetPack('${k}')">Reset</button>`:''}</div></div>`).join('')}</div></div>
 <div class="box"><h3 style="margin-top:0">5b. Goalie stats</h3><p class="mu">Paste the goalie table rows (the rank and name lines, then the tab-separated line starting with the team). Goalies are matched by username and set to position G. A goalie needs 4+ games played before stats count. Overall is 75% contract and 25% stats, like skaters. Goalie contracts are scaled from 7.5K (lowest) to 18K (highest) instead of 4.5K to 45K (save %, GAA, shutouts, shots faced, blocks, clears, glove). NAMHL and JBHL goalies use stats only.</p><textarea id="gbulk" placeholder="1&#10;packrs&#10;packrs&#10;CGY&#9;6&#9;54&#9;48&#9;6&#9;0.889&#9;1.00&#9;3&#9;106:11&#9;2&#9;38&#9;58&#9;44"></textarea><div class="row"><button onclick="bulkGoalies()">Import goalie stats</button></div></div>
 <div class="box"><h3 style="margin-top:0">6. Publish for everyone</h3><p class="mu">If Live sync (top of this page) is connected, everything publishes instantly and you can skip this step. Otherwise edits save in your browser only. Export <code>data.json</code> and upload it (plus any logos) to your GitHub repo next to index.html.</p><div class="row"><button class="pri" onclick="expJSON()">Export data.json</button><label class="box" style="margin:0;padding:8px 13px;cursor:pointer;flex:0 0 auto">Load data.json<input type="file" accept=".json" hidden onchange="impJSON(this)"></label>${SRC==='local'?'<button class="dg" onclick="ask(\'Throw away your local edits?\',discardLocal)">Discard local edits</button>':''}</div></div>`}
 /* render */
 const LST={Fantasy:fanList,Players:plList};
-const TABS={Fantasy:vFantasy,Budget:vBudget,Packs:vPacks,Rankings:vRank,Players:vPlayers,Teams:vTeams};
+const TABS={Fantasy:vFantasy,Budget:vBudget,Ultimate:vUltimate,Rankings:vRank,Players:vPlayers,Teams:vTeams};
 function render(){setUser();if(USER){if(!S||SK!=='bh_state_'+USER.mc.toLowerCase())loadS();applyG()}if(ADMIN)TABS.Admin=vAdmin;else delete TABS.Admin;if(!TABS[tab])tab='Fantasy';
 $('#logo').innerHTML='<span class="lmark">BG</span><span class="lword"><b>Blockey</b><i>Games</i></span>';$('#th').innerHTML=Object.entries(THEMES).map(([k,v])=>`<option value="${k}" ${document.documentElement.dataset.theme===k?'selected':''}>${v}</option>`).join('');
 if(!USER){$('#bb').style.display='none';$('#tabs').innerHTML='';$('#view').innerHTML=vAuth();return}
 $('#bb').style.display='';$('#bb').innerHTML='<i class="coin"></i>'+S.bb.toLocaleString()+' <small style="opacity:.6">BB</small>';
-$('#tabs').innerHTML=Object.keys(TABS).map(t=>`<button class="${t===tab?'on':''}" onclick="tab='${t}';render();scrollTo(0,0)">${t==='Budget'?'Dream Lineup':t}</button>`).join('')+`<button onclick="logout()">Log out (${esc(USER.mc)})</button>`;
+$('#tabs').innerHTML=Object.keys(TABS).map(t=>`<button class="${t===tab?'on':''}" onclick="tab='${t}';render();scrollTo(0,0)">${t==='Budget'?'Dream Lineup':t==='Ultimate'?'Ultimate Team':t}</button>`).join('')+`<button onclick="logout()">Log out (${esc(USER.mc)})</button>`;
 $('#view').innerHTML=(SRC==='demo'&&tab!=='Admin'?'<div class="box">Demo players. The real rosters have not been added yet.</div>':'')+TABS[tab]();scanSkins()}
 try{new MutationObserver(()=>scanSkins()).observe(document.body,{childList:true,subtree:true})}catch(e){}
 (async()=>{let t='midnight';try{t=localStorage.getItem('bh_theme')||t}catch(e){}setTheme(t);await loadDB();await cloudInit();prep();render();Object.entries(CFG.PK).forEach(([k,v])=>{if(v.img){const i=new Image;i.onload=()=>{PKIMG[k]=v.img;if(!anim)render()};i.src=v.img}})})();
