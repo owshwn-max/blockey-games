@@ -68,7 +68,7 @@ h1,h2,h3,.logo{font-weight:800;letter-spacing:.4px}h3{font-size:14px}
 .msc{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;gap:10px;background:#0b1020;border:1px solid #2a3350;border-radius:14px;padding:14px}.msc b{font:800 clamp(34px,8vw,56px) "Barlow Condensed";display:block;line-height:1}.msc .n{font-size:13px;color:#9aa6bd;display:block}
 .mclk{font:800 22px "Barlow Condensed";color:#6ee7f9}.mwp{height:10px;border-radius:6px;background:#ef4444;overflow:hidden}.mwp i{display:block;height:100%;background:#22c55e;transition:width .5s}
 .mst{min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:14px;background:#0b1020;border:1px solid #2a3350;border-radius:14px}.mhd{font:800 clamp(24px,6vw,42px) "Barlow Condensed";letter-spacing:.5px}.mhd.goal{color:#ffc83d}.mhd.ogoal{color:#ff7b7b}
-.mtr{position:relative;width:min(520px,92%);height:34px;background:#1a2030;border-radius:8px;overflow:hidden;border:1px solid #2a3350}.mzn{position:absolute;top:0;bottom:0;background:#22c55e66;border:2px solid #22c55e}.mcr{position:absolute;top:0;bottom:0;width:5px;background:#fff;border-radius:3px;box-shadow:0 0 10px #fff}
+.mtr{position:relative;width:min(520px,92%);height:34px;background:#1a2030;border-radius:8px;overflow:hidden;border:1px solid #2a3350}.mzn{position:absolute;top:0;bottom:0;background:#22c55e44;border:2px solid #22c55e88}.mzn.mz1{background:#22c55e88;border-color:#22c55e}.mzn.mz2{background:#bbf7d0;border-color:#fff}.mcr{position:absolute;top:0;bottom:0;width:5px;background:#fff;border-radius:3px;box-shadow:0 0 10px #fff}
 .mlg{max-height:170px;overflow:auto;background:#0b1020;border:1px solid #2a3350;border-radius:14px;padding:8px 14px;font-size:13px}.mlg div{padding:3px 0;border-bottom:1px solid #1a2030}.mlg .g{color:#ffc83d;font-weight:800}.mlg .o{color:#ff7b7b;font-weight:800}
 .gflash{animation:gfl .9s ease-out}@keyframes gfl{0%{background:#ffc83d66}100%{background:#0b1020}}
 .top{z-index:50}
@@ -320,26 +320,25 @@ async function utAddName(n){UMSG='';ensureUT();const u=S.ut,k=ukey(n);if(!n){UMS
 function utAdd(){utAddName(($('#fadd').value||'').trim())}
 function utDel(n){S.ut.fr=S.ut.fr.filter(f=>f!==n);save();render()}
 const utSide=sq=>{const e=utEff(sq);if(e.some(x=>!x))return null;return{e,off:avg(e.filter(x=>x.pos==='C'||x.pos==='W').map(x=>x.eff)),def:avg(e.filter(x=>x.pos==='D').map(x=>x.eff)),g:e[6].eff}};
-const pGoal=(X,Y,sd)=>Math.min(.26,Math.max(.04,(.115+(sd.eff-Y.g)*.0014+(X.off-Y.def)*.0008)*(1+(X.form||0))*(1-(Y.gf||0))));
+const pGoal=(X,Y,sd)=>Math.min(.26,Math.max(.04,(.155+(sd.eff-Y.g)*.0014+(X.off-Y.def)*.0008)*(1+(X.form||0))*(1-(Y.gf||0))));
 const pickShooter=X=>{const pool=X.e.filter(x=>x.pos!=='G'),w=pool.map(x=>Math.pow(x.eff/60,3)*(x.pos==='D'?.45:1)),t=w.reduce((a,b)=>a+b,0);let r=Math.random()*t;for(let i=0;i<pool.length;i++){r-=w[i];if(r<=0)return pool[i]}return pool[0]};
 const pickAssist=(X,sd)=>{if(Math.random()>.8)return'';const m=X.e.filter(x=>x.pos!=='G'&&x!==sd);return m[Math.floor(Math.random()*m.length)].p.name};
 const setForm=(A,B)=>{A.form=(Math.random()-.5)*.6;B.form=(Math.random()-.5)*.6;A.gf=(Math.random()-.5)*.8;B.gf=(Math.random()-.5)*.8};
-const nAtt=(X,Y)=>Math.max(4,Math.min(11,Math.round(7+(X.off-Y.def)*.03+Math.random()*3-1.5)));
+const nAtt=(X,Y)=>Math.max(3,Math.min(8,Math.round(5+(X.off-Y.def)*.03+Math.random()*3-1.5)));
 function simGame(A,B){setForm(A,B);const R=Math.random,sc={A:0,B:0},sh={A:0,B:0},ev=[],per=[];
  const shoot=(X,Y,t,pr)=>{const sd=pickShooter(X);sh[t]++;if(R()<pGoal(X,Y,sd)){sc[t]++;ev.push({pr,t,s:sd.p.name,a:pickAssist(X,sd)})}};
  for(let i=1;i<=3;i++){const nA=nAtt(A,B),nB=nAtt(B,A);for(let k=0;k<nA;k++)shoot(A,B,'A','P'+i);for(let k=0;k<nB;k++)shoot(B,A,'B','P'+i);per.push([sc.A,sc.B])}
  let ot=false;if(sc.A===sc.B){ot=true;for(let k=0;k<8&&sc.A===sc.B;k++){shoot(A,B,'A','OT');if(sc.A!==sc.B)break;shoot(B,A,'B','OT')}if(sc.A===sc.B){const w=R()<.5+(A.g-B.g)*.004?'A':'B';sc[w]++;ev.push({pr:'SO',t:w,s:'Shootout winner',a:''})}per.push([sc.A,sc.B])}
  return{sc,sh,ev,per,ot}}
 function utOdds(A,B){let w=0;const N=600;for(let i=0;i<N;i++){const r=simGame(A,B);if(r.sc.A>r.sc.B)w++}return w/N}
-function utFinish(res,rec,A,B,bonus){const u=S.ut,win=res.sc.A>res.sc.B,td=new Date().toDateString();if(u.day!==td){u.day=td;u.dn=0}
- let rw=0;if(u.dn<10){rw=(win?150:40)+(bonus||0);u.dn++;S.bb+=rw}if(win)u.w++;else u.l++;
+function utFinish(res,rec,A,B,bonus){const u=S.ut,win=res.sc.A>res.sc.B;let rw=0;if(win){rw=UT_PAY;S.bb+=rw;u.w++}else u.l++;
  UMATCH={...res,opp:rec.n,win,rw,oa:utOvr(u.sq),ob:utOvr(rec.sq)};u.hist.unshift({o:rec.n,s:res.sc.A+'-'+res.sc.B+(res.ot?' OT':''),w:win});u.hist=u.hist.slice(0,15);save();utPub();return UMATCH}
 /* ---- live match: solo practice, or a live 1v1 shared over Firebase ---- */
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 let M=null,V=null,UREC=null,LIVE=null,MY='A',MGC=null,MG={active:false,shown:-1,fl:0},PQ=Promise.resolve(),UIN=[],UNOT=new Set(),LOB=null;
 const mOpen=h=>{const o=$('#mo');o.className='ov show';o.innerHTML='<div class="mo-w">'+h+'</div>'};
 function mClose(){if(LOB)LOB.cancel=true;LOB=null;if(LIVE){LIVE.stop&&LIVE.stop();if(LIVE.mode==='host')fetch(LIVE.base+'.json',{method:'DELETE'}).catch(()=>{})}LIVE=null;M=null;V=null;MGC=null;MG={active:false,shown:-1,fl:0};const o=$('#mo');o.className='ov';o.innerHTML=''}
-function mDone(){const live=LIVE&&LIVE.mode!=='solo';mClose();UTT=live?'match':'friends';render();scrollTo(0,0)}
+function mDone(){if(LIVE&&LIVE.mode==='guest'&&LIVE.paid&&!(V&&V.fin)){S.bb+=UT_FEE;save()}const live=LIVE&&LIVE.mode!=='solo';mClose();UTT=live?'match':'friends';render();scrollTo(0,0)}
 const newV=(a,b)=>({n:[a,b],sc:[0,0],sh:[0,0],clk:'P1 20:00',wp:.5,head:'',sub:'',cls:'',log:[],mg:null,fin:null,fl:0});
 const mShell=(a,b,skip)=>`<div class="msc"><div><span class="n">${esc(a)}</span><b id="msa">0</b></div><div><div class="mclk" id="mclk">P1 20:00</div><span class="n" id="mws"></span></div><div><span class="n">${esc(b)}</span><b id="msb">0</b></div></div><div class="mwp"><i id="mwp" style="width:50%"></i></div><div class="mu" style="text-align:center" id="mwt"></div><div class="mst" id="mst"></div><div class="mlg" id="mlg"></div><div class="row" style="justify-content:center">${skip?'<button onclick="M.skip=true;MGC&&MGC()">Skip to final</button>':''}</div>`;
 function applyEv(R,typ,m){const segs=String(m.path||'/').split('/').filter(Boolean);if(typ==='put'){if(!segs.length)return m.data||{};setP(R,segs,m.data)}else if(m.data)Object.entries(m.data).forEach(([k,v])=>setP(R,[...segs,k],v));return R}
@@ -347,7 +346,7 @@ function liveWatch(url,cb){let R={},last=Date.now(),es,stop=false;try{es=new Eve
  const iv=setInterval(async()=>{if(stop||Date.now()-last<3500)return;try{const r=await fetch(url,{cache:'no-store'}),j=await r.json();if(j){R=j;last=Date.now()-2500;cb(R)}}catch(x){}},1200);
  return()=>{stop=true;clearInterval(iv);es&&es.close()}}
 function vPush(){vRender();if(LIVE&&LIVE.mode==='host'){const body=JSON.stringify(V);PQ=PQ.then(()=>fetch(LIVE.base+'/v.json',{method:'PUT',body}).catch(()=>{}))}}
-const GR={perfect:'PERFECT!',good:'Nice!',late:'Too slow!',miss:'Missed it!'};
+const GR={perfect:'PERFECT!',good:'Nice!',ok:'On target',late:'Too slow!',miss:'Missed it!'};
 function vRender(){if(!V||!$('#msa'))return;const sc=arr(V.sc),sh=arr(V.sh),wp0=typeof V.wp==='number'?V.wp:.5,wp=MY==='A'?wp0:1-wp0;
  $('#msa').textContent=sc[0]||0;$('#msb').textContent=sc[1]||0;$('#mws').textContent='Shots '+(sh[0]||0)+' - '+(sh[1]||0);$('#mclk').textContent=V.clk||'';$('#mwp').style.width=Math.round(wp*100)+'%';$('#mwt').textContent=Math.round(wp*100)+'% win chance for you';
  const l=$('#mlg');if(l)l.innerHTML=arr(V.log).map(x=>{const c=x.c==='ga'||x.c==='gb'?(x.c==='g'+MY.toLowerCase()?'g':'o'):(x.c||'');return'<div class="'+esc(c)+'">'+esc(x.t)+'</div>'}).join('');
@@ -355,18 +354,19 @@ function vRender(){if(!V||!$('#msa'))return;const sc=arr(V.sc),sh=arr(V.sh),wp0=
  if(mg&&need.includes(MY)&&MG.shown!==mg.id){MG.shown=mg.id;MG.active=true;const id=mg.id;playMG(mg).then(v=>{MG.active=false;mgSend(id,MY,v);const st=$('#mst');if(st&&V&&V.mg&&V.mg.id===id)st.innerHTML='<div class="mhd '+(v==='perfect'?'goal':'')+'">'+(typeof v==='number'?'Time!':(GR[v]||'Locked in'))+'</div><div class="mu">Waiting for the play...</div>'});return}
  if(MG.active)return;const st=$('#mst');if(!st)return;
  if(V.fin){const f=V.fin,s2=arr(f.sc),win=MY==='A'?s2[0]>s2[1]:s2[1]>s2[0],solo=LIVE&&LIVE.mode==='solo',rw=UMATCH&&!solo?UMATCH.rw:0;
-  st.innerHTML=`<div class="mhd ${win?'goal':'ogoal'}">${win?'VICTORY!':'DEFEAT'}</div><div class="mu">${f.ot?'Overtime. ':''}${solo?'Practice match, no rewards':rw?'+'+rw+' BB':'Daily reward limit reached'}</div><button class="pri" onclick="mDone()">Continue</button>`;return}
+  st.innerHTML=`<div class="mhd ${win?'goal':'ogoal'}">${win?'VICTORY!':'DEFEAT'}</div><div class="mu">${f.ot?'Overtime. ':''}${solo?'Practice match, no rewards':win?'+'+UT_PAY+' BB paid out ('+UT_FEE+' BB entry)':'You lost your '+UT_FEE+' BB entry'}</div><button class="pri" onclick="mDone()">Continue</button>`;return}
  const hc=V.cls==='gA'||V.cls==='gB'?(V.cls==='g'+MY?'goal':'ogoal'):(V.cls||'');
  st.innerHTML='<div class="mhd '+esc(hc)+'">'+esc(V.head||'')+'</div>'+((V.sub||(mg&&MG.shown===mg.id))?'<div class="mu">'+esc(V.sub||'Locked in...')+'</div>':'');
  if(V.fl!==MG.fl){MG.fl=V.fl;if(V.fl){st.classList.remove('gflash');void st.offsetWidth;st.classList.add('gflash')}}}
 function mgSend(id,side,val){if(LIVE&&LIVE.mode==='guest')fetch(LIVE.base+'/ans/'+id+'_'+side+'.json',{method:'PUT',body:JSON.stringify(val)}).catch(()=>{});else if(M)M.ans[id+side]=val}
-function playMG(sp){if(sp.kind==='mash')return mgMash(3);const shoot=sp.shooter===MY,z=shoot?sp.zs:sp.zv;return mgTiming(shoot?'SHOOT!':'SAVE!',shoot?'Hit the green zone to beat the keeper':'Stop the shot with your goalie',shoot?'SHOOT':'SAVE',z.w,z.l,z.sp)}
-function mgTiming(title,sub,btn,zw,zl,speed){return new Promise(res=>{const cz=zl+zw/2;
- $('#mst').innerHTML=`<div class="mhd">${title}</div><div class="mu">${sub}</div><div class="mtr"><i class="mzn" style="left:${zl}%;width:${zw}%"></i><i class="mcr" id="mcr"></i></div><button class="pri" id="mgb" style="padding:12px 30px;font-size:18px">${btn}</button>`;
+function playMG(sp){if(sp.kind==='mash')return mgMash(2.5);const shoot=sp.shooter===MY,z=shoot?sp.zs:sp.zv;
+ return shoot?mgTiming('SHOOT!','Center of the green is best. The wider edge is safer but weaker.','SHOOT',[z.w,z.w*.62,z.w*.27],z.l,z.sp,['ok','good','perfect']):mgTiming('SAVE!','Stop the shot. Hit the green with your goalie.','SAVE',[z.w,z.w*.4],z.l,z.sp,['good','perfect'])}
+function mgTiming(title,sub,btn,zs,zl,speed,grades){return new Promise(res=>{const zw=zs[0],cz=zl+zw/2;
+ $('#mst').innerHTML=`<div class="mhd">${title}</div><div class="mu">${sub}</div><div class="mtr">${zs.map((w,i)=>`<i class="mzn mz${i}" style="left:${cz-w/2}%;width:${w}%"></i>`).join('')}<i class="mcr" id="mcr"></i></div><button class="pri" id="mgb" style="padding:12px 30px;font-size:18px">${btn}</button>`;
  const cr=$('#mcr'),t0=performance.now();let done=false,pos=0,raf,to;
  const fin=g=>{if(done)return;done=true;cancelAnimationFrame(raf);document.removeEventListener('keydown',kd);clearTimeout(to);MGC=null;res(g)};
- const hit=()=>{const d=Math.abs(pos-cz);fin(d<=zw*.22?'perfect':d<=zw/2?'good':'miss')},kd=e=>{if((e.code==='Space'||e.key==='Enter')&&!e.repeat){e.preventDefault();hit()}};
- document.addEventListener('keydown',kd);$('#mgb').onpointerdown=hit;to=setTimeout(()=>fin('late'),3200);MGC=()=>fin('none');
+ const hit=()=>{const d=Math.abs(pos-cz);let g='miss';for(let i=zs.length-1;i>=0;i--)if(d<=zs[i]/2){g=grades[i];break}fin(g)},kd=e=>{if((e.code==='Space'||e.key==='Enter')&&!e.repeat){e.preventDefault();hit()}};
+ document.addEventListener('keydown',kd);$('#mgb').onpointerdown=hit;to=setTimeout(()=>fin('late'),2600);MGC=()=>fin('none');
  const loop=()=>{const p=((performance.now()-t0)/1000*speed)%2;pos=(p<1?p:2-p)*100;cr.style.left=pos+'%';raf=requestAnimationFrame(loop)};loop()})}
 function mgMash(sec){return new Promise(res=>{let n=0,left=sec,iv;
  $('#mst').innerHTML=`<div class="mhd">FACE-OFF!</div><div class="mu">Tap as fast as you can</div><button class="pri" id="mgb" style="padding:18px 44px;font-size:22px">TAP! <span id="mgn">0</span></button><div class="mu" id="mgt">${sec}s</div>`;
@@ -374,40 +374,45 @@ function mgMash(sec){return new Promise(res=>{let n=0,left=sec,iv;
  $('#mgb').onpointerdown=tap;document.addEventListener('keydown',kd);MGC=()=>end(-1);
  iv=setInterval(()=>{left-=.25;const t=$('#mgt');if(t)t.textContent=Math.max(0,left).toFixed(1)+'s';if(left<=0)end(n)},250)})}
 /* engine (runs on the host, or locally for practice) */
-const SHM={perfect:1.8,good:1.3,miss:.7,late:.6,none:1},SVM={perfect:.28,good:.62,miss:1.2,late:1.25,none:1};
+const UT_FEE=500,UT_PAY=800;
+const SHM={perfect:2.0,good:1.45,ok:1.0,miss:.55,late:.5,none:1},SVM={perfect:.15,good:.42,miss:1.05,late:1.15,none:1};
+const aiShot=eff=>{const r=Math.random(),pp=.08+(eff-75)*.004;return r<pp?'perfect':r<pp+.22?'good':r<pp+.57?'ok':'miss'};
 const wait=ms=>M&&M.skip?Promise.resolve():sleep(ms);
 const mClk=()=>{const rm=Math.max(0,20-M.t),mm=Math.floor(rm),ss=Math.floor((rm-mm)*60);return(M.ot?'OT':'P'+M.pd)+' '+mm+':'+String(ss).padStart(2,'0')};
 function mUp(){const rem=M.ot?.05:1-((M.pd-1)+M.t/20)/3,lead=M.sc.A-M.sc.B,p0=Math.min(.98,Math.max(.02,M.p0)),lg=Math.log(p0/(1-p0))*Math.max(0,rem)+lead*(1+1.7*(1-Math.max(0,rem)));V.sc=[M.sc.A,M.sc.B];V.sh=[M.sh.A,M.sh.B];V.clk=mClk();V.wp=1/(1+Math.exp(-lg))}
 const mSay=(h,sub,cls)=>{V.head=h;V.sub=sub||'';V.cls=cls||'';vPush()};
 const mLog=(t,c)=>{V.log.unshift({t,c:c||''});if(V.log.length>8)V.log.length=8};
-async function mWaitAns(sp){const t0=Date.now(),lim=sp.kind==='mash'?5200:5000;
+async function mWaitAns(sp){const t0=Date.now(),lim=sp.kind==='mash'?4200:4000;
  while(Date.now()-t0<lim&&!M.skip){const pend=sp.need.filter(s=>M.ans[sp.id+s]===undefined);if(!pend.length)break;
   if(M.mode==='host'&&pend.includes('B')){try{const r=await fetch(LIVE.base+'/ans.json',{cache:'no-store'}),j=await r.json();if(j)for(const k in j)M.ans[k]=j[k]}catch(e){}}
   await sleep(250)}
  const o={};sp.need.forEach(s=>o[s]=M.ans[sp.id+s]);return o}
 async function mChance(a){const R=Math.random,X=a.s==='A'?M.A:M.B,Y=a.s==='A'?M.B:M.A,sn=a.s==='A'?M.nameA:M.nameB,dn=a.s==='A'?M.nameB:M.nameA,sd=pickShooter(X),pn=sd.p.name,gk=Y.e[6].p.name;M.t=a.t;M.sh[a.s]++;
- const cnt=a.s==='A'?'bA':'bB';let big=!!(a.pp||(!M.skip&&M[cnt]<5&&R()<.34));if(big&&!a.pp)M[cnt]++;
+ const cnt=a.s==='A'?'bA':'bB';let big=!!(a.pp||(!M.skip&&M[cnt]<4&&R()<.34));if(big&&!a.pp)M[cnt]++;
  let p=pGoal(X,Y,sd);p=big?Math.min(.6,p*2.1):p*.8;
- if(big){mUp();mSay(pn+' is in on a breakaway!',sn+' shooting, '+gk+' in goal');await wait(1100);
-  if(!M.skip){const zw=Math.max(12,24-(Y.g-60)*.25),zv=Math.max(12,Math.min(28,14+(Y.g-60)*.3)),sp={id:++M.mgid,kind:'chance',shooter:a.s,need:M.need,zs:{w:zw,l:12+R()*(76-zw),sp:1.1+R()*.6},zv:{w:zv,l:12+R()*(76-zv),sp:1.1+R()*.6}};
-   V.mg=sp;mUp();vPush();const ans=await mWaitAns(sp);V.mg=null;const d=a.s==='A'?'B':'A',gs=ans[a.s]||'none',gd=ans[d]||'none';
-   p=Math.min(.85,Math.max(.02,p*SHM[gs]*SVM[gd]));if(gs==='perfect')M.perf[a.s]++;if(gd==='perfect')M.perf[d]++;
-   if(gs!=='none'||gd!=='none'){mSay(GR[gs]||GR[gd],M.mode==='host'?sn+': '+(GR[gs]||'-')+'  |  '+dn+': '+(GR[gd]||'-'):'The shot is on its way...',(gs==='perfect'||gd==='perfect')?'goal':'');await wait(1000)}}}
- else{mUp();mSay(sn+' shoots','');await wait(420)}
- if(R()<p){M.sc[a.s]++;const as=pickAssist(X,sd);M.ev.push({pr:M.ot?'OT':'P'+M.pd,t:a.s,s:pn,a:as});mUp();V.fl=(V.fl||0)+1;mLog(mClk()+' GOAL '+sn+': '+pn,'g'+a.s.toLowerCase());mSay('GOAL! '+pn,as?'Assist: '+as:'Unassisted','g'+a.s);await wait(2000)}
- else{const r=R(),k=r<.7?'Saved by '+gk+'!':r<.85?'Shot wide.':'Blocked!';mUp();mSay(k,'');mLog(mClk()+' '+pn+': '+k.replace(/!$/,''),'');await wait(big?1200:380)}}
+ if(big){mUp();mSay(pn+' is in on a breakaway!',sn+' shooting, '+gk+' in goal');await wait(700);
+  if(!M.skip){const d=a.s==='A'?'B':'A',zw=Math.max(17,Math.min(33,24+(sd.eff-75)*.28-(Y.g-75)*.08)),zv=Math.max(24,Math.min(38,28+(Y.g-75)*.3)),sp={id:++M.mgid,kind:'chance',shooter:a.s,need:M.need,zs:{w:zw,l:12+R()*(76-zw),sp:1.2+R()*.5},zv:{w:zv,l:12+R()*(76-zv),sp:.9+R()*.4}};
+   V.mg=sp;mUp();vPush();const ans=await mWaitAns(sp);V.mg=null;
+   let gs=ans[a.s],gd=ans[d];if(gs===undefined)gs=M.need.includes(a.s)?'late':aiShot(sd.eff);if(gd===undefined)gd=M.need.includes(d)?'late':'none';
+   let mult=SHM[gs]*SVM[gd];if((gd==='miss'||gd==='late')&&(gs==='good'||gs==='perfect'))mult*=1.35;
+   p=Math.min(.88,Math.max(.02,p*mult));if(M.need.includes(a.s)&&gs==='perfect')M.perf[a.s]++;if(M.need.includes(d)&&gd==='perfect')M.perf[d]++;
+   const shown=M.need.includes(a.s)?gs:null,sav=M.need.includes(d)?gd:null;
+   mSay(sav==='perfect'?'What a SAVE!':sav==='good'?'Good stop attempt':(sav==='miss'||sav==='late')&&(gs==='good'||gs==='perfect')?'The goalie is beat!':shown?GR[shown]:GR[sav]||'Here it comes...',M.mode==='host'?sn+': '+(GR[ans[a.s]]||'-')+'  |  '+dn+': '+(GR[ans[d]]||'-'):(M.need.includes(a.s)?'Your shot: ':'Their shot was '+(GR[gs]||'')+'. Your save: ')+(GR[M.need.includes(a.s)?gs:gd]||'-'),(gs==='perfect'||gd==='perfect')?'goal':'');await wait(750)}}
+ else{mUp();mSay(sn+' shoots','');await wait(320)}
+ if(R()<p){M.sc[a.s]++;const as=pickAssist(X,sd);M.ev.push({pr:M.ot?'OT':'P'+M.pd,t:a.s,s:pn,a:as});mUp();V.fl=(V.fl||0)+1;mLog(mClk()+' GOAL '+sn+': '+pn,'g'+a.s.toLowerCase());mSay('GOAL! '+pn,as?'Assist: '+as:'Unassisted','g'+a.s);await wait(1400)}
+ else{const r=R(),k=r<.7?'Saved by '+gk+'!':r<.85?'Shot wide.':'Blocked!';mUp();mSay(k,'');mLog(mClk()+' '+pn+': '+k.replace(/!$/,''),'');await wait(big?850:300)}}
 async function mFace(pd){let fwA;if(M.skip)fwA=Math.random()<.5;else{const sp={id:++M.mgid,kind:'mash',need:M.need};mSay('FACE-OFF!','Tap as fast as you can');V.mg=sp;vPush();const ans=await mWaitAns(sp);V.mg=null;
   if(M.mode==='host'){const ca=+ans.A||0,cb=+ans.B||0;fwA=ca===cb?Math.random()<.5:ca>cb}else{const t=ans.A,opp=11+(M.B.off-M.A.off)*.15+Math.random()*6;fwA=t==null||t<0?Math.random()<.5:t>opp}}
- mSay((fwA?M.nameA:M.nameB)+' wins the face-off','');mLog('P'+pd+' face-off: '+(fwA?M.nameA:M.nameB),'');await wait(1100);return fwA}
+ mSay((fwA?M.nameA:M.nameB)+' wins the face-off','');mLog('P'+pd+' face-off: '+(fwA?M.nameA:M.nameB),'');await wait(700);return fwA}
 function finToRes(f,side){const i=side==='A'?[0,1]:[1,0],sc=arr(f.sc),sh=arr(f.sh);return{sc:{A:sc[i[0]],B:sc[i[1]]},sh:{A:sh[i[0]],B:sh[i[1]]},ev:arr(f.ev).map(e=>({...e,t:side==='A'?e.t:e.t==='A'?'B':'A'})),per:arr(f.per).map(p=>{p=arr(p);return[p[i[0]],p[i[1]]]}),ot:!!f.ot}}
 async function runMatch(){const R=Math.random,A=M.A,B=M.B;
- for(let pd=1;pd<=3;pd++){M.pd=pd;M.t=0;mUp();mSay('Period '+pd,pd===1?'Puck drop...':'Back on the ice');await wait(1300);const fw=await mFace(pd);
+ for(let pd=1;pd<=3;pd++){M.pd=pd;M.t=0;mUp();mSay('Period '+pd,pd===1?'Puck drop...':'Back on the ice');await wait(800);const fw=await mFace(pd);
   const nA=nAtt(A,B)+(fw?1:-1),nB=nAtt(B,A)+(fw?-1:1),L=[];for(let i=0;i<nA;i++)L.push({t:R()*20,s:'A'});for(let i=0;i<nB;i++)L.push({t:R()*20,s:'B'});
   if(R()<.55){const on=R()<.5?'A':'B',pp=on==='A'?'B':'A',t0=2+R()*13;L.push({t:t0,type:'pen',on,pp});for(let i=0;i<2;i++)L.push({t:t0+R()*2,s:pp,pp:true})}
   L.sort((x,y)=>x.t-y.t);
-  for(const it of L){if(it.type==='pen'){M.t=it.t;mUp();const nm=it.on==='A'?M.nameA:M.nameB;mSay('PENALTY!',nm+' goes to the box. Power play for '+(it.pp==='A'?M.nameA:M.nameB));mLog(mClk()+' Penalty on '+nm,'');await wait(1500)}else await mChance(it)}
+  for(const it of L){if(it.type==='pen'){M.t=it.t;mUp();const nm=it.on==='A'?M.nameA:M.nameB;mSay('PENALTY!',nm+' goes to the box. Power play for '+(it.pp==='A'?M.nameA:M.nameB));mLog(mClk()+' Penalty on '+nm,'');await wait(900)}else await mChance(it)}
   M.t=20;mUp();M.per.push([M.sc.A,M.sc.B]);mSay('End of period '+pd,M.sc.A+' - '+M.sc.B);mLog('End of P'+pd+': '+M.sc.A+'-'+M.sc.B,'');await wait(1500)}
- if(M.sc.A===M.sc.B){M.ot=true;M.pd=4;M.t=0;mUp();mSay('OVERTIME','Next goal wins it. Sudden death.');mLog('Overtime!','');await wait(1800);
+ if(M.sc.A===M.sc.B){M.ot=true;M.pd=4;M.t=0;mUp();mSay('OVERTIME','Next goal wins it. Sudden death.');mLog('Overtime!','');await wait(1200);
   for(let k=0;k<6&&M.sc.A===M.sc.B;k++){await mChance({t:Math.min(19,k*3+1),s:'A',pp:true});if(M.sc.A!==M.sc.B)break;await mChance({t:Math.min(19,k*3+2),s:'B',pp:true})}
   if(M.sc.A===M.sc.B){mSay('SHOOTOUT','It comes down to the skills competition...');await wait(1800);const w=R()<.5+(A.g-B.g)*.004?'A':'B';M.sc[w]++;M.ev.push({pr:'SO',t:w,s:'Shootout winner',a:''})}M.per.push([M.sc.A,M.sc.B])}
  const fin={sc:[M.sc.A,M.sc.B],sh:[M.sh.A,M.sh.B],per:M.per,ev:M.ev,ot:M.ot,pf:[M.perf.A,M.perf.B]};mUp();
@@ -419,9 +424,9 @@ async function utPlay(name){if(UBUSY)return;ensureUT();const u=S.ut;UMSG='';
  if(!u.sq.every(n=>BN[n])){UMSG='Fill all 7 squad slots first (Squad tab).';UTT='squad';return render()}
  UBUSY=true;const rec=await utGet(name);UBUSY=false;if(!rec||!rec.sq.every(n=>BN[n])){UMSG=name+' has not finished their squad yet.';return render()}
  const A=utSide(u.sq),B=utSide(rec.sq),pw=utOdds(A,B);UREC=rec;
- mOpen(`<div class="msc"><div><span class="n">${esc(USER.mc)}</span><b>${utOvr(u.sq)}</b><span class="n">OVR</span></div><div class="mclk">VS</div><div><span class="n">${esc(rec.n)}</span><b>${utOvr(rec.sq)}</b><span class="n">OVR</span></div></div><div class="mst"><div class="mhd">${Math.round(pw*100)}% win chance</div><div class="mwp"><i style="width:${pw*100}%"></i></div><div class="mu" style="max-width:540px">Better players matter a lot, but upsets happen. <b>Challenge</b> sends ${esc(rec.n)} an invite. If they accept, you both play the same match live and each play the mini-games for your own side. <b>Practice</b> plays their squad solo with no rewards. Win 150 BB, lose 40 BB, +5 BB per perfect mini-game.</div><div class="row" style="justify-content:center">${CL.url?'<button class="pri" onclick="utChallenge()">Send live challenge</button>':''}<button onclick="utPractice()">Practice (solo)</button><button onclick="mClose()">Cancel</button></div></div>`)}
+ mOpen(`<div class="msc"><div><span class="n">${esc(USER.mc)}</span><b>${utOvr(u.sq)}</b><span class="n">OVR</span></div><div class="mclk">VS</div><div><span class="n">${esc(rec.n)}</span><b>${utOvr(rec.sq)}</b><span class="n">OVR</span></div></div><div class="mst"><div class="mhd">${Math.round(pw*100)}% win chance</div><div class="mwp"><i style="width:${pw*100}%"></i></div><div class="mu" style="max-width:540px">Better players matter a lot, but upsets happen. <b>Challenge</b> sends ${esc(rec.n)} an invite. If they accept, you both play the same match live and each play the mini-games for your own side. <b>Practice</b> plays their squad solo with no rewards. A live challenge costs <b>500 BB</b> each and the winner is paid <b>800 BB</b>.</div><div class="row" style="justify-content:center">${CL.url?`<button class="pri" ${S.bb<UT_FEE?'disabled':''} onclick="utChallenge()">Challenge (${UT_FEE} BB)</button>`:''}<button onclick="utPractice()">Practice (solo)</button><button onclick="mClose()">Cancel</button></div></div>`)}
 function utPractice(){const rec=UREC,u=S.ut,A=utSide(u.sq),B=utSide(rec.sq);LIVE={mode:'solo'};mOpen(mShell(USER.mc,rec.n,true));mStart('solo',A,B,USER.mc,rec.n,rec)}
-async function utChallenge(){const rec=UREC,u=S.ut;if(!CL.url)return;const lob=LOB={cancel:false},id=ukey(USER.mc)+'_'+Date.now().toString(36),base=CL.url+'/live/'+id,k=ukey(rec.n);
+async function utChallenge(){const rec=UREC,u=S.ut;if(!CL.url)return;if(S.bb<UT_FEE){mClose();UMSG='You need '+UT_FEE+' BB to challenge a friend.';return render()}const lob=LOB={cancel:false},id=ukey(USER.mc)+'_'+Date.now().toString(36),base=CL.url+'/live/'+id,k=ukey(rec.n);
  mOpen(`<div class="mst"><div class="mhd">Waiting for ${esc(rec.n)}...</div><div class="mu">They have 90 seconds to accept. They need to have the site open.</div><div class="row" style="justify-content:center"><button onclick="LOB&&(LOB.cancel=true)">Cancel</button></div></div>`);
  try{await fetch(base+'/meta.json',{method:'PUT',body:JSON.stringify({a:USER.mc,b:rec.n,sqa:u.sq,state:'invited',t:Date.now()})});await fetch(CL.url+'/inbox/'+k+'/m_'+id+'.json',{method:'PUT',body:JSON.stringify({f:USER.mc,ty:'match',t:Date.now(),m:id})})}catch(e){mClose();UMSG='Could not send the challenge.';return render()}
  const t0=Date.now();let meta=null;
@@ -430,12 +435,15 @@ async function utChallenge(){const rec=UREC,u=S.ut;if(!CL.url)return;const lob=L
   const why=lob.cancel?'Challenge cancelled.':meta&&meta.state==='declined'?rec.n+' declined.':rec.n+' did not answer in time.';mClose();UMSG=why;UTT='friends';return render()}
  const sqb=Array.from({length:7},(_,i)=>meta.sqb[i]||''),A=utSide(u.sq),B=utSide(sqb);LOB=null;
  if(!B){mClose();UMSG=rec.n+"'s squad is not valid.";return render()}
+ if(S.bb<UT_FEE){fetch(base+'/meta.json',{method:'PATCH',body:JSON.stringify({state:'closed'})}).catch(()=>{});mClose();UMSG='You no longer have '+UT_FEE+' BB.';return render()}S.bb-=UT_FEE;save();
  LIVE={id,mode:'host',base};mOpen(mShell(USER.mc,rec.n,false));mStart('host',A,B,USER.mc,rec.n,{n:rec.n,sq:sqb})}
 async function utAcceptMatch(id){ensureUT();const u=S.ut;if(!u.sq.every(n=>BN[n])){UMSG='Fill all 7 squad slots first, then ask them to challenge you again.';UTT='squad';return render()}
  const base=CL.url+'/live/'+id;let meta=null;try{meta=await(await fetch(base+'/meta.json',{cache:'no-store'})).json()}catch(e){}
  if(!meta||meta.state!=='invited'||Date.now()-meta.t>100000){UMSG='That challenge expired.';UTT='inbox';return render()}
+ if(S.bb<UT_FEE){fetch(base+'/meta.json',{method:'PATCH',body:JSON.stringify({state:'declined'})}).catch(()=>{});UMSG='You need '+UT_FEE+' BB to accept a live match.';UTT='inbox';return render()}
+ S.bb-=UT_FEE;save();
  await fetch(base+'/meta.json',{method:'PATCH',body:JSON.stringify({sqb:u.sq,state:'accepted'})}).catch(()=>{});
- MY='B';MG={active:false,shown:-1,fl:0};V=null;LIVE={id,mode:'guest',base,meta,last:Date.now()};mOpen(mShell(meta.a,meta.b,false));$('#mst').innerHTML='<div class="mhd">Match starting...</div><div class="mu">Waiting for the host to kick off</div>';
+ MY='B';MG={active:false,shown:-1,fl:0};V=null;LIVE={id,mode:'guest',base,meta,last:Date.now(),paid:true};mOpen(mShell(meta.a,meta.b,false));$('#mst').innerHTML='<div class="mhd">Match starting...</div><div class="mu">Waiting for the host to kick off</div>';
  const stopW=liveWatch(base+'/v.json',R=>{V=R;LIVE.last=Date.now();vRender();if(V.fin&&!LIVE.done){LIVE.done=true;finishGuest()}}),iv=setInterval(()=>{if(LIVE&&Date.now()-LIVE.last>25000&&!(V&&V.fin)){const st=$('#mst');if(st&&!MG.active)st.innerHTML='<div class="mhd ogoal">Connection lost</div><div class="mu">The host stopped responding.</div><button class="pri" onclick="mDone()">Close</button>'}},3000);
  LIVE.stop=()=>{stopW();clearInterval(iv)}}
 function finishGuest(){const fin=V.fin,rec={n:LIVE.meta.a,sq:Array.from({length:7},(_,i)=>(LIVE.meta.sqa&&LIVE.meta.sqa[i])||'')},pf=arr(fin.pf);utFinish(finToRes(fin,'B'),rec,null,null,Math.min(40,(pf[1]||0)*5));vRender()}
@@ -451,7 +459,7 @@ async function inboxPoll(){if(!USER||!CL.url)return;ensureUT();let j=null;try{j=
  const b=document.querySelector('#tabs button[data-t="Ultimate"]');if(b)b.innerHTML='Ultimate Team'+(list.length?'<span class="tbadge">'+list.length+'</span>':'');
  const nw=list.find(x=>x.ty==='match'&&!UNOT.has(x.id));if(nw&&!M&&!LIVE&&!anim){UNOT.add(nw.id);showInvite(nw)}
  if(tab==='Ultimate'&&!M&&!LIVE&&!anim&&(ch||prev!==list.length)&&(UTT==='inbox'||UTT==='friends')){const a=document.activeElement;if(!(a&&/INPUT|TEXTAREA|SELECT/.test(a.tagName)))render()}}
-function showInvite(it){const mo=$('#modal');mo.innerHTML=`<div class="box" style="max-width:380px;width:100%;text-align:center"><h3 style="margin-top:0">Live match challenge</h3><p><b>${esc(it.f)}</b> wants to play you live right now.</p><div class="row" style="justify-content:center"><button class="pri" data-i="${esc(it.id)}" onclick="inAcc(this.dataset.i)">Accept</button><button data-i="${esc(it.id)}" onclick="inDec(this.dataset.i)">Decline</button></div></div>`;mo.className='modal show'}
+function showInvite(it){const mo=$('#modal');mo.innerHTML=`<div class="box" style="max-width:380px;width:100%;text-align:center"><h3 style="margin-top:0">Live match challenge</h3><p><b>${esc(it.f)}</b> wants to play you live right now.</p><p class="mu">Entry ${UT_FEE} BB each. The winner is paid ${UT_PAY} BB.</p><div class="row" style="justify-content:center"><button class="pri" data-i="${esc(it.id)}" onclick="inAcc(this.dataset.i)">Accept</button><button data-i="${esc(it.id)}" onclick="inDec(this.dataset.i)">Decline</button></div></div>`;mo.className='modal show'}
 async function inAcc(id){const it=UIN.find(x=>x.id===id);if(!it)return;closeM();const me=ukey(USER.mc),inb=CL.url+'/inbox/'+me+'/'+id+'.json';UIN=UIN.filter(x=>x.id!==id);
  if(it.ty==='friend'){ensureUT();const u=S.ut;if(!u.fr.some(f=>ukey(f)===ukey(it.f)))u.fr.push(it.f);u.sent=u.sent.filter(x=>ukey(x)!==ukey(it.f));save();
   try{await fetch(CL.url+'/inbox/'+ukey(it.f)+'/o_'+me+'.json',{method:'PUT',body:JSON.stringify({f:USER.mc,ty:'ok',t:Date.now()})});await fetch(inb,{method:'DELETE'})}catch(e){}UMSG='You are now friends with '+it.f+'.';UTT='friends';tab='Ultimate';render()}
@@ -460,14 +468,44 @@ async function inDec(id){const it=UIN.find(x=>x.id===id);closeM();if(!it)return;
  try{if(it.ty==='friend')await fetch(CL.url+'/inbox/'+ukey(it.f)+'/o_'+me+'.json',{method:'PUT',body:JSON.stringify({f:USER.mc,ty:'no',t:Date.now()})});else await fetch(CL.url+'/live/'+it.m+'/meta.json',{method:'PATCH',body:JSON.stringify({state:'declined'})});await fetch(CL.url+'/inbox/'+me+'/'+id+'.json',{method:'DELETE'})}catch(e){}render()}
 function vInbox(){setTimeout(inboxPoll,0);const rows=UIN.map(x=>{const old=x.ty==='match'&&Date.now()-x.t>100000,msg=x.ty==='friend'?'Friend request':'Live match challenge';return`<div class="rw"><img class="hd" alt="" src="${hsrc({name:x.f},34)}" onerror="this.style.visibility='hidden'"><div class="l"><b>${esc(x.f)}</b><span class="mu">${msg} · ${ago(x.t)}</span></div>${old?'<span class="mu">Expired</span>':`<button class="pri" data-i="${esc(x.id)}" onclick="inAcc(this.dataset.i)">Accept</button>`}<button data-i="${esc(x.id)}" onclick="inDec(this.dataset.i)">Decline</button></div>`}).join('');
  return `<p class="mu">Friend requests and live match challenges from other players show up here.${CL.url?'':' (Needs Live sync.)'}</p>${rows||'<p class="mu">Your inbox is empty.</p>'}`}
+/* ARCADE: solo mini-games that pay a little BB (capped per day) */
+const ARC_CAP=300;
+function arcLeft(){const u=S.ut,td=new Date().toDateString();if(u.arcDay!==td){u.arcDay=td;u.arcE=0;u.pkN=0}return ARC_CAP-(u.arcE||0)}
+function arcPay(n){const g=Math.max(0,Math.min(n,arcLeft()));S.ut.arcE=(S.ut.arcE||0)+g;S.bb+=g;save();return g}
+let HL=null,GQ=null;
+function hlNew(){const pool=P.filter(p=>p.rating);if(pool.length<2)return null;const a=pool[Math.floor(Math.random()*pool.length)];let b,k=0;do{b=pool[Math.floor(Math.random()*pool.length)]}while((b===a||b.rating===a.rating)&&++k<50);return{a,b}}
+function hlStart(){const n=hlNew();if(!n){UMSG='Not enough players yet.';return render()}HL={...n,streak:0,msg:'',rev:false,over:false}; render()}
+function hlGuess(dir){if(!HL||HL.rev)return;const ok=dir==='hi'?HL.b.rating>HL.a.rating:HL.b.rating<HL.a.rating;HL.rev=true;if(ok){HL.streak++;const g=arcPay(10+(HL.streak>=5?20:0));HL.msg='Correct! '+(g?'+'+g+' BB':'(daily arcade limit reached)')}else{HL.msg='Wrong. '+HL.b.name+' is '+HL.b.rating+'. Final streak: '+HL.streak;HL.over=true}render()}
+function hlNext(){if(HL.over){HL=null}else{const n=hlNew();HL={...n,streak:HL.streak,msg:'',rev:false,over:false}}render()}
+function gqNew(){const pool=P.filter(p=>p.pos!=='G'&&(p.gp||0)>0),src=pool.length>=6?pool:P.filter(p=>p.pos!=='G');if(src.length<4)return null;const a=src[Math.floor(Math.random()*src.length)],o=[a];while(o.length<4){const c=src[Math.floor(Math.random()*src.length)];if(!o.includes(c))o.push(c)}o.sort(()=>Math.random()-.5);return{a,o}}
+function gqStart(){const q=gqNew();if(!q){UMSG='Not enough players yet.';return render()}GQ={n:1,score:0,q,msg:'',ans:null,done:false,earned:0};render()}
+function gqPick(name){if(!GQ||GQ.ans)return;GQ.ans=name;if(name===GQ.q.a.name){GQ.score++;const g=arcPay(20);GQ.earned+=g;GQ.msg='Correct! '+(g?'+'+g+' BB':'(daily arcade limit reached)')}else GQ.msg='It was '+GQ.q.a.name+'.';render()}
+function gqNext(){if(GQ.n>=5){GQ.done=true}else{GQ.n++;GQ.q=gqNew();GQ.ans=null;GQ.msg=''}render()}
+async function pkPlay(){ensureUT();const u=S.ut;if(arcLeft()<=0){UMSG='You hit the daily arcade limit ('+ARC_CAP+' BB).';return render()}if((u.pkN||0)>=5){UMSG='You used all 5 penalty shootouts today.';return render()}u.pkN=(u.pkN||0)+1;save();
+ const A=utSide(u.sq),sh=A?A.off:75;LIVE={mode:'arcade'};
+ mOpen('<div class="mst" id="mst"></div><div class="mu" style="text-align:center" id="pks">Goals: 0 / 5</div><div class="row" style="justify-content:center"><button onclick="mClose();render()">Quit</button></div>');
+ let goals=0;const ok=()=>$('#mst')&&LIVE&&LIVE.mode==='arcade';
+ for(let i=1;i<=5;i++){if(!ok())return;const gk=62+Math.round(Math.random()*28),w=Math.max(17,Math.min(33,24+(sh-75)*.28-(gk-75)*.08)),g=await mgTiming('PENALTY SHOT '+i+' of 5','Keeper rating '+gk+'. The center of the green is best.','SHOOT',[w,w*.62,w*.27],12+Math.random()*(76-w),1.2+Math.random()*.5,['ok','good','perfect']);
+  if(!ok())return;const sc=Math.random()<Math.min(.92,Math.max(.05,.32*SHM[g]*(1-(gk-75)*.004)));if(sc)goals++;$('#mst').innerHTML=`<div class="mhd ${sc?'goal':'ogoal'}">${sc?'GOAL!':'Saved!'}</div><div class="mu">${GR[g]||''}</div>`;$('#pks').textContent='Goals: '+goals+' / 5';await sleep(900)}
+ if(!ok())return;const g=arcPay(goals*10+(goals===5?40:0));$('#mst').innerHTML=`<div class="mhd goal">${goals} / 5</div><div class="mu">${g?'+'+g+' BB':'Daily arcade limit reached'}</div><button class="pri" onclick="mClose();render()">Done</button>`}
+function vArcade(){ensureUT();const left=arcLeft(),u=S.ut;
+ const hide=p=>card({...p,tier:p.tier},'',false).replace(/(<div class="a"><b>)\d+(<\/b>)/,'$1?$2');
+ let h=`<p class="mu">Solo mini-games that pay a little BB. Today's arcade earnings: ${ARC_CAP-left} / ${ARC_CAP} BB.</p>${UMSG?`<p class="warn">${esc(UMSG)}</p>`:''}`;
+ h+=`<div class="box"><h3 style="margin-top:0">Penalty Shootout</h3><p class="mu">Five penalty shots against random keepers. 10 BB per goal, +40 BB for a perfect 5 of 5. ${5-(u.pkN||0)} plays left today.</p><button class="pri" onclick="pkPlay()">Play</button></div>`;
+ if(!HL)h+=`<div class="box"><h3 style="margin-top:0">Higher or Lower</h3><p class="mu">Is the hidden card's overall higher or lower? 10 BB per correct guess, +20 BB bonus from a streak of 5.</p><button class="pri" onclick="hlStart()">Play</button></div>`;
+ else h+=`<div class="box"><h3 style="margin-top:0">Higher or Lower · streak ${HL.streak}</h3><div class="grid" style="grid-template-columns:repeat(2,minmax(120px,170px));justify-content:center">${card(HL.a,'',false)}${HL.rev?card(HL.b,'',false):hide({...HL.b,tier:0})}</div><p style="text-align:center">${esc(HL.msg)||'Is '+esc(HL.b.name)+' higher or lower than '+HL.a.rating+'?'}</p><div class="row" style="justify-content:center">${HL.rev?`<button class="pri" onclick="hlNext()">${HL.over?'Done':'Next card'}</button>`:`<button class="pri" onclick="hlGuess('hi')">Higher</button><button onclick="hlGuess('lo')">Lower</button>`}</div></div>`;
+ if(!GQ)h+=`<div class="box"><h3 style="margin-top:0">Guess the Player</h3><p class="mu">Five rounds. Work out who it is from their stats. 20 BB per correct answer.</p><button class="pri" onclick="gqStart()">Play</button></div>`;
+ else if(GQ.done)h+=`<div class="box"><h3 style="margin-top:0">Guess the Player</h3><p>You got ${GQ.score} of 5 and earned ${GQ.earned} BB.</p><button class="pri" onclick="GQ=null;render()">Done</button></div>`;
+ else{const a=GQ.q.a;h+=`<div class="box"><h3 style="margin-top:0">Guess the Player · ${GQ.n} of 5</h3><div class="stat" style="margin:10px 0"><div>Position<b>${a.pos}</b></div><div>League<b>${a.league}</b></div><div>OVR<b>${a.rating}</b></div>${a.league==='BHL'?`<div>Contract<b>${fC(a.contract)}</b></div>`:''}</div><div class="stat" style="margin:10px 0"><div>GP<b>${a.gp||0}</b></div><div>G<b>${a.g||0}</b></div><div>A<b>${a.a||0}</b></div><div>SOG<b>${a.sog||0}</b></div><div>Hits<b>${a.hits||0}</b></div><div>Blk<b>${a.blk||0}</b></div></div><div class="row">${GQ.q.o.map(o=>`<button data-n="${esc(o.name)}" ${GQ.ans?'disabled':''} onclick="gqPick(this.dataset.n)" style="${GQ.ans&&o.name===a.name?'border-color:#22c55e':GQ.ans===o.name?'border-color:#ef4444':''}">${esc(o.name)}</button>`).join('')}</div><p>${esc(GQ.msg)}</p>${GQ.ans?`<button class="pri" onclick="gqNext()">${GQ.n>=5?'Finish':'Next'}</button>`:''}</div>`}
+ return h}
 function vMatch(){const u=S.ut,m=UMATCH;let h='';
  if(m){const gl=t=>m.ev.filter(e=>e.t===t).map(e=>`${esc(e.s)}${e.a?' (A: '+esc(e.a)+')':''} · ${e.pr}`).join('<br>')||'<span class="mu">No goals</span>';
-  h+=`<div class="box" style="text-align:center"><p class="mu">${m.ot?'Final (overtime)':'Final'} · OVR ${m.oa} vs ${m.ob}</p><div style="font:800 52px 'Barlow Condensed';display:flex;justify-content:center;gap:20px;align-items:center;flex-wrap:wrap"><span>${esc(USER.mc)} ${m.sc.A}</span><span class="mu">-</span><span>${m.sc.B} ${esc(m.opp)}</span></div><p class="${m.win?'':'warn'}"><b>${m.win?'Victory':'Defeat'}</b> · ${m.rw?'+'+m.rw+' BB':'daily reward limit reached (10 matches)'}</p><p class="mu">Shots ${m.sh.A}-${m.sh.B} · After each period: ${m.per.map((p,i)=>(i<3?'P'+(i+1):'OT')+' '+p[0]+'-'+p[1]).join(' · ')}</p></div><div class="split two" style="display:grid;gap:12px"><div class="box"><h3 style="margin-top:0">${esc(USER.mc)} goals</h3><p>${gl('A')}</p></div><div class="box"><h3 style="margin-top:0">${esc(m.opp)} goals</h3><p>${gl('B')}</p></div></div>`}
+  h+=`<div class="box" style="text-align:center"><p class="mu">${m.ot?'Final (overtime)':'Final'} · OVR ${m.oa} vs ${m.ob}</p><div style="font:800 52px 'Barlow Condensed';display:flex;justify-content:center;gap:20px;align-items:center;flex-wrap:wrap"><span>${esc(USER.mc)} ${m.sc.A}</span><span class="mu">-</span><span>${m.sc.B} ${esc(m.opp)}</span></div><p class="${m.win?'':'warn'}"><b>${m.win?'Victory':'Defeat'}</b> · ${m.win?'+'+UT_PAY+' BB paid out':'-'+UT_FEE+' BB entry lost'}</p><p class="mu">Shots ${m.sh.A}-${m.sh.B} · After each period: ${m.per.map((p,i)=>(i<3?'P'+(i+1):'OT')+' '+p[0]+'-'+p[1]).join(' · ')}</p></div><div class="split two" style="display:grid;gap:12px"><div class="box"><h3 style="margin-top:0">${esc(USER.mc)} goals</h3><p>${gl('A')}</p></div><div class="box"><h3 style="margin-top:0">${esc(m.opp)} goals</h3><p>${gl('B')}</p></div></div>`}
  else h+='<p class="mu">No match played yet. Go to Friends and press Play.</p>';
  return h+`<h3>Recent matches</h3>${u.hist.length?u.hist.map(x=>`<div class="rw"><span class="sp">${x.w?'W':'L'}</span><div class="l"><b>vs ${esc(x.o)}</b></div><span class="mu">${esc(x.s)}</span></div>`).join(''):'<p class="mu">Nothing yet.</p>'}`}
 function vUltimate(){ensureUT();if(!UPUB){UPUB=true;utPub()}
- const T=[['packs','Packs'],['squad','Squad'],['friends','Friends'],['inbox','Inbox'+(UIN.length?' ('+UIN.length+')':'')],['match','Matches']],td=new Date().toDateString();
- return `<h2>Ultimate Team</h2><div class="row" style="justify-content:space-between"><div class="chips" style="margin:0">${T.map(([k,v])=>`<button class="${UTT===k?'on':''}" onclick="UTT='${k}';UMSG='';render()">${v}</button>`).join('')}</div>${S.day!==td?'<button class="pri" onclick="daily()">Claim daily reward +500 BB</button>':''}</div>${UTT==='packs'?vPacks():UTT==='squad'?vSquad():UTT==='friends'?vFriends():UTT==='inbox'?vInbox():vMatch()}`}
+ const T=[['packs','Packs'],['squad','Squad'],['friends','Friends'],['inbox','Inbox'+(UIN.length?' ('+UIN.length+')':'')],['arcade','Arcade'],['match','Matches']],td=new Date().toDateString();
+ return `<h2>Ultimate Team</h2><div class="row" style="justify-content:space-between"><div class="chips" style="margin:0">${T.map(([k,v])=>`<button class="${UTT===k?'on':''}" onclick="UTT='${k}';UMSG='';render()">${v}</button>`).join('')}</div>${S.day!==td?'<button class="pri" onclick="daily()">Claim daily reward +500 BB</button>':''}</div>${UTT==='packs'?vPacks():UTT==='squad'?vSquad():UTT==='friends'?vFriends():UTT==='inbox'?vInbox():UTT==='arcade'?vArcade():vMatch()}`}
 /* PACKS */
 function effW(k){const pool=P.filter(p=>p.league===k),w=[...CFG.PK[k].w];for(let t=3;t>0;t--)if(!pool.some(p=>p.tier===t)){w[t-1]+=w[t];w[t]=0}return w}
 function vPacks(){const ow=Object.keys(S.owned).map(n=>BN[n]).filter(Boolean).sort((a,b)=>b.rating-a.rating),dv=ow.reduce((a,p)=>a+(S.owned[p.name]-1)*p.rating*2,0);
