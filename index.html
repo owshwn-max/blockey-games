@@ -64,7 +64,12 @@ select,input,textarea{background:var(--s);color:var(--tx);border:1px solid var(-
 h1,h2,h3,.logo{font-weight:800;letter-spacing:.4px}h3{font-size:14px}
 .hdl{cursor:grab;touch-action:none;padding:6px 10px;font-size:20px;color:var(--mu);user-select:none}.dr{background:var(--s)}
 .dg5{display:grid;grid-template-columns:repeat(5,minmax(112px,1fr));gap:10px;overflow-x:auto;padding:6px 2px}.dcell{cursor:pointer;border-radius:14px;padding:4px;border:2px solid transparent;text-align:center}.dcell.sel{border-color:var(--ac);box-shadow:0 0 18px color-mix(in srgb,var(--ac) 50%,transparent)}.dpr{font:800 20px "Barlow Condensed";margin-bottom:4px;color:var(--ac)}
-.mo-w{width:min(780px,100%);display:flex;flex-direction:column;gap:12px;position:relative;z-index:2}
+.mo-w{width:min(1280px,100%);display:flex;flex-direction:column;gap:12px;position:relative;z-index:2}.mo-w>*{max-width:780px;width:100%;margin-left:auto;margin-right:auto}.mo-w>.mgrid{max-width:none}
+.mgrid{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}.mcol{display:flex;flex-direction:column;gap:12px;min-width:0;max-width:780px;width:100%;margin:0 auto;order:-1}
+.ros{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;align-items:flex-start;min-width:0}.rc{flex:none;width:84px;text-align:center}.rc small{font-size:11px;color:#9aa6bd}.rosh{flex:none;align-self:center;font:800 16px "Barlow Condensed";letter-spacing:1px;text-transform:uppercase;padding:0 6px}
+@media(min-width:1050px){.mgrid{grid-template-columns:210px minmax(0,1fr) 210px;align-items:start}.mcol{order:0}.ros{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible}.rc{width:auto}.rosh{grid-column:1/-1;text-align:center}}
+.rc.hot .pc{outline:3px solid #ffc83d;box-shadow:0 0 18px #ffc83d}.rc.hotg .pc{outline:3px solid #60a5fa;box-shadow:0 0 18px #60a5fa}
+.rinkw{background:#0b1020;border:1px solid #2a3350;border-radius:14px;padding:8px}.rink{width:100%;height:auto;display:block}.rink .pl{transition:transform .7s cubic-bezier(.4,.1,.3,1)}.rink .puck{transition:transform .6s cubic-bezier(.4,.1,.3,1)}.rink .pl.hot circle{stroke:#ffc83d;stroke-width:1.4}
 .msc{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;text-align:center;gap:10px;background:#0b1020;border:1px solid #2a3350;border-radius:14px;padding:14px}.msc b{font:800 clamp(34px,8vw,56px) "Barlow Condensed";display:block;line-height:1}.msc .n{font-size:13px;color:#9aa6bd;display:block}
 .mclk{font:800 22px "Barlow Condensed";color:#6ee7f9}.mwp{height:10px;border-radius:6px;background:#ef4444;overflow:hidden}.mwp i{display:block;height:100%;background:#22c55e;transition:width .5s}
 .mst{min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:14px;background:#0b1020;border:1px solid #2a3350;border-radius:14px}.mhd{font:800 clamp(24px,6vw,42px) "Barlow Condensed";letter-spacing:.5px}.mhd.goal{color:#ffc83d}.mhd.ogoal{color:#ff7b7b}
@@ -87,6 +92,9 @@ h1,h2,h3,.logo{font-weight:800;letter-spacing:.4px}h3{font-size:14px}
 .fw.t1 .face.fr .pc{box-shadow:0 0 36px 6px #4f9dff99}.fw.t2 .face.fr .pc{box-shadow:0 0 44px 8px #b36bffbb}.fw.t3 .face.fr .pc{animation:lgw 1.2s ease-in-out infinite;box-shadow:0 0 60px 16px #ffc83ddd}
 .fw.t1 .bk{box-shadow:0 0 30px 4px #4f9dff99,inset 0 0 0 3px #fff3}.fw.t2 .bk{box-shadow:0 0 40px 6px #b36bffbb,inset 0 0 0 3px #fff3}.fw.t3 .bk{box-shadow:0 0 56px 14px #ffc83dee,inset 0 0 0 3px #fff6;animation:lgw 1.2s ease-in-out infinite}
 .tbadge{background:#ef4444;color:#fff;border-radius:99px;font-size:11px;padding:1px 7px;margin-left:6px}
+.mtt{text-align:center;font:800 clamp(26px,6vw,40px) "Barlow Condensed","Arial Black",sans-serif;letter-spacing:4px;text-transform:uppercase;color:var(--ac);min-height:46px;border-bottom:3px solid var(--ac);padding-bottom:4px;text-shadow:0 0 18px color-mix(in srgb,var(--ac) 50%,transparent)}
+.coin3d{width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3a8,#f5b82e 55%,#b7791f);box-shadow:inset 0 0 0 4px #fde68a88,0 0 24px #f5b82e88;animation:cflip .45s linear infinite}@keyframes cflip{to{transform:rotateY(360deg)}}
+.strow{display:grid;grid-template-columns:1fr 1.5fr 1fr;align-items:center;padding:6px 0;border-bottom:1px solid #1a2030;text-align:center;color:#eef1f7}.strow b{font-size:18px}.strow span{color:#9aa6bd;font-size:12px;letter-spacing:.5px}
 /* wordmark */
 .logo{display:flex;align-items:center;gap:12px}
 .lmark{width:42px;height:42px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(145deg,var(--ac),color-mix(in srgb,var(--ac) 40%,#000));color:var(--on);font:800 21px "Barlow Condensed";letter-spacing:1px;box-shadow:0 6px 18px color-mix(in srgb,var(--ac) 35%,transparent),inset 0 0 0 1px #ffffff55,inset 0 -10px 14px #0003}
@@ -320,14 +328,14 @@ async function utAddName(n){UMSG='';ensureUT();const u=S.ut,k=ukey(n);if(!n){UMS
 function utAdd(){utAddName(($('#fadd').value||'').trim())}
 function utDel(n){S.ut.fr=S.ut.fr.filter(f=>f!==n);save();render()}
 const utSide=sq=>{const e=utEff(sq);if(e.some(x=>!x))return null;return{e,off:avg(e.filter(x=>x.pos==='C'||x.pos==='W').map(x=>x.eff)),def:avg(e.filter(x=>x.pos==='D').map(x=>x.eff)),g:e[6].eff}};
-const pGoal=(X,Y,sd)=>Math.min(.26,Math.max(.04,(.155+(sd.eff-Y.g)*.0014+(X.off-Y.def)*.0008)*(1+(X.form||0))*(1-(Y.gf||0))));
+const pGoal=(X,Y,sd)=>Math.min(.26,Math.max(.04,(.17+(sd.eff-Y.g)*.0018+(X.off-Y.def)*.001)*(1+(X.form||0))*(1-(Y.gf||0))));
 const pickShooter=X=>{const pool=X.e.filter(x=>x.pos!=='G'),w=pool.map(x=>Math.pow(x.eff/60,3)*(x.pos==='D'?.45:1)),t=w.reduce((a,b)=>a+b,0);let r=Math.random()*t;for(let i=0;i<pool.length;i++){r-=w[i];if(r<=0)return pool[i]}return pool[0]};
 const pickAssist=(X,sd)=>{if(Math.random()>.8)return'';const m=X.e.filter(x=>x.pos!=='G'&&x!==sd);return m[Math.floor(Math.random()*m.length)].p.name};
 const setForm=(A,B)=>{A.form=(Math.random()-.5)*.6;B.form=(Math.random()-.5)*.6;A.gf=(Math.random()-.5)*.8;B.gf=(Math.random()-.5)*.8};
 const nAtt=(X,Y)=>Math.max(3,Math.min(8,Math.round(5+(X.off-Y.def)*.03+Math.random()*3-1.5)));
 function simGame(A,B){setForm(A,B);const R=Math.random,sc={A:0,B:0},sh={A:0,B:0},ev=[],per=[];
  const shoot=(X,Y,t,pr)=>{const sd=pickShooter(X);sh[t]++;if(R()<pGoal(X,Y,sd)){sc[t]++;ev.push({pr,t,s:sd.p.name,a:pickAssist(X,sd)})}};
- for(let i=1;i<=3;i++){const nA=nAtt(A,B),nB=nAtt(B,A);for(let k=0;k<nA;k++)shoot(A,B,'A','P'+i);for(let k=0;k<nB;k++)shoot(B,A,'B','P'+i);per.push([sc.A,sc.B])}
+ for(let i=1;i<=NP;i++){const nA=nAtt(A,B),nB=nAtt(B,A);for(let k=0;k<nA;k++)shoot(A,B,'A','P'+i);for(let k=0;k<nB;k++)shoot(B,A,'B','P'+i);per.push([sc.A,sc.B])}
  let ot=false;if(sc.A===sc.B){ot=true;for(let k=0;k<8&&sc.A===sc.B;k++){shoot(A,B,'A','OT');if(sc.A!==sc.B)break;shoot(B,A,'B','OT')}if(sc.A===sc.B){const w=R()<.5+(A.g-B.g)*.004?'A':'B';sc[w]++;ev.push({pr:'SO',t:w,s:'Shootout winner',a:''})}per.push([sc.A,sc.B])}
  return{sc,sh,ev,per,ot}}
 function utOdds(A,B){let w=0;const N=600;for(let i=0;i<N;i++){const r=simGame(A,B);if(r.sc.A>r.sc.B)w++}return w/N}
@@ -335,32 +343,63 @@ function utFinish(res,rec,A,B,bonus){const u=S.ut,win=res.sc.A>res.sc.B;let rw=0
  UMATCH={...res,opp:rec.n,win,rw,oa:utOvr(u.sq),ob:utOvr(rec.sq)};u.hist.unshift({o:rec.n,s:res.sc.A+'-'+res.sc.B+(res.ot?' OT':''),w:win});u.hist=u.hist.slice(0,15);save();utPub();return UMATCH}
 /* ---- live match: solo practice, or a live 1v1 shared over Firebase ---- */
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-let M=null,V=null,UREC=null,LIVE=null,MY='A',MGC=null,MG={active:false,shown:-1,fl:0},PQ=Promise.resolve(),UIN=[],UNOT=new Set(),LOB=null;
+const NP=2,UT_FEE=500,UT_PAY=800;
+let M=null,V=null,UREC=null,LIVE=null,MY='A',MGC=null,MG={active:false,shown:-1,fl:0,rdy:false},PQ=Promise.resolve(),UIN=[],UNOT=new Set(),LOB=null;
 const mOpen=h=>{const o=$('#mo');o.className='ov show';o.innerHTML='<div class="mo-w">'+h+'</div>'};
-function mClose(){if(LOB)LOB.cancel=true;LOB=null;if(LIVE){LIVE.stop&&LIVE.stop();if(LIVE.mode==='host')fetch(LIVE.base+'.json',{method:'DELETE'}).catch(()=>{})}LIVE=null;M=null;V=null;MGC=null;MG={active:false,shown:-1,fl:0};const o=$('#mo');o.className='ov';o.innerHTML=''}
-function mDone(){if(LIVE&&LIVE.mode==='guest'&&LIVE.paid&&!(V&&V.fin)){S.bb+=UT_FEE;save()}const live=LIVE&&LIVE.mode!=='solo';mClose();UTT=live?'match':'friends';render();scrollTo(0,0)}
-const newV=(a,b)=>({n:[a,b],sc:[0,0],sh:[0,0],clk:'P1 20:00',wp:.5,head:'',sub:'',cls:'',log:[],mg:null,fin:null,fl:0});
-const mShell=(a,b,skip)=>`<div class="msc"><div><span class="n">${esc(a)}</span><b id="msa">0</b></div><div><div class="mclk" id="mclk">P1 20:00</div><span class="n" id="mws"></span></div><div><span class="n">${esc(b)}</span><b id="msb">0</b></div></div><div class="mwp"><i id="mwp" style="width:50%"></i></div><div class="mu" style="text-align:center" id="mwt"></div><div class="mst" id="mst"></div><div class="mlg" id="mlg"></div><div class="row" style="justify-content:center">${skip?'<button onclick="M.skip=true;MGC&&MGC()">Skip to final</button>':''}</div>`;
+function mClose(){if(LOB)LOB.cancel=true;LOB=null;if(LIVE){LIVE.stop&&LIVE.stop();if(LIVE.mode==='host')fetch(LIVE.base+'.json',{method:'DELETE'}).catch(()=>{})}LIVE=null;M=null;V=null;MGC=null;MG={active:false,shown:-1,fl:0,rdy:false};const o=$('#mo');o.className='ov';o.innerHTML=''}
+function mDone(){if(LIVE&&LIVE.paid&&!(V&&V.fin)&&(!V||V.ph==='ready'||V.ph==='count')){S.bb+=UT_FEE;save()}mClose();tab='Ultimate';UTT='packs';render();scrollTo(0,0)}
+const newV=(a,b)=>({n:[a,b],sc:[0,0],sh:[0,0],clk:'P1 20:00',wp:.5,head:'',sub:'',cls:'',ttl:'',log:[],mg:null,fin:null,fl:0,ph:'',rd:[false,false],rm:[false,false],mid:0,ice:{x:100,y:42.5,t:'N',k:'',s:'',i:-1,l:''}});
+const ULAB2=['C1','W1','D1','C2','W2','D2','G'];
+const rosCards=(sq,side)=>(sq||[]).map((n,i)=>{const p=BN[n];return p?`<div class="rc" id="r${side}${i}">${card(p,'',false)}<small>${ULAB2[i]}</small></div>`:''}).join('');
+function iceSvg(){const pl=(side,i)=>`<g class="pl" id="p${side}${i}"><circle r="3.3" fill="${side==='A'?'#3b82f6':'#ef4444'}" stroke="#fff" stroke-width=".7"/><text y="1.3" font-size="3.4" font-weight="800" fill="#fff" text-anchor="middle">${'CWDCWD'[i]}</text></g>`,gk=side=>`<g class="pl" id="g${side}"><circle r="3.9" fill="${side==='A'?'#1d4ed8':'#b91c1c'}" stroke="#fff" stroke-width=".7"/><text y="1.3" font-size="3.4" font-weight="800" fill="#fff" text-anchor="middle">G</text></g>`;
+ return `<svg id="rink" class="rink" viewBox="0 0 200 85"><rect x="1" y="1" width="198" height="83" rx="15" fill="#e8f6ff" stroke="#8fb3d1" stroke-width="1.6"/><line x1="100" y1="1.5" x2="100" y2="83.5" stroke="#d33" stroke-width="1.3"/><line x1="75" y1="1.5" x2="75" y2="83.5" stroke="#2563eb" stroke-width="1.3"/><line x1="125" y1="1.5" x2="125" y2="83.5" stroke="#2563eb" stroke-width="1.3"/><line x1="11" y1="4" x2="11" y2="81" stroke="#d33" stroke-width=".6"/><line x1="189" y1="4" x2="189" y2="81" stroke="#d33" stroke-width=".6"/><circle cx="100" cy="42.5" r="13" fill="none" stroke="#2563eb" stroke-width=".7"/><circle cx="100" cy="42.5" r="1.2" fill="#2563eb"/><g fill="none" stroke="#d33" stroke-width=".6"><circle cx="31" cy="21" r="11"/><circle cx="31" cy="64" r="11"/><circle cx="169" cy="21" r="11"/><circle cx="169" cy="64" r="11"/></g><path d="M11 34 A8.5 8.5 0 0 1 11 51 Z" fill="#9ecbff99" stroke="#d33" stroke-width=".5"/><path d="M189 34 A8.5 8.5 0 0 0 189 51 Z" fill="#9ecbff99" stroke="#d33" stroke-width=".5"/><rect x="6" y="38.5" width="5" height="8" fill="#fff" stroke="#555" stroke-width=".7"/><rect x="189" y="38.5" width="5" height="8" fill="#fff" stroke="#555" stroke-width=".7"/>${[0,1,2,3,4,5].map(i=>pl('A',i)+pl('B',i)).join('')}${gk('A')}${gk('B')}<g class="puck" id="puck"><circle r="1.9" fill="#111" stroke="#fff" stroke-width=".5"/></g></svg>`}
+const mShell=(a,b,skip,sqA,sqB)=>`<div class="mgrid"><div class="ros" id="rosA"><div class="rosh" style="color:#60a5fa">${esc(a)}</div>${rosCards(sqA,'A')}</div><div class="mcol"><div class="mtt" id="mtt"></div><div class="msc"><div><span class="n" style="color:#60a5fa">${esc(a)}</span><b id="msa">0</b></div><div><div class="mclk" id="mclk">P1 20:00</div><span class="n" id="mws"></span></div><div><span class="n" style="color:#f87171">${esc(b)}</span><b id="msb">0</b></div></div><div class="rinkw">${iceSvg()}<div class="mu" id="icecap" style="text-align:center;min-height:18px"></div></div><div class="mwp"><i id="mwp" style="width:50%"></i></div><div class="mu" style="text-align:center" id="mwt"></div><div class="mst" id="mst"></div><div class="mlg" id="mlg"></div><div class="row" style="justify-content:center">${skip?'<button onclick="M&&(M.skip=true);MGC&&MGC()">Skip to final</button>':''}</div></div><div class="ros" id="rosB"><div class="rosh" style="color:#f87171">${esc(b)}</div>${rosCards(sqB,'B')}</div></div>`;
+const ICE_B=[[92,42],[92,22],[60,28],[80,42],[92,63],[60,57]],ICE_K=[.75,.7,.45,.75,.7,.45];
+function iceUpdate(){const I=(V&&V.ice)||{x:100,y:42.5,t:'N',i:-1,s:'',k:''},x0=+I.x,y0=+I.y,pu=$('#puck');if(isNaN(x0)||!pu)return;
+ pu.style.transitionDuration=I.k==='shot'?'.3s':'.7s';pu.style.transform=`translate(${x0}px,${y0}px)`;
+ ['A','B'].forEach(side=>{for(let i=0;i<6;i++){const g=$('#p'+side+i);if(!g)continue;const b=ICE_B[i];let x=(side==='A'?b[0]:200-b[0])+(x0-100)*ICE_K[i]+(I.t===side?(side==='A'?7:-7):0),y=b[1]+(y0-42.5)*.5;const hot=I.s===side&&I.i===i&&I.k!=='save';if(hot){x=x0+(side==='A'?-3.5:3.5);y=y0}
+   g.style.transform=`translate(${Math.max(7,Math.min(193,x))}px,${Math.max(6,Math.min(79,y))}px)`;g.classList.toggle('hot',hot)}
+  const gk=$('#g'+side);if(gk){gk.style.transform=`translate(${side==='A'?11:189}px,${42.5+(y0-42.5)*.18}px)`;gk.classList.toggle('hot',!!(['rush','shot','goal','save'].includes(I.k)&&I.s&&I.s!==side))}});
+ if(document.querySelectorAll)document.querySelectorAll('.rc.hot,.rc.hotg').forEach(e=>e.classList.remove('hot','hotg'));
+ if(I.s&&I.i>=0){const e=$('#r'+I.s+I.i);e&&e.classList.add('hot')}
+ if(I.s&&['rush','shot','goal','save'].includes(I.k)){const e=$('#r'+(I.s==='A'?'B':'A')+'6');e&&e.classList.add('hotg')}
+ const cap=$('#icecap');if(cap)cap.textContent=I.k==='goal'?(I.l||'')+' scores!':I.k==='save'?'Shot stopped':I.k==='shot'?(I.l||'')+' shoots':I.k==='rush'?(I.l||'')+' with the puck':I.k==='scrum'?'Scramble for the puck':I.k==='faceoff'?'Face-off':''}
 function applyEv(R,typ,m){const segs=String(m.path||'/').split('/').filter(Boolean);if(typ==='put'){if(!segs.length)return m.data||{};setP(R,segs,m.data)}else if(m.data)Object.entries(m.data).forEach(([k,v])=>setP(R,[...segs,k],v));return R}
 function liveWatch(url,cb){let R={},last=Date.now(),es,stop=false;try{es=new EventSource(url);['put','patch'].forEach(t=>es.addEventListener(t,e=>{try{R=applyEv(R,t,JSON.parse(e.data));last=Date.now();cb(R)}catch(x){}}))}catch(x){}
  const iv=setInterval(async()=>{if(stop||Date.now()-last<3500)return;try{const r=await fetch(url,{cache:'no-store'}),j=await r.json();if(j){R=j;last=Date.now()-2500;cb(R)}}catch(x){}},1200);
  return()=>{stop=true;clearInterval(iv);es&&es.close()}}
 function vPush(){vRender();if(LIVE&&LIVE.mode==='host'){const body=JSON.stringify(V);PQ=PQ.then(()=>fetch(LIVE.base+'/v.json',{method:'PUT',body}).catch(()=>{}))}}
 const GR={perfect:'PERFECT!',good:'Nice!',ok:'On target',late:'Too slow!',miss:'Missed it!'};
+const INSTR=`<div class="mu" style="text-align:left;max-width:580px;line-height:1.55"><p style="margin:0 0 6px"><b style="font-size:16px">How a live match works</b></p><ul style="margin:0 0 8px 18px;padding:0"><li><b>Face-off:</b> at the start of each period, tap the button (or press Space) as fast as you can.</li><li><b>Shooting:</b> stop the moving marker inside the green. The small center is the best shot, the wide edges are weaker. Your zone is bigger when your shooter is rated higher than their goalie.</li><li><b>Saving:</b> stop the marker inside the green. A perfect save almost always stops the shot. Your zone is smaller against a better shooter. If you miss and they hit a good shot, it is much more likely to go in.</li><li><b>Defense 50/50:</b> when a rush comes in, the defender picks heads or tails before the coin flips. Guess right and you win the puck.</li><li><b>Scramble:</b> wait for the green GO, then click first. Click early and you lose it.</li><li><b>Stakes:</b> 500 BB each to play. The winner is paid 800 BB.</li></ul></div>`;
+function vStats(){const f=V.fin,s2=arr(f.sc),h2=arr(f.sh),st=f.st||[],nm=arr(V.n),me=MY==='A'?0:1,op=1-me,solo=LIVE&&LIVE.mode==='solo',win=s2[me]>s2[op],g=(i,k)=>(st[i]&&st[i][k])||0;
+ const rows=[['Goals',s2[me],s2[op]],['Shots',h2[me],h2[op]],['Perfect shots',g(me,'sp'),g(op,'sp')],['Good shots',g(me,'sg'),g(op,'sg')],['Weak or missed shots',g(me,'so')+g(me,'sm'),g(op,'so')+g(op,'sm')],['Perfect saves',g(me,'vp'),g(op,'vp')],['Good saves',g(me,'vg'),g(op,'vg')],['Missed saves',g(me,'vm'),g(op,'vm')],['Face-offs won',g(me,'fo'),g(op,'fo')],['50/50s won',g(me,'ff'),g(op,'ff')],['Scrambles won',g(me,'sc'),g(op,'sc')]];
+ const goals=arr(f.ev).map(e=>`<div class="${(e.t==='A')===(MY==='A')?'g':'o'}">${esc(e.pr)} · ${esc(e.s)}${e.a?' (A: '+esc(e.a)+')':''}</div>`).join('')||'<div>No goals</div>';
+ const rm=arr(V.rm),mineRm=MY==='A'?rm[0]:rm[1],oppRm=MY==='A'?rm[1]:rm[0],gone=LIVE&&LIVE.gone,broke=S.bb<UT_FEE;
+ const rb=solo?'<button class="pri" onclick="mRematch()">Rematch</button>':gone?'<button disabled>Opponent left</button>':(mineRm||(LIVE&&LIVE.rmSent))?'<button disabled>Waiting for opponent...</button>':`<button class="pri" ${broke?'disabled':''} onclick="mRematch()">${oppRm?'Accept rematch':'Rematch'} (${UT_FEE} BB)</button>`;
+ return `<div class="mhd ${win?'goal':'ogoal'}">${win?'VICTORY!':'DEFEAT'}</div><div class="mu">${f.ot?'Overtime. ':''}${solo?'Practice match, no rewards':win?'+'+UT_PAY+' BB paid out ('+UT_FEE+' BB entry)':'You lost your '+UT_FEE+' BB entry'}</div>
+ <div style="width:100%;max-width:520px"><div class="strow"><b>${esc(nm[me])}</b><span>MATCH STATS</span><b>${esc(nm[op])}</b></div>${rows.map(r=>`<div class="strow"><b>${r[1]}</b><span>${r[0]}</span><b>${r[2]}</b></div>`).join('')}<div class="mlg" style="margin-top:8px;max-height:110px;text-align:left">${goals}</div></div>
+ <div class="row" style="justify-content:center">${rb}<button onclick="mDone()">Back to main page</button></div>`}
 function vRender(){if(!V||!$('#msa'))return;const sc=arr(V.sc),sh=arr(V.sh),wp0=typeof V.wp==='number'?V.wp:.5,wp=MY==='A'?wp0:1-wp0;
  $('#msa').textContent=sc[0]||0;$('#msb').textContent=sc[1]||0;$('#mws').textContent='Shots '+(sh[0]||0)+' - '+(sh[1]||0);$('#mclk').textContent=V.clk||'';$('#mwp').style.width=Math.round(wp*100)+'%';$('#mwt').textContent=Math.round(wp*100)+'% win chance for you';
  const l=$('#mlg');if(l)l.innerHTML=arr(V.log).map(x=>{const c=x.c==='ga'||x.c==='gb'?(x.c==='g'+MY.toLowerCase()?'g':'o'):(x.c||'');return'<div class="'+esc(c)+'">'+esc(x.t)+'</div>'}).join('');
- const mg=V.mg,need=mg?arr(mg.need):[];
- if(mg&&need.includes(MY)&&MG.shown!==mg.id){MG.shown=mg.id;MG.active=true;const id=mg.id;playMG(mg).then(v=>{MG.active=false;mgSend(id,MY,v);const st=$('#mst');if(st&&V&&V.mg&&V.mg.id===id)st.innerHTML='<div class="mhd '+(v==='perfect'?'goal':'')+'">'+(typeof v==='number'?'Time!':(GR[v]||'Locked in'))+'</div><div class="mu">Waiting for the play...</div>'});return}
+ const mg=V.mg,need=mg?arr(mg.need):[];let ttl=V.ttl||'';
+ if(V.ph==='ready')ttl='MATCH RULES · READY UP';
+ if(mg)ttl=mg.kind==='mash'?'FACE-OFF':mg.kind==='coin'?'DEFENSE 50/50':mg.kind==='reflex'?'LOOSE PUCK SCRAMBLE':(mg.shooter===MY?'SHOOTING':'SAVING');
+ const tt=$('#mtt');if(tt)tt.textContent=ttl;iceUpdate();
+ if(mg&&need.includes(MY)&&MG.shown!==mg.id){MG.shown=mg.id;MG.active=true;const id=mg.id,kind=mg.kind;playMG(mg).then(v=>{MG.active=false;mgSend(id,MY,v);const st=$('#mst');if(st&&V&&V.mg&&V.mg.id===id)st.innerHTML='<div class="mhd '+(v==='perfect'?'goal':'')+'">'+mgFeed(kind,v)+'</div><div class="mu">Waiting for the play...</div>'});return}
  if(MG.active)return;const st=$('#mst');if(!st)return;
- if(V.fin){const f=V.fin,s2=arr(f.sc),win=MY==='A'?s2[0]>s2[1]:s2[1]>s2[0],solo=LIVE&&LIVE.mode==='solo',rw=UMATCH&&!solo?UMATCH.rw:0;
-  st.innerHTML=`<div class="mhd ${win?'goal':'ogoal'}">${win?'VICTORY!':'DEFEAT'}</div><div class="mu">${f.ot?'Overtime. ':''}${solo?'Practice match, no rewards':win?'+'+UT_PAY+' BB paid out ('+UT_FEE+' BB entry)':'You lost your '+UT_FEE+' BB entry'}</div><button class="pri" onclick="mDone()">Continue</button>`;return}
+ if(V.ph==='ready'){const rd=arr(V.rd),mine=(MY==='A'?rd[0]:rd[1])||MG.rdy,op=MY==='A'?rd[1]:rd[0],on=arr(V.n)[MY==='A'?1:0];
+  st.innerHTML=INSTR+`<div class="row" style="justify-content:center;flex:none"><span>You: ${mine?'✅ Ready':'⏳ Not ready'}</span><span>${esc(on)}: ${op?'✅ Ready':'⏳ Waiting'}</span></div>${mine?'':'<button class="pri" onclick="readyClick()" style="padding:12px 38px;font-size:18px">READY UP</button>'}`;return}
+ if(V.ph==='count'){st.innerHTML='<div class="mhd" style="font-size:96px">'+esc(V.head)+'</div>';return}
+ if(V.fin){st.innerHTML=vStats();return}
  const hc=V.cls==='gA'||V.cls==='gB'?(V.cls==='g'+MY?'goal':'ogoal'):(V.cls||'');
- st.innerHTML='<div class="mhd '+esc(hc)+'">'+esc(V.head||'')+'</div>'+((V.sub||(mg&&MG.shown===mg.id))?'<div class="mu">'+esc(V.sub||'Locked in...')+'</div>':'');
+ st.innerHTML=(V.cls==='coin'?'<div class="coin3d"></div>':'')+'<div class="mhd '+esc(hc)+'">'+esc(V.head||'')+'</div>'+((V.sub||(mg&&MG.shown===mg.id))?'<div class="mu">'+esc(V.sub||'Locked in...')+'</div>':'');
  if(V.fl!==MG.fl){MG.fl=V.fl;if(V.fl){st.classList.remove('gflash');void st.offsetWidth;st.classList.add('gflash')}}}
-function mgSend(id,side,val){if(LIVE&&LIVE.mode==='guest')fetch(LIVE.base+'/ans/'+id+'_'+side+'.json',{method:'PUT',body:JSON.stringify(val)}).catch(()=>{});else if(M)M.ans[id+side]=val}
-function playMG(sp){if(sp.kind==='mash')return mgMash(2.5);const shoot=sp.shooter===MY,z=shoot?sp.zs:sp.zv;
- return shoot?mgTiming('SHOOT!','Center of the green is best. The wider edge is safer but weaker.','SHOOT',[z.w,z.w*.62,z.w*.27],z.l,z.sp,['ok','good','perfect']):mgTiming('SAVE!','Stop the shot. Hit the green with your goalie.','SAVE',[z.w,z.w*.4],z.l,z.sp,['good','perfect'])}
+const mgFeed=(k,v)=>k==='coin'?(v==='h'?'HEADS':v==='t'?'TAILS':'Too slow!'):k==='reflex'?(v>=9999?'Too early!':v+' ms'):typeof v==='number'?'Time!':(GR[v]||'Locked in');
+function readyClick(){MG.rdy=true;if(LIVE&&LIVE.mode==='guest')fetch(LIVE.base+'/ans/readyB.json',{method:'PUT',body:'true'}).catch(()=>{});else if(M)M.ans.readyA=true;vRender()}
+function mgSend(id,side,val){if(LIVE&&LIVE.mode==='guest')fetch(LIVE.base+'/ans/'+id+side+'.json',{method:'PUT',body:JSON.stringify(val)}).catch(()=>{});else if(M)M.ans[id+side]=val}
+function playMG(sp){if(sp.kind==='mash')return mgMash(2.5);if(sp.kind==='coin')return mgCoin();if(sp.kind==='reflex')return mgReflex(sp.dl);const shoot=sp.shooter===MY,z=shoot?sp.zs:sp.zv;
+ return shoot?mgTiming('SHOOT!','Center of the green is best. The wide edge is safer but weaker.','SHOOT',[z.w,z.w*.62,z.w*.27],z.l,z.sp,['ok','good','perfect']):mgTiming('SAVE!','Stop the shot. Hit the green with your goalie.','SAVE',[z.w,z.w*.4],z.l,z.sp,['good','perfect'])}
 function mgTiming(title,sub,btn,zs,zl,speed,grades){return new Promise(res=>{const zw=zs[0],cz=zl+zw/2;
  $('#mst').innerHTML=`<div class="mhd">${title}</div><div class="mu">${sub}</div><div class="mtr">${zs.map((w,i)=>`<i class="mzn mz${i}" style="left:${cz-w/2}%;width:${w}%"></i>`).join('')}<i class="mcr" id="mcr"></i></div><button class="pri" id="mgb" style="padding:12px 30px;font-size:18px">${btn}</button>`;
  const cr=$('#mcr'),t0=performance.now();let done=false,pos=0,raf,to;
@@ -369,63 +408,104 @@ function mgTiming(title,sub,btn,zs,zl,speed,grades){return new Promise(res=>{con
  document.addEventListener('keydown',kd);$('#mgb').onpointerdown=hit;to=setTimeout(()=>fin('late'),2600);MGC=()=>fin('none');
  const loop=()=>{const p=((performance.now()-t0)/1000*speed)%2;pos=(p<1?p:2-p)*100;cr.style.left=pos+'%';raf=requestAnimationFrame(loop)};loop()})}
 function mgMash(sec){return new Promise(res=>{let n=0,left=sec,iv;
- $('#mst').innerHTML=`<div class="mhd">FACE-OFF!</div><div class="mu">Tap as fast as you can</div><button class="pri" id="mgb" style="padding:18px 44px;font-size:22px">TAP! <span id="mgn">0</span></button><div class="mu" id="mgt">${sec}s</div>`;
+ $('#mst').innerHTML=`<div class="mhd">TAP TAP TAP!</div><div class="mu">Tap as fast as you can</div><button class="pri" id="mgb" style="padding:18px 44px;font-size:22px">TAP! <span id="mgn">0</span></button><div class="mu" id="mgt">${sec}s</div>`;
  const tap=()=>{n++;const e=$('#mgn');if(e)e.textContent=n},kd=e=>{if(e.code==='Space'&&!e.repeat){e.preventDefault();tap()}},end=v=>{clearInterval(iv);document.removeEventListener('keydown',kd);MGC=null;res(v)};
  $('#mgb').onpointerdown=tap;document.addEventListener('keydown',kd);MGC=()=>end(-1);
  iv=setInterval(()=>{left-=.25;const t=$('#mgt');if(t)t.textContent=Math.max(0,left).toFixed(1)+'s';if(left<=0)end(n)},250)})}
+function mgCoin(){return new Promise(res=>{$('#mst').innerHTML=`<div class="mhd">PICK A SIDE!</div><div class="mu">The coin is about to flip. Guess right to win the puck.</div><div class="row" style="justify-content:center;flex:none"><button class="pri" id="cH" style="padding:14px 34px;font-size:20px">HEADS</button><button class="pri" id="cT" style="padding:14px 34px;font-size:20px">TAILS</button></div>`;
+ let done=false,to;const fin=v=>{if(done)return;done=true;clearTimeout(to);MGC=null;res(v)};$('#cH').onpointerdown=()=>fin('h');$('#cT').onpointerdown=()=>fin('t');to=setTimeout(()=>fin('late'),2400);MGC=()=>fin('late')})}
+function mgReflex(dl){return new Promise(res=>{const st=$('#mst');st.innerHTML=`<div class="mhd ogoal">WAIT...</div><div class="mu">Click the instant it turns green. Too early and you lose it.</div><button class="pri" id="mgb" style="padding:22px 64px;font-size:24px;background:#7f1d1d;border-color:#7f1d1d;color:#fff">...</button>`;
+ let t0=0,done=false,to1,to2;const fin=v=>{if(done)return;done=true;clearTimeout(to1);clearTimeout(to2);document.removeEventListener('keydown',kd);MGC=null;res(v)};
+ const hit=()=>fin(t0?Math.round(performance.now()-t0):9999),kd=e=>{if(e.code==='Space'&&!e.repeat){e.preventDefault();hit()}};
+ document.addEventListener('keydown',kd);$('#mgb').onpointerdown=hit;MGC=()=>fin(9999);
+ to1=setTimeout(()=>{if(done)return;t0=performance.now();st.innerHTML=`<div class="mhd goal">GO!</div><div class="mu">CLICK NOW</div><button class="pri" id="mgb" style="padding:22px 64px;font-size:24px;background:#16a34a;border-color:#16a34a;color:#fff">CLICK!</button>`;$('#mgb').onpointerdown=hit},dl);to2=setTimeout(()=>fin(9999),dl+1500)})}
 /* engine (runs on the host, or locally for practice) */
-const UT_FEE=500,UT_PAY=800;
 const SHM={perfect:2.0,good:1.45,ok:1.0,miss:.55,late:.5,none:1},SVM={perfect:.15,good:.42,miss:1.05,late:1.15,none:1};
 const aiShot=eff=>{const r=Math.random(),pp=.08+(eff-75)*.004;return r<pp?'perfect':r<pp+.22?'good':r<pp+.57?'ok':'miss'};
 const wait=ms=>M&&M.skip?Promise.resolve():sleep(ms);
 const mClk=()=>{const rm=Math.max(0,20-M.t),mm=Math.floor(rm),ss=Math.floor((rm-mm)*60);return(M.ot?'OT':'P'+M.pd)+' '+mm+':'+String(ss).padStart(2,'0')};
-function mUp(){const rem=M.ot?.05:1-((M.pd-1)+M.t/20)/3,lead=M.sc.A-M.sc.B,p0=Math.min(.98,Math.max(.02,M.p0)),lg=Math.log(p0/(1-p0))*Math.max(0,rem)+lead*(1+1.7*(1-Math.max(0,rem)));V.sc=[M.sc.A,M.sc.B];V.sh=[M.sh.A,M.sh.B];V.clk=mClk();V.wp=1/(1+Math.exp(-lg))}
-const mSay=(h,sub,cls)=>{V.head=h;V.sub=sub||'';V.cls=cls||'';vPush()};
+function mUp(){const rem=M.ot?.05:1-((M.pd-1)+M.t/20)/NP,lead=M.sc.A-M.sc.B,p0=Math.min(.98,Math.max(.02,M.p0)),lg=Math.log(p0/(1-p0))*Math.max(0,rem)+lead*(1+1.7*(1-Math.max(0,rem)));V.sc=[M.sc.A,M.sc.B];V.sh=[M.sh.A,M.sh.B];V.clk=mClk();V.wp=1/(1+Math.exp(-lg))}
+const mSay=(h,sub,cls,ttl)=>{V.head=h;V.sub=sub||'';V.cls=cls||'';if(ttl!==undefined)V.ttl=ttl;vPush()};
 const mLog=(t,c)=>{V.log.unshift({t,c:c||''});if(V.log.length>8)V.log.length=8};
-async function mWaitAns(sp){const t0=Date.now(),lim=sp.kind==='mash'?4200:4000;
+const stI=(s,k)=>{M.st[s][k]=(M.st[s][k]||0)+1};
+async function mWaitAns(sp){const t0=Date.now(),lim=sp.kind==='mash'?4200:sp.kind==='reflex'?sp.dl+2800:sp.kind==='coin'?3600:4000;
  while(Date.now()-t0<lim&&!M.skip){const pend=sp.need.filter(s=>M.ans[sp.id+s]===undefined);if(!pend.length)break;
   if(M.mode==='host'&&pend.includes('B')){try{const r=await fetch(LIVE.base+'/ans.json',{cache:'no-store'}),j=await r.json();if(j)for(const k in j)M.ans[k]=j[k]}catch(e){}}
   await sleep(250)}
  const o={};sp.need.forEach(s=>o[s]=M.ans[sp.id+s]);return o}
 async function mChance(a){const R=Math.random,X=a.s==='A'?M.A:M.B,Y=a.s==='A'?M.B:M.A,sn=a.s==='A'?M.nameA:M.nameB,dn=a.s==='A'?M.nameB:M.nameA,sd=pickShooter(X),pn=sd.p.name,gk=Y.e[6].p.name;M.t=a.t;M.sh[a.s]++;
  const cnt=a.s==='A'?'bA':'bB';let big=!!(a.pp||(!M.skip&&M[cnt]<4&&R()<.34));if(big&&!a.pp)M[cnt]++;
- let p=pGoal(X,Y,sd);p=big?Math.min(.6,p*2.1):p*.8;
- if(big){mUp();mSay(pn+' is in on a breakaway!',sn+' shooting, '+gk+' in goal');await wait(700);
-  if(!M.skip){const d=a.s==='A'?'B':'A',zw=Math.max(17,Math.min(33,24+(sd.eff-75)*.28-(Y.g-75)*.08)),zv=Math.max(24,Math.min(38,28+(Y.g-75)*.3)),sp={id:++M.mgid,kind:'chance',shooter:a.s,need:M.need,zs:{w:zw,l:12+R()*(76-zw),sp:1.2+R()*.5},zv:{w:zv,l:12+R()*(76-zv),sp:.9+R()*.4}};
+ let p=pGoal(X,Y,sd)*(M.mom[a.s]||1);M.mom[a.s]=1;p=big?Math.min(.6,p*2.1):p*.8;
+ const idx=X.e.indexOf(sd);V.ice={x:a.s==='A'?126:74,y:18+R()*50,t:a.s,k:'rush',s:a.s,i:idx,l:pn};
+ if(big){mUp();mSay(pn+' is in on a breakaway!',sn+' shooting, '+gk+' in goal','','BREAKAWAY');await wait(700);
+  if(!M.skip){const d=a.s==='A'?'B':'A',diff=sd.eff-Y.g,zw=Math.max(15,Math.min(34,24+diff*.4)),zv=Math.max(14,Math.min(44,30-diff*.5)),sp={id:++M.mgid,kind:'chance',shooter:a.s,need:M.need,zs:{w:zw,l:12+R()*(76-zw),sp:1.2+R()*.5},zv:{w:zv,l:12+R()*(76-zv),sp:.9+R()*.4}};
    V.mg=sp;mUp();vPush();const ans=await mWaitAns(sp);V.mg=null;
    let gs=ans[a.s],gd=ans[d];if(gs===undefined)gs=M.need.includes(a.s)?'late':aiShot(sd.eff);if(gd===undefined)gd=M.need.includes(d)?'late':'none';
    let mult=SHM[gs]*SVM[gd];if((gd==='miss'||gd==='late')&&(gs==='good'||gs==='perfect'))mult*=1.35;
    p=Math.min(.88,Math.max(.02,p*mult));if(M.need.includes(a.s)&&gs==='perfect')M.perf[a.s]++;if(M.need.includes(d)&&gd==='perfect')M.perf[d]++;
+   if(M.need.includes(a.s))stI(a.s,{perfect:'sp',good:'sg',ok:'so',miss:'sm',late:'sm'}[gs]||'sm');if(M.need.includes(d))stI(d,{perfect:'vp',good:'vg',miss:'vm',late:'vm'}[gd]||'vm');
    const shown=M.need.includes(a.s)?gs:null,sav=M.need.includes(d)?gd:null;
-   mSay(sav==='perfect'?'What a SAVE!':sav==='good'?'Good stop attempt':(sav==='miss'||sav==='late')&&(gs==='good'||gs==='perfect')?'The goalie is beat!':shown?GR[shown]:GR[sav]||'Here it comes...',M.mode==='host'?sn+': '+(GR[ans[a.s]]||'-')+'  |  '+dn+': '+(GR[ans[d]]||'-'):(M.need.includes(a.s)?'Your shot: ':'Their shot was '+(GR[gs]||'')+'. Your save: ')+(GR[M.need.includes(a.s)?gs:gd]||'-'),(gs==='perfect'||gd==='perfect')?'goal':'');await wait(750)}}
- else{mUp();mSay(sn+' shoots','');await wait(320)}
- if(R()<p){M.sc[a.s]++;const as=pickAssist(X,sd);M.ev.push({pr:M.ot?'OT':'P'+M.pd,t:a.s,s:pn,a:as});mUp();V.fl=(V.fl||0)+1;mLog(mClk()+' GOAL '+sn+': '+pn,'g'+a.s.toLowerCase());mSay('GOAL! '+pn,as?'Assist: '+as:'Unassisted','g'+a.s);await wait(1400)}
- else{const r=R(),k=r<.7?'Saved by '+gk+'!':r<.85?'Shot wide.':'Blocked!';mUp();mSay(k,'');mLog(mClk()+' '+pn+': '+k.replace(/!$/,''),'');await wait(big?850:300)}}
-async function mFace(pd){let fwA;if(M.skip)fwA=Math.random()<.5;else{const sp={id:++M.mgid,kind:'mash',need:M.need};mSay('FACE-OFF!','Tap as fast as you can');V.mg=sp;vPush();const ans=await mWaitAns(sp);V.mg=null;
+   mSay(sav==='perfect'?'What a SAVE!':sav==='good'?'Good stop attempt':(sav==='miss'||sav==='late')&&(gs==='good'||gs==='perfect')?'The goalie is beat!':shown?GR[shown]:GR[sav]||'Here it comes...',M.mode==='host'?sn+': '+(GR[ans[a.s]]||'-')+'  |  '+dn+': '+(GR[ans[d]]||'-'):(M.need.includes(a.s)?'Your shot: ':'Their shot was '+(GR[gs]||'')+'. Your save: ')+(GR[M.need.includes(a.s)?gs:gd]||'-'),(gs==='perfect'||gd==='perfect')?'goal':'','THE SHOT');await wait(750)}}
+ else{mUp();mSay(sn+' shoots','','','SHOT');await wait(320)}
+ const gy=42.5+(R()-.5)*14;V.ice={x:a.s==='A'?186:14,y:gy,t:a.s,k:'shot',s:a.s,i:idx,l:pn};vPush();await wait(380);
+ if(R()<p){M.sc[a.s]++;const as=pickAssist(X,sd);M.ev.push({pr:M.ot?'OT':'P'+M.pd,t:a.s,s:pn,a:as});mUp();V.fl=(V.fl||0)+1;V.ice.k='goal';mLog(mClk()+' GOAL '+sn+': '+pn,'g'+a.s.toLowerCase());mSay('GOAL! '+pn,as?'Assist: '+as:'Unassisted','g'+a.s,'GOAL!');await wait(1300)}
+ else{const r=R(),k=r<.7?'Saved by '+gk+'!':r<.85?'Shot wide.':'Blocked!';V.ice={x:r<.7?(a.s==='A'?172:28):r<.85?(a.s==='A'?197:3):(a.s==='A'?152:48),y:r<.7?gy+(R()-.5)*26:r<.85?(R()<.5?6:79):gy+(R()-.5)*20,t:r<.7?(a.s==='A'?'B':'A'):'N',k:'save',s:a.s,i:-1,l:pn};mUp();mSay(k,'','','NO GOAL');mLog(mClk()+' '+pn+': '+k.replace(/!$/,''),'');await wait(big?800:280)}}
+async function mFifty(it){const R=Math.random,att=it.s,def=att==='A'?'B':'A',an=att==='A'?M.nameA:M.nameB,dn=def==='A'?M.nameA:M.nameB;M.t=it.t;mUp();
+ V.ice={x:100,y:20+R()*45,t:'N',k:'scrum',s:'',i:-1,l:''};mSay('Loose puck battle!',an+' is breaking in. '+dn+' has to read the play.','','DEFENSE 50/50');await wait(800);
+ let pick;if(!M.skip&&M.need.includes(def)){const sp={id:++M.mgid,kind:'coin',defender:def,need:[def]};V.mg=sp;vPush();const ans=await mWaitAns(sp);V.mg=null;pick=ans[def]}else pick=R()<.5?'h':'t';
+ const flip=R()<.5?'h':'t',won=pick===flip;
+ if(!M.skip){mSay('Coin in the air...','','coin','DEFENSE 50/50');await sleep(1000)}
+ const w=won?def:att;stI(w,'ff');M.mom[w]=1.3;V.ice={x:100+(w==='A'?18:-18),y:V.ice.y,t:w,k:'carry',s:'',i:-1,l:''};
+ mSay((flip==='h'?'HEADS':'TAILS')+'!',won?dn+' wins the puck battle!':an+' keeps the puck','','DEFENSE 50/50');mLog(mClk()+' 50/50: '+(won?dn:an)+' wins','');await wait(900)}
+async function mScramble(it){const R=Math.random;M.t=it.t;mUp();V.ice={x:R()<.5?170:30,y:36+R()*13,t:'N',k:'scrum',s:'',i:-1,l:''};mSay('Rebound scramble!','Loose puck in the crease. React first!','','LOOSE PUCK SCRAMBLE');await wait(800);
+ let w;if(!M.skip){const sp={id:++M.mgid,kind:'reflex',need:M.need,dl:1200+R()*1500};V.mg=sp;vPush();const ans=await mWaitAns(sp);V.mg=null;
+  const ms={};['A','B'].forEach(s=>ms[s]=M.need.includes(s)?(typeof ans[s]==='number'?ans[s]:9999):380+R()*320);
+  w=ms.A===ms.B?(R()<.5?'A':'B'):ms.A<ms.B?'A':'B'}else w=R()<.5?'A':'B';
+ stI(w,'sc');M.mom[w]=1.35;V.ice={x:V.ice.x+(w==='A'?10:-10),y:V.ice.y,t:w,k:'carry',s:'',i:-1,l:''};const wn=w==='A'?M.nameA:M.nameB;mSay(wn+' wins the loose puck!','','','LOOSE PUCK SCRAMBLE');mLog(mClk()+' Scramble: '+wn+' wins','');await wait(900)}
+async function mFace(pd){let fwA;if(M.skip)fwA=Math.random()<.5;else{const sp={id:++M.mgid,kind:'mash',need:M.need};V.ice={x:100,y:42.5,t:'N',k:'faceoff',s:'',i:-1,l:''};mSay('FACE-OFF!','Tap as fast as you can','','FACE-OFF');V.mg=sp;vPush();const ans=await mWaitAns(sp);V.mg=null;
   if(M.mode==='host'){const ca=+ans.A||0,cb=+ans.B||0;fwA=ca===cb?Math.random()<.5:ca>cb}else{const t=ans.A,opp=11+(M.B.off-M.A.off)*.15+Math.random()*6;fwA=t==null||t<0?Math.random()<.5:t>opp}}
- mSay((fwA?M.nameA:M.nameB)+' wins the face-off','');mLog('P'+pd+' face-off: '+(fwA?M.nameA:M.nameB),'');await wait(700);return fwA}
+ stI(fwA?'A':'B','fo');V.ice={x:100,y:42.5,t:fwA?'A':'B',k:'faceoff',s:'',i:-1,l:''};mSay((fwA?M.nameA:M.nameB)+' wins the face-off','','','FACE-OFF');mLog('P'+pd+' face-off: '+(fwA?M.nameA:M.nameB),'');await wait(700);return fwA}
 function finToRes(f,side){const i=side==='A'?[0,1]:[1,0],sc=arr(f.sc),sh=arr(f.sh);return{sc:{A:sc[i[0]],B:sc[i[1]]},sh:{A:sh[i[0]],B:sh[i[1]]},ev:arr(f.ev).map(e=>({...e,t:side==='A'?e.t:e.t==='A'?'B':'A'})),per:arr(f.per).map(p=>{p=arr(p);return[p[i[0]],p[i[1]]]}),ot:!!f.ot}}
+async function mReady(){M.ans.readyB=M.mode==='solo'?true:undefined;V.ph='ready';V.rd=[false,M.mode==='solo'];V.ttl='';vPush();const t0=Date.now();
+ while(Date.now()-t0<120000){if(!M)return false;if(M.mode==='host'){try{const j=await(await fetch(LIVE.base+'/ans.json',{cache:'no-store'})).json();if(j&&j.readyB)M.ans.readyB=true}catch(e){}}
+  const a=!!M.ans.readyA,b=!!M.ans.readyB,cur=arr(V.rd);if(a!==cur[0]||b!==cur[1]){V.rd=[a,b];vPush()}if(a&&b)break;await sleep(400)}
+ if(!M||!(M.ans.readyA&&M.ans.readyB))return false;
+ for(let n=3;n>=1;n--){if(!M)return false;V.ph='count';V.head=String(n);V.ttl='GET READY';vPush();await sleep(700)}V.ph='';return true}
 async function runMatch(){const R=Math.random,A=M.A,B=M.B;
- for(let pd=1;pd<=3;pd++){M.pd=pd;M.t=0;mUp();mSay('Period '+pd,pd===1?'Puck drop...':'Back on the ice');await wait(800);const fw=await mFace(pd);
+ for(let pd=1;pd<=NP;pd++){M.pd=pd;M.t=0;V.ice={x:100,y:42.5,t:'N',k:'',s:'',i:-1,l:''};mUp();mSay('Period '+pd,pd===1?'Puck drop...':'Back on the ice','','PERIOD '+pd);await wait(800);const fw=await mFace(pd);
   const nA=nAtt(A,B)+(fw?1:-1),nB=nAtt(B,A)+(fw?-1:1),L=[];for(let i=0;i<nA;i++)L.push({t:R()*20,s:'A'});for(let i=0;i<nB;i++)L.push({t:R()*20,s:'B'});
-  if(R()<.55){const on=R()<.5?'A':'B',pp=on==='A'?'B':'A',t0=2+R()*13;L.push({t:t0,type:'pen',on,pp});for(let i=0;i<2;i++)L.push({t:t0+R()*2,s:pp,pp:true})}
+  if(R()<.45){const on=R()<.5?'A':'B',pp=on==='A'?'B':'A',t0=2+R()*13;L.push({t:t0,type:'pen',on,pp});for(let i=0;i<2;i++)L.push({t:t0+R()*2,s:pp,pp:true})}
+  if(R()<.8)L.push({t:2+R()*16,type:'fifty',s:M.mode==='solo'?'B':(R()<.5?'A':'B')});
+  if(R()<.6)L.push({t:2+R()*16,type:'scr'});
   L.sort((x,y)=>x.t-y.t);
-  for(const it of L){if(it.type==='pen'){M.t=it.t;mUp();const nm=it.on==='A'?M.nameA:M.nameB;mSay('PENALTY!',nm+' goes to the box. Power play for '+(it.pp==='A'?M.nameA:M.nameB));mLog(mClk()+' Penalty on '+nm,'');await wait(900)}else await mChance(it)}
-  M.t=20;mUp();M.per.push([M.sc.A,M.sc.B]);mSay('End of period '+pd,M.sc.A+' - '+M.sc.B);mLog('End of P'+pd+': '+M.sc.A+'-'+M.sc.B,'');await wait(1500)}
- if(M.sc.A===M.sc.B){M.ot=true;M.pd=4;M.t=0;mUp();mSay('OVERTIME','Next goal wins it. Sudden death.');mLog('Overtime!','');await wait(1200);
+  for(const it of L){if(it.type==='pen'){M.t=it.t;mUp();const nm=it.on==='A'?M.nameA:M.nameB;mSay('PENALTY!',nm+' goes to the box. Power play for '+(it.pp==='A'?M.nameA:M.nameB),'','PENALTY');mLog(mClk()+' Penalty on '+nm,'');await wait(1100)}else if(it.type==='fifty')await mFifty(it);else if(it.type==='scr')await mScramble(it);else await mChance(it)}
+  M.t=20;mUp();M.per.push([M.sc.A,M.sc.B]);mSay('End of period '+pd,M.sc.A+' - '+M.sc.B,'','INTERMISSION');mLog('End of P'+pd+': '+M.sc.A+'-'+M.sc.B,'');await wait(900)}
+ if(M.sc.A===M.sc.B){M.ot=true;M.pd=NP+1;M.t=0;mUp();mSay('OVERTIME','Next goal wins it. Sudden death.','','OVERTIME');mLog('Overtime!','');await wait(1200);
   for(let k=0;k<6&&M.sc.A===M.sc.B;k++){await mChance({t:Math.min(19,k*3+1),s:'A',pp:true});if(M.sc.A!==M.sc.B)break;await mChance({t:Math.min(19,k*3+2),s:'B',pp:true})}
-  if(M.sc.A===M.sc.B){mSay('SHOOTOUT','It comes down to the skills competition...');await wait(1800);const w=R()<.5+(A.g-B.g)*.004?'A':'B';M.sc[w]++;M.ev.push({pr:'SO',t:w,s:'Shootout winner',a:''})}M.per.push([M.sc.A,M.sc.B])}
- const fin={sc:[M.sc.A,M.sc.B],sh:[M.sh.A,M.sh.B],per:M.per,ev:M.ev,ot:M.ot,pf:[M.perf.A,M.perf.B]};mUp();
- if(M.mode==='host')utFinish(finToRes(fin,'A'),M.rec,A,B,Math.min(40,M.perf.A*5));
- V.fin=fin;vPush()}
-function mStart(mode,A,B,nameA,nameB,rec){setForm(A,B);M={A,B,rec,mode,need:mode==='host'?['A','B']:['A'],ans:{},mgid:0,sc:{A:0,B:0},sh:{A:0,B:0},ev:[],per:[],skip:false,bA:0,bB:0,perf:{A:0,B:0},p0:utOdds(A,B),t:0,pd:1,ot:false,nameA,nameB};V=newV(nameA,nameB);MY='A';MG={active:false,shown:-1,fl:0};vPush();return runMatch()}
+  if(M.sc.A===M.sc.B){mSay('SHOOTOUT','It comes down to the skills competition...','','SHOOTOUT');await wait(1200);const w=R()<.5+(A.g-B.g)*.004?'A':'B';M.sc[w]++;M.ev.push({pr:'SO',t:w,s:'Shootout winner',a:''})}M.per.push([M.sc.A,M.sc.B])}
+ const fin={sc:[M.sc.A,M.sc.B],sh:[M.sh.A,M.sh.B],per:M.per,ev:M.ev,ot:M.ot,pf:[M.perf.A,M.perf.B],st:[M.st.A,M.st.B]};mUp();
+ if(M.mode==='host')utFinish(finToRes(fin,'A'),M.rec,A,B,0);
+ V.fin=fin;V.ph='';V.ttl='FINAL';V.rm=[false,false];vPush()}
+const zst=()=>({sp:0,sg:0,so:0,sm:0,vp:0,vg:0,vm:0,fo:0,ff:0,sc:0});
+async function mStart(mode,A,B,nameA,nameB,rec,mid){setForm(A,B);M={A,B,rec,mode,need:mode==='host'?['A','B']:['A'],ans:{},mgid:0,sc:{A:0,B:0},sh:{A:0,B:0},ev:[],per:[],skip:false,bA:0,bB:0,perf:{A:0,B:0},mom:{A:1,B:1},st:{A:zst(),B:zst()},p0:utOdds(A,B),t:0,pd:1,ot:false,nameA,nameB,mid:mid||0};
+ V=newV(nameA,nameB);V.mid=M.mid;MY='A';MG={active:false,shown:-1,fl:0,rdy:false};
+ const ok=await mReady();if(!ok){if(M){if(M.mode==='host')UMSG=nameB+' never readied up.';mDone()}return}
+ await runMatch();if(M&&mode==='host')hostAfter()}
+async function hostAfter(){const lv=LIVE;while(lv&&LIVE===lv&&M&&V&&V.fin){try{const j=await(await fetch(lv.base+'/ans.json',{cache:'no-store'})).json();if(j&&j.rmB)M.ans.rmB=true}catch(e){}
+  const a=!!M.ans.rmA,b=!!M.ans.rmB,cur=arr(V.rm);if(a!==cur[0]||b!==cur[1]){V.rm=[a,b];vPush()}
+  if(a&&b)return startRematch();await sleep(700)}}
+async function startRematch(){if(S.bb<UT_FEE){M.ans.rmA=false;V.rm=[false,!!M.ans.rmB];vPush();return hostAfter()}
+ const A=M.A,B=M.B,rec=M.rec,na=M.nameA,nb=M.nameB,mid=M.mid+1;S.bb-=UT_FEE;save();LIVE.paid=true;try{await fetch(LIVE.base+'/ans.json',{method:'DELETE'})}catch(e){}
+ mStart('host',A,B,na,nb,rec,mid)}
+function mRematch(){if(!LIVE)return;if(LIVE.mode==='solo'){mClose();return utPractice()}
+ if(S.bb<UT_FEE)return;if(LIVE.mode==='guest'){LIVE.rmSent=true;fetch(LIVE.base+'/ans/rmB.json',{method:'PUT',body:'true'}).catch(()=>{});vRender()}else if(M){M.ans.rmA=true;V.rm=[true,!!M.ans.rmB];vPush()}}
 /* challenge flow */
 async function utPlay(name){if(UBUSY)return;ensureUT();const u=S.ut;UMSG='';
  if(!u.sq.every(n=>BN[n])){UMSG='Fill all 7 squad slots first (Squad tab).';UTT='squad';return render()}
  UBUSY=true;const rec=await utGet(name);UBUSY=false;if(!rec||!rec.sq.every(n=>BN[n])){UMSG=name+' has not finished their squad yet.';return render()}
  const A=utSide(u.sq),B=utSide(rec.sq),pw=utOdds(A,B);UREC=rec;
- mOpen(`<div class="msc"><div><span class="n">${esc(USER.mc)}</span><b>${utOvr(u.sq)}</b><span class="n">OVR</span></div><div class="mclk">VS</div><div><span class="n">${esc(rec.n)}</span><b>${utOvr(rec.sq)}</b><span class="n">OVR</span></div></div><div class="mst"><div class="mhd">${Math.round(pw*100)}% win chance</div><div class="mwp"><i style="width:${pw*100}%"></i></div><div class="mu" style="max-width:540px">Better players matter a lot, but upsets happen. <b>Challenge</b> sends ${esc(rec.n)} an invite. If they accept, you both play the same match live and each play the mini-games for your own side. <b>Practice</b> plays their squad solo with no rewards. A live challenge costs <b>500 BB</b> each and the winner is paid <b>800 BB</b>.</div><div class="row" style="justify-content:center">${CL.url?`<button class="pri" ${S.bb<UT_FEE?'disabled':''} onclick="utChallenge()">Challenge (${UT_FEE} BB)</button>`:''}<button onclick="utPractice()">Practice (solo)</button><button onclick="mClose()">Cancel</button></div></div>`)}
-function utPractice(){const rec=UREC,u=S.ut,A=utSide(u.sq),B=utSide(rec.sq);LIVE={mode:'solo'};mOpen(mShell(USER.mc,rec.n,true));mStart('solo',A,B,USER.mc,rec.n,rec)}
+ mOpen(`<div class="msc"><div><span class="n">${esc(USER.mc)}</span><b>${utOvr(u.sq)}</b><span class="n">OVR</span></div><div class="mclk">VS</div><div><span class="n">${esc(rec.n)}</span><b>${utOvr(rec.sq)}</b><span class="n">OVR</span></div></div><div class="mst"><div class="mhd">${Math.round(pw*100)}% win chance</div><div class="mwp"><i style="width:${pw*100}%"></i></div><div class="mu" style="max-width:540px">Better players matter a lot, but upsets happen. <b>Challenge</b> sends ${esc(rec.n)} an invite. If they accept, you both see the rules, ready up, and play the same match live. <b>Practice</b> plays their squad solo with no rewards. A live challenge costs <b>500 BB</b> each and the winner is paid <b>800 BB</b>.</div><div class="row" style="justify-content:center">${CL.url?`<button class="pri" ${S.bb<UT_FEE?'disabled':''} onclick="utChallenge()">Challenge (${UT_FEE} BB)</button>`:''}<button onclick="utPractice()">Practice (solo)</button><button onclick="mClose()">Cancel</button></div></div>`)}
+function utPractice(){const rec=UREC,u=S.ut,A=utSide(u.sq),B=utSide(rec.sq);LIVE={mode:'solo'};mOpen(mShell(USER.mc,rec.n,true,u.sq,rec.sq));mStart('solo',A,B,USER.mc,rec.n,rec)}
 async function utChallenge(){const rec=UREC,u=S.ut;if(!CL.url)return;if(S.bb<UT_FEE){mClose();UMSG='You need '+UT_FEE+' BB to challenge a friend.';return render()}const lob=LOB={cancel:false},id=ukey(USER.mc)+'_'+Date.now().toString(36),base=CL.url+'/live/'+id,k=ukey(rec.n);
  mOpen(`<div class="mst"><div class="mhd">Waiting for ${esc(rec.n)}...</div><div class="mu">They have 90 seconds to accept. They need to have the site open.</div><div class="row" style="justify-content:center"><button onclick="LOB&&(LOB.cancel=true)">Cancel</button></div></div>`);
  try{await fetch(base+'/meta.json',{method:'PUT',body:JSON.stringify({a:USER.mc,b:rec.n,sqa:u.sq,state:'invited',t:Date.now()})});await fetch(CL.url+'/inbox/'+k+'/m_'+id+'.json',{method:'PUT',body:JSON.stringify({f:USER.mc,ty:'match',t:Date.now(),m:id})})}catch(e){mClose();UMSG='Could not send the challenge.';return render()}
@@ -436,17 +516,22 @@ async function utChallenge(){const rec=UREC,u=S.ut;if(!CL.url)return;if(S.bb<UT_
  const sqb=Array.from({length:7},(_,i)=>meta.sqb[i]||''),A=utSide(u.sq),B=utSide(sqb);LOB=null;
  if(!B){mClose();UMSG=rec.n+"'s squad is not valid.";return render()}
  if(S.bb<UT_FEE){fetch(base+'/meta.json',{method:'PATCH',body:JSON.stringify({state:'closed'})}).catch(()=>{});mClose();UMSG='You no longer have '+UT_FEE+' BB.';return render()}S.bb-=UT_FEE;save();
- LIVE={id,mode:'host',base};mOpen(mShell(USER.mc,rec.n,false));mStart('host',A,B,USER.mc,rec.n,{n:rec.n,sq:sqb})}
+ LIVE={id,mode:'host',base,paid:true};mOpen(mShell(USER.mc,rec.n,false,u.sq,sqb));mStart('host',A,B,USER.mc,rec.n,{n:rec.n,sq:sqb})}
 async function utAcceptMatch(id){ensureUT();const u=S.ut;if(!u.sq.every(n=>BN[n])){UMSG='Fill all 7 squad slots first, then ask them to challenge you again.';UTT='squad';return render()}
  const base=CL.url+'/live/'+id;let meta=null;try{meta=await(await fetch(base+'/meta.json',{cache:'no-store'})).json()}catch(e){}
  if(!meta||meta.state!=='invited'||Date.now()-meta.t>100000){UMSG='That challenge expired.';UTT='inbox';return render()}
  if(S.bb<UT_FEE){fetch(base+'/meta.json',{method:'PATCH',body:JSON.stringify({state:'declined'})}).catch(()=>{});UMSG='You need '+UT_FEE+' BB to accept a live match.';UTT='inbox';return render()}
  S.bb-=UT_FEE;save();
  await fetch(base+'/meta.json',{method:'PATCH',body:JSON.stringify({sqb:u.sq,state:'accepted'})}).catch(()=>{});
- MY='B';MG={active:false,shown:-1,fl:0};V=null;LIVE={id,mode:'guest',base,meta,last:Date.now(),paid:true};mOpen(mShell(meta.a,meta.b,false));$('#mst').innerHTML='<div class="mhd">Match starting...</div><div class="mu">Waiting for the host to kick off</div>';
- const stopW=liveWatch(base+'/v.json',R=>{V=R;LIVE.last=Date.now();vRender();if(V.fin&&!LIVE.done){LIVE.done=true;finishGuest()}}),iv=setInterval(()=>{if(LIVE&&Date.now()-LIVE.last>25000&&!(V&&V.fin)){const st=$('#mst');if(st&&!MG.active)st.innerHTML='<div class="mhd ogoal">Connection lost</div><div class="mu">The host stopped responding.</div><button class="pri" onclick="mDone()">Close</button>'}},3000);
+ MY='B';MG={active:false,shown:-1,fl:0,rdy:false};V=null;LIVE={id,mode:'guest',base,meta,last:Date.now(),paid:true,mid:0,rmSent:false};mOpen(mShell(meta.a,meta.b,false,Array.from({length:7},(_,i)=>(meta.sqa&&meta.sqa[i])||''),u.sq));iceUpdate();$('#mst').innerHTML='<div class="mhd">Match starting...</div><div class="mu">Waiting for the host</div>';
+ const stopW=liveWatch(base+'/v.json',R=>{if(!LIVE)return;if(!R||!R.n){if(LIVE.lastV&&LIVE.lastV.fin){V=LIVE.lastV;LIVE.gone=true;vRender()}return}
+   V=R;LIVE.last=Date.now();
+   if((V.mid||0)!==LIVE.mid){LIVE.mid=V.mid||0;LIVE.done=false;MG={active:false,shown:-1,fl:0,rdy:false};if(LIVE.rmSent){S.bb-=UT_FEE;save();LIVE.paid=true;LIVE.rmSent=false}}
+   vRender();if(V.fin&&!LIVE.done){LIVE.done=true;finishGuest()}
+   try{LIVE.lastV=JSON.parse(JSON.stringify(V))}catch(e){}}),
+ iv=setInterval(()=>{if(LIVE&&Date.now()-LIVE.last>25000&&!(V&&V.fin)){const st=$('#mst');if(st&&!MG.active)st.innerHTML='<div class="mhd ogoal">Connection lost</div><div class="mu">The host stopped responding.</div><button class="pri" onclick="mDone()">Close</button>'}},3000);
  LIVE.stop=()=>{stopW();clearInterval(iv)}}
-function finishGuest(){const fin=V.fin,rec={n:LIVE.meta.a,sq:Array.from({length:7},(_,i)=>(LIVE.meta.sqa&&LIVE.meta.sqa[i])||'')},pf=arr(fin.pf);utFinish(finToRes(fin,'B'),rec,null,null,Math.min(40,(pf[1]||0)*5));vRender()}
+function finishGuest(){const fin=V.fin,rec={n:LIVE.meta.a,sq:Array.from({length:7},(_,i)=>(LIVE.meta.sqa&&LIVE.meta.sqa[i])||'')};utFinish(finToRes(fin,'B'),rec,null,null,0);vRender()}
 /* inbox: friend requests and match invites */
 async function inboxPoll(){if(!USER||!CL.url)return;ensureUT();let j=null;try{j=await(await fetch(CL.url+'/inbox/'+ukey(USER.mc)+'.json',{cache:'no-store'})).json()}catch(e){return}
  const del=id=>fetch(CL.url+'/inbox/'+ukey(USER.mc)+'/'+id+'.json',{method:'DELETE'}).catch(()=>{}),u=S.ut,list=[];let ch=false;
@@ -505,13 +590,12 @@ function vMatch(){const u=S.ut,m=UMATCH;let h='';
  return h+`<h3>Recent matches</h3>${u.hist.length?u.hist.map(x=>`<div class="rw"><span class="sp">${x.w?'W':'L'}</span><div class="l"><b>vs ${esc(x.o)}</b></div><span class="mu">${esc(x.s)}</span></div>`).join(''):'<p class="mu">Nothing yet.</p>'}`}
 function vUltimate(){ensureUT();if(!UPUB){UPUB=true;utPub()}
  const T=[['packs','Packs'],['squad','Squad'],['friends','Friends'],['inbox','Inbox'+(UIN.length?' ('+UIN.length+')':'')],['arcade','Arcade'],['match','Matches']],td=new Date().toDateString();
- return `<h2>Ultimate Team</h2><div class="row" style="justify-content:space-between"><div class="chips" style="margin:0">${T.map(([k,v])=>`<button class="${UTT===k?'on':''}" onclick="UTT='${k}';UMSG='';render()">${v}</button>`).join('')}</div>${S.day!==td?'<button class="pri" onclick="daily()">Claim daily reward +500 BB</button>':''}</div>${UTT==='packs'?vPacks():UTT==='squad'?vSquad():UTT==='friends'?vFriends():UTT==='inbox'?vInbox():UTT==='arcade'?vArcade():vMatch()}`}
+ return `<h2>Ultimate Team</h2><div class="row" style="justify-content:space-between"><div class="chips" style="margin:0">${T.map(([k,v])=>`<button class="${UTT===k?'on':''}" onclick="UTT='${k}';UMSG='';render()">${v}</button>`).join('')}</div></div>${UTT==='packs'?vPacks():UTT==='squad'?vSquad():UTT==='friends'?vFriends():UTT==='inbox'?vInbox():UTT==='arcade'?vArcade():vMatch()}`}
 /* PACKS */
 function effW(k){const pool=P.filter(p=>p.league===k),w=[...CFG.PK[k].w];for(let t=3;t>0;t--)if(!pool.some(p=>p.tier===t)){w[t-1]+=w[t];w[t]=0}return w}
 function vPacks(){const ow=Object.keys(S.owned).map(n=>BN[n]).filter(Boolean).sort((a,b)=>b.rating-a.rating),dv=ow.reduce((a,p)=>a+(S.owned[p.name]-1)*p.rating*2,0);
 return `<h2>Packs</h2><p class="mu">Each pack holds players from one league.</p><div class="packs">${LG.map(k=>{const pk=CFG.PK[k],n=P.filter(p=>p.league===k).length;return `<div class="box pt">${packImg(k)?`<img class="mini2" src="${packImg(k)}" alt="${k}">`:`<div class="mini" style="--pa:${pk.c[0]};--pb:${pk.c[1]}">${k}</div>`}<b>${k} Pack</b><span class="mu">${pk.n} player${pk.n>1?'s':''} · ${n} in pool</span><span class="mu" style="min-height:34px">${effW(k).map((w,i)=>w?TN[i]+' '+w+'%':'').filter(Boolean).join(' · ')}</span><button class="pri" onclick="openPack('${k}')" ${!n||S.bb<pk.cost?'disabled':''}>${pk.cost.toLocaleString()} BB</button></div>`}).join('')}</div>
 <div class="row" style="justify-content:space-between;margin-top:26px"><h3 style="margin:0">Collection (${ow.length})</h3>${dv?`<button onclick="sellDupes()">Sell duplicates · +${dv} BB</button>`:''}</div>${ow.length?'':'<p class="mu">Nothing yet. Open a pack.</p>'}<div class="grid">${ow.map(p=>card(p,S.owned[p.name]>1?`<span class="tag d">x${S.owned[p.name]}</span>`:'')).join('')}</div>`}
-function daily(){S.day=new Date().toDateString();S.bb+=500;save();render()}
 function sellDupes(){for(const n of Object.keys(S.owned)){const p=BN[n];if(p&&S.owned[n]>1){S.bb+=(S.owned[n]-1)*p.rating*2;S.owned[n]=1}}save();render()}
 function openPack(k){const pk=CFG.PK[k],pool=P.filter(p=>p.league===k);if(!pool.length||S.bb<pk.cost)return;S.bb-=pk.cost;const w=effW(k),cards=[];
 for(let i=0;i<pk.n;i++){let r=Math.random()*100,t=0;for(;t<3;t++){r-=w[t];if(r<0)break}let sub;while(t>=0&&!(sub=pool.filter(p=>p.tier===t)).length)t--;if(!sub||!sub.length)sub=pool;const p=sub[Math.floor(Math.random()*sub.length)];cards.push({p,dup:!!S.owned[p.name]});S.owned[p.name]=(S.owned[p.name]||0)+1}
@@ -622,7 +706,7 @@ async function fetchSkins(all){if(SKRUN)return;DB.skins=DB.skins||{};if(all)DB.s
 async function upSkin(el){const f=el.files[0],n=($('#skn').value||'').trim();if(!f||!n){AD.msg='Type the player username first, then choose their skin PNG.';return render()}
  try{const url=await new Promise(r=>{const rd=new FileReader;rd.onload=()=>r(rd.result);rd.readAsDataURL(f)}),im=await loadImg(url);if(!(im.width>=64&&(im.height===im.width||im.height*2===im.width)))throw 0;DB.skins=DB.skins||{};DB.skins[n.toLowerCase()]=skinFig(im);AD.msg='Skin saved for '+n+'.'}catch(e){AD.msg='That is not a normal Minecraft skin PNG (64x64 or 64x32).'}saveDB()}
 let CB=null;
-function ask(msg,cb){CB=cb;$('#modal').innerHTML='<div class="box" style="max-width:360px;width:100%"><p>'+esc(msg)+'</p><div class="row"><button class="dg" onclick="const f=CB;CB=null;closeM();f&&f()">Yes, delete</button><button onclick="CB=null;closeM()">Cancel</button></div></div>';$('#modal').className='modal show'}
+function ask(msg,cb,lab){CB=cb;$('#modal').innerHTML='<div class="box" style="max-width:360px;width:100%"><p>'+esc(msg)+'</p><div class="row"><button class="dg" onclick="const f=CB;CB=null;closeM();f&&f()">'+esc(lab||'Yes, delete')+'</button><button onclick="CB=null;closeM()">Cancel</button></div></div>';$('#modal').className='modal show'}
 function clearDemo(){DB={players:[],teams:{},rank:{},grants:DB.grants||{},packs:DB.packs||{},skins:DB.skins||{}};AD.msg='Cleared. Add your teams first.';saveDB()}
 function discardLocal(){localStorage.removeItem('bh_db');location.reload()}
 let DR=null;
@@ -654,7 +738,7 @@ function render(){setUser();if(USER){if(!S||SK!=='bh_state_'+USER.mc.toLowerCase
 $('#logo').innerHTML='<span class="lmark">BG</span><span class="lword"><b>Blockey</b><i>Games</i></span>';$('#th').innerHTML=Object.entries(THEMES).map(([k,v])=>`<option value="${k}" ${document.documentElement.dataset.theme===k?'selected':''}>${v}</option>`).join('');
 if(!USER){$('#bb').style.display='none';$('#tabs').innerHTML='';$('#view').innerHTML=vAuth();return}
 $('#bb').style.display='';$('#bb').innerHTML='<i class="coin"></i>'+S.bb.toLocaleString()+' <small style="opacity:.6">BB</small>';
-$('#tabs').innerHTML=Object.keys(TABS).map(t=>`<button data-t="${t}" class="${t===tab?'on':''}" onclick="tab='${t}';render();scrollTo(0,0)">${t==='Budget'?'Dream Lineup':t==='Ultimate'?'Ultimate Team'+(UIN.length?'<span class="tbadge">'+UIN.length+'</span>':''):t}</button>`).join('')+`<button onclick="logout()">Log out (${esc(USER.mc)})</button>`;
+$('#tabs').innerHTML=Object.keys(TABS).map(t=>`<button data-t="${t}" class="${t===tab?'on':''}" onclick="tab='${t}';render();scrollTo(0,0)">${t==='Budget'?'Dream Lineup':t==='Ultimate'?'Ultimate Team'+(UIN.length?'<span class="tbadge">'+UIN.length+'</span>':''):t}</button>`).join('')+`<button onclick="ask('Are you sure you want to log out?',logout,'Log out')">Log out (${esc(USER.mc)})</button>`;
 $('#view').innerHTML=(SRC==='demo'&&tab!=='Admin'?'<div class="box">Demo players. The real rosters have not been added yet.</div>':'')+TABS[tab]();scanSkins()}
 try{new MutationObserver(()=>scanSkins()).observe(document.body,{childList:true,subtree:true})}catch(e){}
 (async()=>{let t='midnight';try{t=localStorage.getItem('bh_theme')||t}catch(e){}setTheme(t);await loadDB();await cloudInit();prep();render();setInterval(inboxPoll,6000);setTimeout(inboxPoll,1500);Object.entries(CFG.PK).forEach(([k,v])=>{if(v.img){const i=new Image;i.onload=()=>{PKIMG[k]=v.img;if(!anim)render()};i.src=v.img}})})();
