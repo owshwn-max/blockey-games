@@ -187,7 +187,7 @@ button.pgc:hover{transform:scale(1.12);background:#7dd3fc55}.pgc.on{background:#
 .wo-bn{position:absolute;left:-120px;top:-190px;width:240px;height:380px}
 .wo-bn .in{width:100%;height:100%;border-radius:10px;border:3px solid #fff3b0;background:linear-gradient(160deg,#fff0a8,#d9a22a 55%,#8a5a00);box-shadow:0 0 40px #ffc83d99,inset 0 0 30px #fff8;display:flex;flex-direction:column;align-items:center;padding:22px 0;gap:6px;color:#3a2600;opacity:0;transform:translateY(520px);animation:wobn .8s 4.45s cubic-bezier(.2,1.3,.4,1) forwards}
 .wo-bn b{font:900 72px "Barlow Condensed","Arial Black",sans-serif;line-height:1}.wo-bn span{font-weight:900;font-size:26px;letter-spacing:.1em}.wo-bn img{width:110px;height:110px;object-fit:contain;margin-top:14px;filter:drop-shadow(0 4px 6px #0006)}.wo-bn small{font-weight:800;letter-spacing:.2em;margin-top:auto}
-.wo-cw{position:absolute;left:-180px;top:-250px;width:360px;height:540px}
+.wo-cw{position:absolute;left:-150px;top:-450px;width:300px;height:450px}.wo-cw:after{content:'';position:absolute;left:-60px;right:-60px;bottom:-26px;height:60px;border-radius:50%;background:radial-gradient(ellipse,#ffd35acc,#ff9a1a55 50%,transparent 70%);transform:translateZ(-1px);z-index:-1}.mcr *{image-rendering:pixelated}
 .wo-cw .in{width:100%;height:100%;opacity:0;transform:translateY(520px) rotateY(80deg) scale(.6);animation:wocwin 1s 4.2s cubic-bezier(.2,1.2,.35,1) forwards}
 .wo-cw .pc{width:100%;height:100%;aspect-ratio:auto;box-shadow:0 0 50px #ffc83d,0 0 140px #ff8a0099}
 .wo-char{position:absolute;left:0;top:0;transform-style:preserve-3d;animation:wowalk 3.1s .9s cubic-bezier(.35,.1,.5,1) both}
@@ -872,9 +872,8 @@ function walkout(p){return new Promise(async res=>{const st=$('#st'),sk=skOf(p),
   <div class="wo-wall" style="top:${FY-1100}px;transform:translateZ(-2600px)"><div class="wo-crowd">${crowd}</div><div class="wo-glass"></div><div class="wo-boards"></div><div class="wo-tunnel"><div class="wo-tl"></div></div></div>
   <div class="wo-floor" style="top:${FY}px;transform:translate3d(-3500px,0,-2600px) rotateX(90deg)">${rink}<i class="wo-fv"></i></div>
   <div class="wo-fgold" style="top:${FY-1}px;transform:translate3d(-700px,0,-300px) rotateX(90deg)"></div>
-  <div class="wo-rg a" style="transform:translate3d(-520px,-${12*K}px,-500px) rotateX(72deg)"></div><div class="wo-rg b" style="transform:translate3d(-520px,-${12*K}px,-500px) rotateX(-66deg) rotateY(25deg)"></div><div class="wo-rg c" style="transform:translate3d(-520px,-${12*K}px,-950px)"></div>
   ${ban(-620,18)}${ban(620,-18)}
-  <div class="wo-cw" style="transform:translate3d(${14*K}px,${3*K}px,-260px) rotateY(-6deg)"><div class="in">${card(p,'',false)}</div></div>
+  <div class="wo-cw" style="transform:translate3d(${14*K}px,${FY-8}px,-260px) rotateY(-6deg)"><div class="in">${card(p,'',false)}</div></div>
   <div class="wo-char" id="woch"><div class="wo-sh"></div><div id="wom"></div></div>
  </div></div>
  <div class="wo-dark"></div><div class="wo-beam b1"></div><div class="wo-beam b2"></div><div class="wo-beam b3"></div>${bank}<div class="wo-bank r">${Array.from({length:24},(_,k)=>`<i style="--d:${(4.4+(k%6)*.08).toFixed(2)}s"></i>`).join('')}</div>
