@@ -145,6 +145,14 @@ h1,h2,h3,.logo{font-weight:800;letter-spacing:.4px}h3{font-size:14px}
 .pgc{position:absolute;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;border:3px solid #7dd3fc;background:#7dd3fc22;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;font-size:22px;font-style:normal;transition:transform .12s}
 button.pgc:hover{transform:scale(1.12);background:#7dd3fc55}.pgc.on{background:#3b82f6;border-color:#fff}
 .pgr .pgc{cursor:default}.pgr .pgc.cv{background:#3b82f688;border-color:#60a5fa}.pgr .pgc.op{border-style:dashed;border-color:#f87171;background:#f8717122}.pgr .pgc.sh{border-color:#fde047;box-shadow:0 0 16px #fde047}
+.msc>div{border-radius:12px;padding:4px 8px;transition:box-shadow .2s,background .2s}
+.ppb{display:none;font:800 13px "Barlow Condensed","Arial Narrow",sans-serif;letter-spacing:.14em;color:#bbf7d0;margin-top:2px}
+.ppon{background:#16a34a2e;box-shadow:0 0 0 2px #22c55e,0 0 26px #22c55eaa;animation:ppg .9s ease-in-out infinite alternate}.ppon .ppb{display:block}
+@keyframes ppg{from{box-shadow:0 0 0 2px #22c55e,0 0 12px #22c55e66}to{box-shadow:0 0 0 2px #86efac,0 0 34px #22c55ecc}}
+.cn{animation:none;transform-style:flat;position:static;width:92px;height:92px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:900 17px "Barlow Condensed","Arial Black",sans-serif;letter-spacing:.06em;border:4px solid #fde68a;will-change:transform}
+.cn.cH{background:radial-gradient(circle at 35% 30%,#fff3a8,#f5b82e 60%,#b7791f);color:#6b4a07;box-shadow:0 0 22px #f5b82e88}
+.cn.cT{background:radial-gradient(circle at 35% 30%,#fff,#aeb7c4 60%,#6b7686);color:#2c3440;border-color:#e5e7eb;box-shadow:0 0 18px #cbd5e166}
+.cnw{perspective:none;height:124px;align-items:flex-end;padding-bottom:6px}
 </style></head><body><div id="fx"></div>
 <div class="top"><div class="hdr"><div class="logo" id="logo"></div><div style="display:flex;gap:6px;align-items:center"><span id="bb" class="box" style="margin:0;padding:6px 11px;font-weight:800"></span><select id="th" style="width:auto" onchange="setTheme(this.value)"></select></div></div><nav id="tabs"></nav></div>
 <main class="wrap" id="view"></main><div id="ov" class="ov"></div><div id="mo" class="ov"></div><div id="modal" class="modal" onclick="if(event.target===this)closeM()"></div>
@@ -342,7 +350,7 @@ function utSet(i,v){S.ut.sq[i]=v;save();utPub();render()}
 function utAuto(){const u=S.ut,used=new Set,own=Object.keys(S.owned).map(n=>BN[n]).filter(Boolean);u.sq=FS.map(pos=>{const c=own.filter(p=>!used.has(p.name)&&(p.pos===pos||(pos==='C'&&p.pos==='W')||(pos==='W'&&p.pos==='C'))).map(p=>({p,v:p.rating-(p.pos===pos?0:pos==='C'?4:2)})).sort((a,b)=>b.v-a.v)[0];if(c)used.add(c.p.name);return c?c.p.name:''});save();utPub();render()}
 /* SQUAD */
 const sqOk=(p,pos)=>p.pos===pos||(pos==='C'&&p.pos==='W')||(pos==='W'&&p.pos==='C');
-const winP=d=>1/(1+Math.exp(-0.071*d));
+const winP=d=>Math.min(.99,Math.max(.01,1/(1+Math.exp(-0.071*d))));
 const ownCards=()=>Object.keys(S.owned).map(n=>BN[n]).filter(Boolean);
 function sqBest(){const u=S.ut,own=ownCards(),base=utOvr(u.sq);let best=null;
  FS.forEach((pos,i)=>{const used=new Set(u.sq.filter((n,j)=>n&&j!==i));own.filter(p=>sqOk(p,pos)&&!used.has(p.name)&&p.name!==u.sq[i]).forEach(p=>{const t=[...u.sq];t[i]=p.name;const g=utOvr(t)-base;if(!best||g>best.g)best={i,p,g}})});return best&&best.g>0?best:null}
@@ -419,7 +427,7 @@ function iceSvg(sqA,sqB){const col={A:'#3b82f6',B:'#ef4444'},src=n=>{const p=BN[
  pl=(side,i,sq)=>`<g class="pl" id="p${side}${i}" opacity="0"><rect x="-4.8" y="-4.8" width="9.6" height="9.6" rx="1.4" fill="${col[side]}" stroke="#fff" stroke-width=".5"/><image href="${src((sq||[])[i])}" x="-3.9" y="-3.9" width="7.8" height="7.8" preserveAspectRatio="xMidYMid slice" style="image-rendering:pixelated" onerror="this.style.visibility='hidden'"/><text x="3.4" y="-3" font-size="3.2" font-weight="800" fill="#fff" stroke="#000" stroke-width=".35" paint-order="stroke">${'CWDCWD'[i]}</text></g>`,
  gk=(side,sq)=>`<g class="pl" id="g${side}" opacity="0"><rect x="-5.6" y="-5.6" width="11.2" height="11.2" rx="1.6" fill="${col[side]}" stroke="#fff" stroke-width=".7"/><image href="${src((sq||[])[6])}" x="-4.6" y="-4.6" width="9.2" height="9.2" preserveAspectRatio="xMidYMid slice" style="image-rendering:pixelated" onerror="this.style.visibility='hidden'"/><text x="4" y="-3.6" font-size="3.6" font-weight="800" fill="#fff" stroke="#000" stroke-width=".4" paint-order="stroke">G</text></g>`;
  return `<svg id="rink" class="rink" viewBox="0 0 200 100"><rect x="1" y="1" width="198" height="83" rx="15" fill="#e8f6ff" stroke="#8fb3d1" stroke-width="1.6"/><line x1="100" y1="1.5" x2="100" y2="83.5" stroke="#d33" stroke-width="1.3"/><line x1="75" y1="1.5" x2="75" y2="83.5" stroke="#2563eb" stroke-width="1.3"/><line x1="125" y1="1.5" x2="125" y2="83.5" stroke="#2563eb" stroke-width="1.3"/><line x1="11" y1="4" x2="11" y2="81" stroke="#d33" stroke-width=".6"/><line x1="189" y1="4" x2="189" y2="81" stroke="#d33" stroke-width=".6"/><circle cx="100" cy="42.5" r="13" fill="none" stroke="#2563eb" stroke-width=".7"/><circle cx="100" cy="42.5" r="1.2" fill="#2563eb"/><g fill="none" stroke="#d33" stroke-width=".6"><circle cx="31" cy="21" r="11"/><circle cx="31" cy="64" r="11"/><circle cx="169" cy="21" r="11"/><circle cx="169" cy="64" r="11"/></g><path d="M11 34 A8.5 8.5 0 0 1 11 51 Z" fill="#9ecbff99" stroke="#d33" stroke-width=".5"/><path d="M189 34 A8.5 8.5 0 0 0 189 51 Z" fill="#9ecbff99" stroke="#d33" stroke-width=".5"/><rect x="6" y="38.5" width="5" height="8" fill="#fff" stroke="#555" stroke-width=".7"/><rect x="189" y="38.5" width="5" height="8" fill="#fff" stroke="#555" stroke-width=".7"/><rect x="62" y="87" width="36" height="11" rx="2.5" fill="#3b82f633" stroke="#3b82f6" stroke-width=".5"/><rect x="102" y="87" width="36" height="11" rx="2.5" fill="#ef444433" stroke="#ef4444" stroke-width=".5"/><text x="80" y="95" font-size="3.4" fill="#93c5fd" text-anchor="middle">BENCH</text><text x="120" y="95" font-size="3.4" fill="#fca5a5" text-anchor="middle">BENCH</text>${[0,1,2,3,4,5].map(i=>pl('A',i,sqA)+pl('B',i,sqB)).join('')}${gk('A',sqA)}${gk('B',sqB)}<g id="puck" opacity="0"><circle r="2" fill="#111" stroke="#fff" stroke-width=".6"/></g></svg>`}
-const mShell=(a,b,skip,sqA,sqB)=>`<div class="mgrid"><div class="ros" id="rosA"><div class="rosh" style="color:#60a5fa">${esc(a)}</div>${rosCards(sqA,'A')}</div><div class="mcol"><div class="mtt" id="mtt"></div><div class="msc"><div><span class="n" style="color:#60a5fa">${esc(a)}</span><b id="msa">0</b></div><div><div class="mclk" id="mclk">P1 12:00</div><span class="n" id="mws"></span></div><div><span class="n" style="color:#f87171">${esc(b)}</span><b id="msb">0</b></div></div><div class="rinkw">${iceSvg(sqA,sqB)}<div class="mu" id="icecap" style="text-align:center;min-height:18px"></div></div><div class="mwp"><i id="mwp" style="width:50%"></i></div><div class="mu" style="text-align:center" id="mwt"></div><div class="mst" id="mst"></div><div class="mlg" id="mlg"></div><div class="row" style="justify-content:center">${skip?'<button onclick="M&&(M.skip=true);MGC&&MGC()">Skip to final</button>':''}</div></div><div class="ros" id="rosB"><div class="rosh" style="color:#f87171">${esc(b)}</div>${rosCards(sqB,'B')}</div></div>`;
+const mShell=(a,b,skip,sqA,sqB)=>`<div class="mgrid"><div class="ros" id="rosA"><div class="rosh" style="color:#60a5fa">${esc(a)}</div>${rosCards(sqA,'A')}</div><div class="mcol"><div class="mtt" id="mtt"></div><div class="msc"><div id="scA"><span class="n" style="color:#60a5fa">${esc(a)}</span><b id="msa">0</b><span class="ppb" id="ppA"></span></div><div><div class="mclk" id="mclk">P1 12:00</div><span class="n" id="mws"></span></div><div id="scB"><span class="n" style="color:#f87171">${esc(b)}</span><b id="msb">0</b><span class="ppb" id="ppB"></span></div></div><div class="rinkw">${iceSvg(sqA,sqB)}<div class="mu" id="icecap" style="text-align:center;min-height:18px"></div></div><div class="mwp"><i id="mwp" style="width:50%"></i></div><div class="mu" style="text-align:center" id="mwt"></div><div class="mst" id="mst"></div><div class="mlg" id="mlg"></div><div class="row" style="justify-content:center">${skip?'<button onclick="M&&(M.skip=true);MGC&&MGC()">Skip to final</button>':''}</div></div><div class="ros" id="rosB"><div class="rosh" style="color:#f87171">${esc(b)}</div>${rosCards(sqB,'B')}</div></div>`;
 /* live rink: heads tween toward targets every frame, plus small ambient skating motion */
 const ICE_B=[[92,42],[92,22],[60,28],[80,42],[92,63],[60,57]],ICE_K=[.75,.7,.45,.75,.7,.45];
 let ICEQ=null;
@@ -432,7 +440,8 @@ function iceStart(){iceStop();if(typeof requestAnimationFrame!=='function')retur
   clkTick();ICEQ.raf=requestAnimationFrame(loop)};ICEQ.raf=requestAnimationFrame(loop)}
 function iceStop(){if(ICEQ){cancelAnimationFrame(ICEQ.raf);clearInterval(ICEQ.amb);ICEQ=null}}
 function clkText(){if(!V)return'';const ck=V.ck||{t:0,run:false};let t=+ck.t||0;if(ck.run&&MG.rt)t=Math.min(PL,t+(Date.now()-MG.rt)/1000*RATE);const rem=Math.max(0,PL-t),mm=Math.floor(rem),ss=Math.floor((rem-mm)*60);return(V.per||'P1')+'  '+mm+':'+String(ss).padStart(2,'0')}
-function clkTick(){const e=$('#mclk');if(e&&V)e.textContent=clkText()}
+function ppUpdate(){['A','B'].forEach(sd=>{const box=$('#sc'+sd),lb=$('#pp'+sd);if(!box||!lb)return;const on=!!(V&&V.pp&&V.pp.s===sd&&!V.fin);box.classList.toggle('ppon',on);if(on){const ck=V.ck||{t:0,run:false};let t=+ck.t||0;if(ck.run&&MG.rt)t=Math.min(PL,t+(Date.now()-MG.rt)/1000*RATE);const r=Math.max(0,V.pp.end-t)*60;lb.textContent='POWERPLAY '+Math.floor(r/60)+':'+String(Math.floor(r%60)).padStart(2,'0')}else lb.textContent=''})}
+function clkTick(){const e=$('#mclk');if(e&&V)e.textContent=clkText();ppUpdate()}
 function iceUpdate(){if(!ICEQ)return;const st=ICEQ.st,I=(V&&V.ice)||{x:100,y:42.5,t:'N',i:-1,s:'',k:''},x0=+I.x,y0=+I.y,L=V&&V.lines?arr(V.lines):[0,0];if(isNaN(x0))return;ICEQ.shot=I.k==='shot';
  if(st.puck){st.puck.tx=x0;st.puck.ty=y0;st.puck.to=1}
  if(document.querySelectorAll)document.querySelectorAll('.rc.hot,.rc.hotg').forEach(e=>e.classList.remove('hot','hotg'));
@@ -463,7 +472,7 @@ function vRender(){if(!V||!$('#msa'))return;if(V.seq!==MG.seq){MG.seq=V.seq;MG.r
  const mg=V.mg,need=mg?arr(mg.need):[];let ttl=V.ttl||'';
  if(V.ph==='ready')ttl='MATCH RULES · READY UP';
  if(mg)ttl=mg.kind==='mash'?'FACE-OFF':mg.kind==='coin'?'DEFENSE 50/50':mg.kind==='reflex'?'LOOSE PUCK SCRAMBLE':mg.kind==='pen'?'PENALTY SHOT':(mg.shooter===MY?'SHOOTING':'SAVING');
- const tt=$('#mtt');if(tt)tt.textContent=ttl;iceUpdate();
+ const tt=$('#mtt');if(tt)tt.textContent=ttl;iceUpdate();ppUpdate();
  if(mg&&need.includes(MY)&&MG.shown!==mg.id&&!(LIVE&&LIVE.mode==='spec')){MG.shown=mg.id;MG.active=true;const id=mg.id,kind=mg.kind;playMG(mg).then(v=>{MG.active=false;mgSend(id,MY,v);const st=$('#mst');if(st&&V&&V.mg&&V.mg.id===id)st.innerHTML='<div class="mhd '+(v==='perfect'?'goal':'')+'">'+mgFeed(kind,v)+'</div><div class="mu">Waiting for the play...</div>'});return}
  if(MG.active)return;const st=$('#mst');if(!st)return;
  if(V.ph==='ready'&&LIVE&&LIVE.mode==='spec'){st.innerHTML='<div class="mhd">Players are getting ready</div><div class="mu">The match starts as soon as both players ready up.</div>';return}
@@ -473,14 +482,19 @@ function vRender(){if(!V||!$('#msa'))return;if(V.seq!==MG.seq){MG.seq=V.seq;MG.r
  if(V.fin){st.innerHTML=vStats();return}
  const hc=V.cls==='gA'||V.cls==='gB'?(V.cls==='g'+MY?'goal':'ogoal'):(V.cls||'');
  st.innerHTML=coinHTML()+penHTML()+'<div class="mhd '+esc(hc)+'">'+esc(V.head||'')+'</div>'+((V.sub||(mg&&MG.shown===mg.id))?'<div class="mu">'+esc(V.sub||'Locked in...')+'</div>':'');
+ coinAnim();
  if(V.fl!==MG.fl){MG.fl=V.fl;if(V.fl){st.classList.remove('gflash');void st.offsetWidth;st.classList.add('gflash')}}}
-function coinHTML(){const c=V.coin;if(!c)return'';if(MG.coinK!==c.k){MG.coinK=c.k;MG.coinT=Date.now()}const el=((Date.now()-MG.coinT)/1000).toFixed(2);return `<div class="cnw"><div class="cn ${c.r==='h'?'ch':'ct'}" style="animation-delay:-${el}s"><div class="cf">HEADS</div><div class="cb">TAILS</div></div></div>`}
+function coinHTML(){const c=V.coin;if(!c)return'';return `<div class="cnw"><div class="cn cH" id="cn"><span id="cnt">HEADS</span></div></div>`}
+let COINRAF=0;
+function coinAnim(){cancelAnimationFrame(COINRAF);const c=V&&V.coin,el=$('#cn'),tx=$('#cnt');if(!c||!el||!tx)return;if(MG.coinK!==c.k){MG.coinK=c.k;MG.coinT=Date.now()}
+ const DUR=1500,turns=c.r==='h'?5:5.5;
+ const step=()=>{const t=Math.min(1,(Date.now()-MG.coinT)/DUR),e=1-Math.pow(1-t,3),cs=Math.cos(turns*2*Math.PI*e),h=cs>=0;el.className='cn '+(h?'cH':'cT');tx.textContent=h?'HEADS':'TAILS';el.style.transform=`translateY(${(-Math.sin(Math.PI*t)*22).toFixed(1)}px) scaleY(${Math.max(.06,Math.abs(cs)).toFixed(3)})`;if(t<1)COINRAF=requestAnimationFrame(step)};step()}
 const PSPOT=[[18,24],[82,24],[18,76],[82,76],[50,50]];
 function penHTML(){const p=V.pen;if(!p)return'';const cov=arr(p.gs);return `<div class="pgl pgr">${PSPOT.map((q,i)=>`<i class="pgc ${cov.includes(i)?'cv':'op'} ${p.ps===i?'sh':''}" style="left:${q[0]}%;top:${q[1]}%">${p.ps===i?'🏒':cov.includes(i)?'🧤':''}</i>`).join('')}</div>`}
-const mgFeed=(k,v)=>k==='pen'?'Locked in':k==='coin'?(v==='h'?'HEADS':v==='t'?'TAILS':'Too slow!'):k==='reflex'?(v>=9999?'Too early!':v+' ms'):typeof v==='number'?'Time!':(GR[v]||'Locked in');
+const mgFeed=(k,v)=>k==='pen'||Array.isArray(v)||(k==='chance'&&typeof v==='number')?'Locked in':k==='coin'?(v==='h'?'HEADS':v==='t'?'TAILS':'Too slow!'):k==='reflex'?(v>=9999?'Too early!':v+' ms'):typeof v==='number'?'Time!':(GR[v]||'Locked in');
 function readyClick(){MG.rdy=true;if(LIVE&&LIVE.mode==='guest')fetch(LIVE.base+'/ans/readyB.json',{method:'PUT',body:'true'}).catch(()=>{});else if(M)M.ans.readyA=true;vRender()}
 function mgSend(id,side,val){if(LIVE&&LIVE.mode==='guest')fetch(LIVE.base+'/ans/'+id+side+'.json',{method:'PUT',body:JSON.stringify(val)}).catch(()=>{});else if(M)M.ans[id+side]=val}
-function playMG(sp){if(sp.kind==='mash')return mgMash(2.5);if(sp.kind==='coin')return mgCoin();if(sp.kind==='reflex')return mgReflex(sp.dl);if(sp.kind==='pen')return mgPen(sp.shooter===MY);const shoot=sp.shooter===MY,z=shoot?sp.zs:sp.zv;
+function playMG(sp){if(sp.kind==='mash')return mgMash(2.5);if(sp.kind==='coin')return mgCoin();if(sp.kind==='reflex')return mgReflex(sp.dl);if(sp.kind==='pen'||(sp.kind==='chance'&&sp.v==='circ'))return mgPen(sp.shooter===MY);const shoot=sp.shooter===MY,z=shoot?sp.zs:sp.zv;
  return shoot?mgTiming('SHOOT!','Center of the green is best. The wide edge is safer but weaker.','SHOOT',[z.w,z.w*.62,z.w*.27],z.l,z.sp,['ok','good','perfect']):mgTiming('SAVE!','Stop the shot. Hit the green with your goalie.','SAVE',[z.w,z.w*.4],z.l,z.sp,['good','perfect'])}
 function mgTiming(title,sub,btn,zs,zl,speed,grades){return new Promise(res=>{const zw=zs[0],cz=zl+zw/2;
  $('#mst').innerHTML=`<div class="mhd">${title}</div><div class="mu">${sub}</div><div class="mtr">${zs.map((w,i)=>`<i class="mzn mz${i}" style="left:${cz-w/2}%;width:${w}%"></i>`).join('')}<i class="mcr" id="mcr"></i></div><button class="pri" id="mgb" style="padding:12px 30px;font-size:18px">${btn}</button>`;
@@ -512,11 +526,11 @@ const SHM={perfect:2.0,good:1.45,ok:1.0,miss:.55,late:.5,none:1},SVM={perfect:.1
 const aiShot=eff=>{const r=Math.random(),pp=.08+(eff-75)*.004;return r<pp?'perfect':r<pp+.22?'good':r<pp+.57?'ok':'miss'};
 const wait=ms=>M&&M.skip?Promise.resolve():sleep(ms);
 const mClk=()=>{const rm=Math.max(0,PL-M.t),mm=Math.floor(rm),ss=Math.floor((rm-mm)*60);return(M.ot?'OT':'P'+M.pd)+' '+mm+':'+String(ss).padStart(2,'0')};
-function mUp(){const rem=M.ot?.05:1-((M.pd-1)+M.t/PL)/NP,lead=M.sc.A-M.sc.B,p0=Math.min(.98,Math.max(.02,M.p0)),lg=Math.log(p0/(1-p0))*Math.max(0,rem)+lead*(1+1.7*(1-Math.max(0,rem)));V.sc=[M.sc.A,M.sc.B];V.sh=[M.sh.A,M.sh.B];V.clk=mClk();V.per=M.ot?'OT':'P'+M.pd;V.wp=1/(1+Math.exp(-lg))}
+function mUp(){const rem=M.ot?.05:1-((M.pd-1)+M.t/PL)/NP,lead=M.sc.A-M.sc.B,p0=Math.min(.98,Math.max(.02,M.p0)),lg=Math.log(p0/(1-p0))*Math.max(0,rem)+lead*(1+1.7*(1-Math.max(0,rem)));V.sc=[M.sc.A,M.sc.B];V.sh=[M.sh.A,M.sh.B];V.clk=mClk();V.per=M.ot?'OT':'P'+M.pd;V.wp=Math.min(.97,Math.max(.03,1/(1+Math.exp(-lg))))}
 const mSay=(h,sub,cls,ttl)=>{V.head=h;V.sub=sub||'';V.cls=cls||'';if(ttl!==undefined)V.ttl=ttl;vPush()};
 const mLog=(t,c)=>{V.log.unshift({t,c:c||''});if(V.log.length>8)V.log.length=8};
 const stI=(s,k)=>{M.st[s][k]=(M.st[s][k]||0)+1};
-async function mWaitAns(sp){const t0=Date.now(),lim=sp.kind==='mash'?4200:sp.kind==='reflex'?sp.dl+2800:sp.kind==='coin'?8000:sp.kind==='pen'?10500:4000;
+async function mWaitAns(sp){const t0=Date.now(),lim=sp.kind==='mash'?4200:sp.kind==='reflex'?sp.dl+2800:sp.kind==='coin'?8000:(sp.kind==='pen'||sp.v==='circ')?10500:4000;
  while(Date.now()-t0<lim&&!M.skip){const pend=sp.need.filter(s=>M.ans[sp.id+s]===undefined);if(!pend.length)break;
   if(M.mode==='host'&&pend.includes('B')){try{const r=await fetch(LIVE.base+'/ans.json',{cache:'no-store'}),j=await r.json();if(j)for(const k in j)M.ans[k]=j[k]}catch(e){}}
   await sleep(250)}
@@ -526,14 +540,16 @@ async function mChance(a){const R=Math.random,X=a.s==='A'?M.A:M.B,Y=a.s==='A'?M.
  let p=pGoal(X,Y,sd,lineOff(X,a.s),lineDef(Y,a.s==='A'?'B':'A'))*(M.mom[a.s]||1);M.mom[a.s]=1;p=big?Math.min(.6,p*2.1):p*.8;
  const idx=X.e.indexOf(sd);V.ice={x:a.s==='A'?126:74,y:18+R()*50,t:a.s,k:'rush',s:a.s,i:idx,l:pn};
  if(big){mUp();mSay(pn+' is in on a breakaway!',sn+' shooting, '+gk+' in goal','','BREAKAWAY');await wait(700);
-  if(!M.skip){const d=a.s==='A'?'B':'A',diff=sd.eff-Y.g,zw=Math.max(15,Math.min(34,24+diff*.4)),zv=Math.max(14,Math.min(44,30-diff*.5)),sp={id:++M.mgid,kind:'chance',shooter:a.s,need:M.need,zs:{w:zw,l:12+R()*(76-zw),sp:1.2+R()*.5},zv:{w:zv,l:12+R()*(76-zv),sp:.9+R()*.4}};
+  if(!M.skip){const d=a.s==='A'?'B':'A',diff=sd.eff-Y.g,zw=Math.max(15,Math.min(34,24+diff*.4)),zv=Math.max(14,Math.min(44,30-diff*.5)),sp={id:++M.mgid,kind:'chance',v:R()<.5?'circ':'time',shooter:a.s,need:M.need,zs:{w:zw,l:12+R()*(76-zw),sp:1.2+R()*.5},zv:{w:zv,l:12+R()*(76-zv),sp:.9+R()*.4}};
    V.mg=sp;mUp();vPush();const ans=await mWaitAns(sp);V.mg=null;
-   let gs=ans[a.s],gd=ans[d];if(gs===undefined)gs=M.need.includes(a.s)?'late':aiShot(sd.eff);if(gd===undefined)gd=M.need.includes(d)?'late':'none';
+   let gs=ans[a.s],gd=ans[d];
+   if(sp.v==='circ'){let ps=gs,cv=gd;if(!(Number.isInteger(ps)&&ps>=0&&ps<=4))ps=Math.floor(R()*5);if(!(Array.isArray(cv)&&cv.length===4&&cv.every(x=>Number.isInteger(x)&&x>=0&&x<=4)&&new Set(cv).size===4)){const op=Math.floor(R()*5);cv=[0,1,2,3,4].filter(x=>x!==op)}const cov=cv.includes(ps);gs=cov?'ok':'perfect';gd=cov?'perfect':'miss';V.pen={k:sp.id,ps,gs:cv,goal:null}}
+   else{if(gs===undefined)gs=M.need.includes(a.s)?'late':aiShot(sd.eff);if(gd===undefined)gd=M.need.includes(d)?'late':'none'}
    let mult=SHM[gs]*SVM[gd];if((gd==='miss'||gd==='late')&&(gs==='good'||gs==='perfect'))mult*=1.35;
    p=Math.min(.88,Math.max(.02,p*mult));if(M.need.includes(a.s)&&gs==='perfect')M.perf[a.s]++;if(M.need.includes(d)&&gd==='perfect')M.perf[d]++;
    if(M.need.includes(a.s))stI(a.s,{perfect:'sp',good:'sg',ok:'so',miss:'sm',late:'sm'}[gs]||'sm');if(M.need.includes(d))stI(d,{perfect:'vp',good:'vg',miss:'vm',late:'vm'}[gd]||'vm');
    const shown=M.need.includes(a.s)?gs:null,sav=M.need.includes(d)?gd:null;
-   mSay(sav==='perfect'?'What a SAVE!':sav==='good'?'Good stop attempt':(sav==='miss'||sav==='late')&&(gs==='good'||gs==='perfect')?'The goalie is beat!':shown?GR[shown]:GR[sav]||'Here it comes...',M.mode==='host'?sn+': '+(GR[ans[a.s]]||'-')+'  |  '+dn+': '+(GR[ans[d]]||'-'):(M.need.includes(a.s)?'Your shot: ':'Their shot was '+(GR[gs]||'')+'. Your save: ')+(GR[M.need.includes(a.s)?gs:gd]||'-'),(gs==='perfect'||gd==='perfect')?'goal':'','THE SHOT');await wait(750)}}
+   mSay(sav==='perfect'?'What a SAVE!':sav==='good'?'Good stop attempt':(sav==='miss'||sav==='late')&&(gs==='good'||gs==='perfect')?'The goalie is beat!':shown?GR[shown]:GR[sav]||'Here it comes...',M.mode==='host'?sn+': '+(GR[ans[a.s]]||'-')+'  |  '+dn+': '+(GR[ans[d]]||'-'):(M.need.includes(a.s)?'Your shot: ':'Their shot was '+(GR[gs]||'')+'. Your save: ')+(GR[M.need.includes(a.s)?gs:gd]||'-'),(gs==='perfect'||gd==='perfect')?'goal':'','THE SHOT');await wait(V.pen?1500:750)}}
  else{mUp();mSay(sn+' shoots','','','SHOT');await wait(320)}
  const gy=42.5+(R()-.5)*14;V.ice={x:a.s==='A'?186:14,y:gy,t:a.s,k:'shot',s:a.s,i:idx,l:pn};vPush();await wait(380);
  if(R()<p){M.sc[a.s]++;const oi=LINEI[M.line[a.s]].map(i=>X.e[i]).filter(x=>x!==sd),as=R()<.8&&oi.length?oi[Math.floor(R()*oi.length)].p.name:'';M.ev.push({pr:M.ot?'OT':'P'+M.pd,t:a.s,s:pn,a:as});mUp();V.fl=(V.fl||0)+1;V.ice.k='goal';mLog(mClk()+' GOAL '+sn+': '+pn,'g'+a.s.toLowerCase());mSay('GOAL! '+pn,as?'Assist: '+as:'Unassisted','g'+a.s,'GOAL!');await wait(1300)}
@@ -573,17 +589,17 @@ let LASTHB=0;
 const LINEI=[[0,1,2],[3,4,5]];
 function pickOn(X,side){const pool=LINEI[M.line[side]].map(i=>X.e[i]),w=pool.map(x=>Math.pow(x.eff/60,3)*(x.pos==='D'?.45:1)),t=w.reduce((a,b)=>a+b,0);let r=Math.random()*t;for(let i=0;i<pool.length;i++){r-=w[i];if(r<=0)return pool[i]}return pool[0]}
 const lineOff=(X,side)=>{const l=LINEI[M.line[side]];return avg([X.e[l[0]].eff,X.e[l[1]].eff])},lineDef=(X,side)=>X.e[LINEI[M.line[side]][2]].eff;
-async function runTo(it){V.coin=null;V.pen=null;const t1=it.t,lc=it.type==='lc';if(t1<=M.t+.001){V.ck={t:M.t,run:lc};return}
- if(M.skip){M.t=t1;V.ck={t:t1,run:lc};return}
+async function runTo(it){V.coin=null;V.pen=null;const ppOff=()=>{if(V.pp&&M.t>=V.pp.end)V.pp=null};const t1=it.t,lc=it.type==='lc';if(t1<=M.t+.001){V.ck={t:M.t,run:lc};ppOff();return}
+ if(M.skip){M.t=t1;V.ck={t:t1,run:lc};ppOff();return}
  const R=Math.random,dtG=t1-M.t,secs=dtG/RATE,n=Math.max(1,Math.min(6,Math.round(secs/1.2))),sg=secs/n*1000,bias=it.s==='A'?1:it.s==='B'?-1:0,t0=M.t;
- for(let k=1;k<=n;k++){if(M.skip)break;V.ck={t:t0+dtG*(k-1)/n,run:true};const f=k/n,x=Math.max(25,Math.min(175,100+bias*55*f*f+(R()-.5)*(bias?30:70))),y=14+R()*57,poss=bias&&f>.45?(bias>0?'A':'B'):(R()<.5?'A':'B');
+ for(let k=1;k<=n;k++){if(M.skip)break;V.ck={t:t0+dtG*(k-1)/n,run:true};if(V.pp&&t0+dtG*(k-1)/n>=V.pp.end)V.pp=null;const f=k/n,x=Math.max(25,Math.min(175,100+bias*55*f*f+(R()-.5)*(bias?30:70))),y=14+R()*57,poss=bias&&f>.45?(bias>0?'A':'B'):(R()<.5?'A':'B');
   V.ice={x,y,t:poss,k:'carry',s:'',i:-1,l:''};vPush();await sleep(sg)}
- M.t=t1;V.ck={t:t1,run:lc}}
+ M.t=t1;V.ck={t:t1,run:lc};ppOff()}
 async function mLine(it){const s=it.side,nm=s==='A'?M.nameA:M.nameB;M.line[s]^=1;V.lines=[M.line.A,M.line.B];mLog(mClk()+' '+nm+' changes lines (line '+(M.line[s]+1)+' on)','');V.ck={t:M.t,run:true};vPush()}
 async function runMatch(){const R=Math.random,A=M.A,B=M.B;
- for(let pd=1;pd<=NP;pd++){M.pd=pd;M.t=0;M.line={A:0,B:0};V.lines=[0,0];V.ck={t:0,run:false};V.ice={x:100,y:42.5,t:'N',k:'',s:'',i:-1,l:''};mUp();mSay('Period '+pd,pd===1?'First line D, C and W start. Puck drop...':'Back on the ice','','PERIOD '+pd);await wait(800);const fw=await mFace(pd);
+ for(let pd=1;pd<=NP;pd++){M.pd=pd;M.t=0;M.line={A:0,B:0};V.lines=[0,0];V.pp=null;V.ck={t:0,run:false};V.ice={x:100,y:42.5,t:'N',k:'',s:'',i:-1,l:''};mUp();mSay('Period '+pd,pd===1?'First line D, C and W start. Puck drop...':'Back on the ice','','PERIOD '+pd);await wait(800);const fw=await mFace(pd);
   const nA=nAtt(A,B)+(fw?1:0),nB=nAtt(B,A)+(fw?0:1),L=[];for(let i=0;i<nA;i++)L.push({t:.6+R()*(PL-1.2),s:'A'});for(let i=0;i<nB;i++)L.push({t:.6+R()*(PL-1.2),s:'B'});
-  if(R()<.45){const on=R()<.5?'A':'B',pp=on==='A'?'B':'A',t0=1.5+R()*(PL-4);L.push({t:t0,type:'pen',on,pp});for(let i=0;i<2;i++)L.push({t:t0+R()*1.8,s:pp,pp:true})}
+  if(R()<.45){const on=R()<.5?'A':'B',pp=on==='A'?'B':'A',t0=1.5+R()*(PL-4);L.push({t:t0,type:'pen',on,pp});for(let i=0;i<3;i++)L.push({t:t0+.12+R()*.8,s:pp,pp:true})}
   L.push({t:1+R()*(PL-2),type:'fifty',s:M.mode==='solo'?'B':(R()<.5?'A':'B')});
   if(pd>=2||R()<.5)L.push({t:1+R()*(PL-2),type:'scr'});
   if(R()<.55)L.push({t:1.5+R()*(PL-3),type:'ps',s:R()<.5?'A':'B'});
@@ -591,7 +607,7 @@ async function runMatch(){const R=Math.random,A=M.A,B=M.B;
   L.sort((x,y)=>x.t-y.t);
   for(const it of L){await runTo(it);
    if(it.type==='lc')await mLine(it);
-   else if(it.type==='pen'){mUp();const nm=it.on==='A'?M.nameA:M.nameB;mSay('PENALTY!',nm+' goes to the box. Power play for '+(it.pp==='A'?M.nameA:M.nameB),'','PENALTY');mLog(mClk()+' Penalty on '+nm,'');await wait(1100)}
+   else if(it.type==='pen'){mUp();const nm=it.on==='A'?M.nameA:M.nameB;V.pp={s:it.pp,end:it.t+1};mSay('PENALTY!',nm+' goes to the box. 1 minute power play for '+(it.pp==='A'?M.nameA:M.nameB),'','POWER PLAY');mLog(mClk()+' Penalty on '+nm,'');await wait(1100)}
    else if(it.type==='ps')await mPenShot(it);else if(it.type==='fifty')await mFifty(it);else if(it.type==='scr')await mScramble(it);else await mChance(it)}
   await runTo({t:PL});M.t=PL;V.ck={t:PL,run:false};mUp();M.per.push([M.sc.A,M.sc.B]);mSay('End of period '+pd,M.sc.A+' - '+M.sc.B,'','INTERMISSION');mLog('End of P'+pd+': '+M.sc.A+'-'+M.sc.B,'');await wait(900)}
  if(M.sc.A===M.sc.B){M.ot=true;M.pd=NP+1;M.t=0;V.ck={t:0,run:false};mUp();mSay('OVERTIME','Next goal wins it. Sudden death.','','OVERTIME');mLog('Overtime!','');await wait(1200);
@@ -628,7 +644,7 @@ async function utSpectate(id){const base=CL.url+'/live/'+id;let meta=null;try{me
 async function utPlay(name){if(UBUSY)return;ensureUT();const u=S.ut;UMSG='';
  if(!u.sq.every(n=>BN[n])){UMSG='Fill all 7 squad slots first (Squad tab).';UTT='squad';return render()}
  UBUSY=true;const rec=await utGet(name);UBUSY=false;if(!rec||!rec.sq.every(n=>BN[n])){UMSG=name+' has not finished their squad yet.';return render()}
- const A=utSide(u.sq),B=utSide(rec.sq),pw=utOdds(A,B);UREC=rec;
+ const A=utSide(u.sq),B=utSide(rec.sq),pw=Math.min(.99,Math.max(.01,utOdds(A,B)));UREC=rec;
  mOpen(`<div class="msc"><div><span class="n">${esc(USER.mc)}</span><b>${utOvr(u.sq)}</b><span class="n">OVR</span></div><div class="mclk">VS</div><div><span class="n">${esc(rec.n)}</span><b>${utOvr(rec.sq)}</b><span class="n">OVR</span></div></div><div class="mst"><div class="mhd">${Math.round(pw*100)}% win chance</div><div class="mwp"><i style="width:${pw*100}%"></i></div><div class="mu" style="max-width:540px">Better players matter a lot, but upsets happen. <b>Challenge</b> sends ${esc(rec.n)} an invite. If they accept, you both see the rules, ready up, and play the same match live. <b>Practice</b> plays their squad solo with no rewards. A live challenge costs <b>500 BB</b> each and the winner is paid <b>800 BB</b>.</div><div class="row" style="justify-content:center">${CL.url&&rec.bb!=null&&rec.bb<UT_FEE?`<p class="warn" style="width:100%">${esc(rec.n)} only has ${Number(rec.bb).toLocaleString()} BB, so they cannot accept (${UT_FEE} BB needed).</p>`:''}${CL.url&&S.bb<UT_FEE?`<p class="warn" style="width:100%">You need ${UT_FEE} BB to challenge.</p>`:''}${CL.url?`<button class="pri" ${S.bb<UT_FEE||(rec.bb!=null&&rec.bb<UT_FEE)?'disabled':''} onclick="utChallenge()">${S.bb<UT_FEE?'Not enough BB':rec.bb!=null&&rec.bb<UT_FEE?esc(rec.n)+' has too little BB':'Challenge ('+UT_FEE+' BB)'}</button>`:''}<button onclick="utPractice()">Practice (solo)</button><button onclick="mClose()">Cancel</button></div></div>`)}
 function utPractice(){const rec=UREC,u=S.ut,A=utSide(u.sq),B=utSide(rec.sq);LIVE={mode:'solo'};mOpen(mShell(USER.mc,rec.n,true,u.sq,rec.sq));iceStart();mStart('solo',A,B,USER.mc,rec.n,rec)}
 async function utChallenge(){const rec=UREC,u=S.ut;if(!CL.url)return;if(S.bb<UT_FEE){mClose();UMSG='You need '+UT_FEE+' BB to challenge a friend.';return render()}const lob=LOB={cancel:false},id=ukey(USER.mc)+'_'+Date.now().toString(36),base=CL.url+'/live/'+id,k=ukey(rec.n);
