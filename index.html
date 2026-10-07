@@ -163,6 +163,37 @@ button.pgc:hover{transform:scale(1.12);background:#7dd3fc55}.pgc.on{background:#
 .sqs.cm3 .pc{box-shadow:0 0 18px var(--tm),0 0 4px var(--tm)}.sqs.cm2 .pc{box-shadow:0 0 10px color-mix(in srgb,var(--tm) 70%,transparent)}
 .sqlg{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin:0;padding:10px 14px}.sqlg span{display:flex;align-items:center;gap:6px;font-size:13px}.sqlg svg{overflow:visible}
 .rc.pbx{opacity:.4;outline:2px solid #ef4444}
+.pgl.has .pgc:not(.on){opacity:.4}
+.pgc.on{transform:scale(1.18)}.pgc.on.sht{background:#facc15;border-color:#fff;box-shadow:0 0 0 4px #facc1566,0 0 26px #facc15}
+.pgc.on.cvr{background:#22c55e;border-color:#fff;box-shadow:0 0 0 4px #22c55e55,0 0 22px #22c55e}
+#ov .skip{z-index:20}
+.wo{position:fixed;inset:0;overflow:hidden;background:#000;z-index:2;cursor:pointer;animation:wosh .5s 4s}
+.wo-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 46%,#2a1c05 0,#0a0703 45%,#000 80%)}
+.wo-rays{position:absolute;inset:-60%;background:repeating-conic-gradient(from 0deg at 50% 50%,#ffd54a44 0 5deg,transparent 5deg 16deg);-webkit-mask-image:radial-gradient(circle,#000 0,transparent 55%);mask-image:radial-gradient(circle,#000 0,transparent 55%);opacity:0;animation:worays 14s linear infinite,wofadein 1.4s .7s forwards}
+.wo-door{position:absolute;left:50%;top:30%;width:min(150px,30vw);height:min(250px,36vh);transform:translateX(-50%);border-radius:80px 80px 0 0;background:linear-gradient(#fff,#ffe27a 35%,#c27a00);box-shadow:0 0 90px 30px #ffb300aa,0 0 200px 80px #ff8a0044;opacity:0;animation:wodoor 1.4s .3s forwards,wodoor2 .8s 3.9s forwards}
+.wo-fog{position:absolute;left:-20%;right:-20%;height:40%;bottom:0;background:radial-gradient(ellipse at 50% 100%,#ffd54a44,transparent 65%);filter:blur(18px);opacity:.7;animation:wofog 6s ease-in-out infinite alternate}.wo-fog.f2{bottom:8%;animation-duration:8s;animation-direction:alternate-reverse;opacity:.4}
+.wo-floor{position:absolute;left:0;right:0;bottom:0;height:34%;background:repeating-linear-gradient(90deg,#ffd54a14 0 2px,transparent 2px 60px),linear-gradient(#0000,#ffb30033);transform:perspective(300px) rotateX(55deg);transform-origin:50% 100%;opacity:.7}
+.wo-fig{position:absolute;left:50%;bottom:13%;width:min(280px,58vw);transform-origin:50% 100%;transform:translateX(-50%) translateY(-30vh) scale(.12);opacity:0;animation:wowalk 3s 1.1s cubic-bezier(.35,.15,.4,1) forwards}
+.wo-sk{position:relative;display:block;width:100%;filter:brightness(0);animation:wobob .5s 1.1s 6 alternate ease-in-out,worev 1.1s 2.9s forwards both;image-rendering:auto}
+.wo-aura{position:absolute;left:-35%;right:-35%;bottom:-6%;height:125%;background:radial-gradient(ellipse at 50% 75%,#fff6b0cc 0,#ffc83dcc 25%,#ff8a00aa 48%,#ff4d0044 62%,transparent 72%);filter:blur(16px);opacity:0;animation:woaura 1s 2.9s forwards,woaurap 1s 3.9s ease-in-out infinite alternate}
+.wo-sparks i{position:absolute;bottom:12%;width:var(--s);height:var(--s);border-radius:50%;background:#ffe27a;box-shadow:0 0 8px 2px #ffb300;opacity:0;animation:wospark var(--t) var(--d) ease-out infinite}
+.wo-ring{position:absolute;left:50%;top:58%;width:60px;height:60px;margin:-30px;border-radius:50%;border:4px solid #ffe27a;opacity:0;animation:woring 1.2s 4.05s ease-out forwards}.wo-ring.r2{animation-delay:4.25s;border-color:#fff}
+.wo-flash{position:absolute;inset:0;background:#fff;opacity:0;animation:woflash .7s 4.02s ease-out}
+.wo-tag{position:absolute;left:0;right:0;bottom:5%;text-align:center;color:#fff;opacity:0;animation:woslam .5s 4.15s cubic-bezier(.2,1.6,.4,1) forwards;text-shadow:0 0 18px #ffb300,0 2px 0 #000}
+.wo-tag small{display:block;letter-spacing:.5em;color:#ffd54a;font-weight:800;font-size:13px}.wo-tag b{display:block;font:900 clamp(40px,10vw,84px) "Barlow Condensed","Arial Black",sans-serif;line-height:1;letter-spacing:.02em}.wo-tag span{font-weight:700;letter-spacing:.12em;color:#ffe9a8}
+.wo-hint{position:absolute;right:16px;bottom:10px;color:#fff8;font-size:12px;letter-spacing:.1em}
+@keyframes worays{to{transform:rotate(360deg)}}@keyframes wofadein{to{opacity:1}}
+@keyframes wodoor{0%{opacity:0}40%{opacity:.5}55%{opacity:.2}70%{opacity:.9}100%{opacity:1}}@keyframes wodoor2{to{opacity:.35}}
+@keyframes wofog{from{transform:translateX(-6%)}to{transform:translateX(6%)}}
+@keyframes wowalk{0%{opacity:0;transform:translateX(-50%) translateY(-30vh) scale(.12)}10%{opacity:1}100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+@keyframes wobob{from{transform:rotate(-2.4deg) translateY(0)}to{transform:rotate(2.4deg) translateY(-9px)}}
+@keyframes worev{from{filter:brightness(0)}to{filter:brightness(1.12) drop-shadow(0 0 22px #ffc83d)}}
+@keyframes woaura{to{opacity:1}}@keyframes woaurap{from{transform:scale(1)}to{transform:scale(1.09)}}
+@keyframes wospark{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--x),-58vh)}}
+@keyframes woring{0%{opacity:.95;transform:scale(1)}100%{opacity:0;transform:scale(18)}}
+@keyframes woflash{0%{opacity:.95}100%{opacity:0}}
+@keyframes woslam{0%{opacity:0;transform:scale(2.6)}100%{opacity:1;transform:scale(1)}}
+@keyframes wosh{0%,100%{transform:translate(0)}20%{transform:translate(-9px,5px)}40%{transform:translate(8px,-6px)}60%{transform:translate(-6px,-4px)}80%{transform:translate(5px,5px)}}
 </style></head><body><div id="fx"></div>
 <div class="top"><div class="hdr"><div class="logo" id="logo"></div><div style="display:flex;gap:6px;align-items:center"><span id="bb" class="box" style="margin:0;padding:6px 11px;font-weight:800"></span><select id="th" style="width:auto" onchange="setTheme(this.value)"></select></div></div><nav id="tabs"></nav></div>
 <main class="wrap" id="view"></main><div id="ov" class="ov"></div><div id="mo" class="ov"></div><div id="modal" class="modal" onclick="if(event.target===this)closeM()"></div>
@@ -529,12 +560,12 @@ function mgMash(sec){return new Promise(res=>{let n=0,left=sec,iv;
  iv=setInterval(()=>{left-=.25;const t=$('#mgt');if(t)t.textContent=Math.max(0,left).toFixed(1)+'s';if(left<=0)end(n)},250)})}
 function mgCoin(){return new Promise(res=>{$('#mst').innerHTML=`<div class="mhd">PICK A SIDE!</div><div class="mu">The coin is about to flip. Guess right to win the puck.</div><div class="row" style="justify-content:center;flex:none"><button class="pri" id="cH" style="padding:14px 34px;font-size:20px">HEADS</button><button class="pri" id="cT" style="padding:14px 34px;font-size:20px">TAILS</button></div>`;
  let done=false,to;const fin=v=>{if(done)return;done=true;clearTimeout(to);MGC=null;res(v)};$('#cH').onpointerdown=()=>fin('h');$('#cT').onpointerdown=()=>fin('t');to=setTimeout(()=>fin('late'),6000);MGC=()=>fin('late')})}
-function mgPen(shoot){return new Promise(res=>{let done=false,pick=[],left=8,iv;const need=shoot?1:4;
+function mgPen(shoot){return new Promise(res=>{let done=false,pick=[],left=8,iv;
  const fin=v=>{if(done)return;done=true;clearInterval(iv);MGC=null;res(v)};
- const draw=()=>{$('#mst').innerHTML=`<div class="mhd">${shoot?'PICK YOUR SPOT':'COVER 4 OF 5 SPOTS'}</div><div class="mu">${shoot?'Click where you want to shoot. If the goalie covers it, it is saved.':'Click 4 spots to cover. The one you leave open is where a shot goes in.'} <b id="pgt">${left}s</b></div><div class="pgl">${PSPOT.map((q,i)=>`<button class="pgc ${pick.includes(i)?'on':''}" data-i="${i}" style="left:${q[0]}%;top:${q[1]}%"></button>`).join('')}</div>${shoot?'':`<button class="pri" id="pgk" style="padding:10px 28px;font-size:17px" ${pick.length===4?'':'disabled'}>LOCK IN (${pick.length}/4)</button>`}`;
-  document.querySelectorAll('#mst .pgc').forEach(b=>b.onpointerdown=()=>{const i=+b.dataset.i;if(shoot)return fin(i);const k=pick.indexOf(i);if(k>=0)pick.splice(k,1);else if(pick.length<4)pick.push(i);draw()});
-  const lk=$('#pgk');if(lk)lk.onpointerdown=()=>{if(pick.length===4)fin(pick.slice().sort())}};
- draw();MGC=()=>fin(null);iv=setInterval(()=>{left--;const t=$('#pgt');if(t)t.textContent=Math.max(0,left)+'s';if(left<=0){if(shoot)fin(Math.floor(Math.random()*5));else{const all=[0,1,2,3,4].filter(x=>!pick.includes(x));while(pick.length<4)pick.push(all.splice(Math.floor(Math.random()*all.length),1)[0]);fin(pick.slice().sort())}}},1000)})}
+ const draw=()=>{$('#mst').innerHTML=`<div class="mhd">${shoot?'PICK YOUR SPOT':'COVER 4 OF 5 SPOTS'}</div><div class="mu">${shoot?'Click where you want to shoot. If the goalie covers it, it is saved.':'Click 4 spots to cover. The one you leave open is where a shot goes in.'} <b id="pgt">${left}s</b></div><div class="pgl ${pick.length?'has':''}">${PSPOT.map((q,i)=>`<button class="pgc ${pick.includes(i)?(shoot?'on sht':'on cvr'):''}" data-i="${i}" style="left:${q[0]}%;top:${q[1]}%">${pick.includes(i)?(shoot?'🎯':'🧤'):''}</button>`).join('')}</div><div class="mu" style="font-weight:700;color:${pick.length?(shoot?'#fde047':'#4ade80'):'#9aa6bd'}">${shoot?(pick.length?'Aiming at the highlighted spot':'No spot picked yet'):pick.length+' of 4 spots covered'}</div><button class="pri" id="pgk" style="padding:10px 28px;font-size:17px" ${pick.length===(shoot?1:4)?'':'disabled'}>${shoot?'SHOOT!':'LOCK IN ('+pick.length+'/4)'}</button>`;
+  document.querySelectorAll('#mst .pgc').forEach(b=>b.onpointerdown=()=>{const i=+b.dataset.i;if(shoot)pick=[i];else{const k=pick.indexOf(i);if(k>=0)pick.splice(k,1);else if(pick.length<4)pick.push(i)}draw()});
+  const lk=$('#pgk');if(lk)lk.onpointerdown=()=>{if(shoot){if(pick.length===1)fin(pick[0])}else if(pick.length===4)fin(pick.slice().sort())}};
+ draw();MGC=()=>fin(null);iv=setInterval(()=>{left--;const t=$('#pgt');if(t)t.textContent=Math.max(0,left)+'s';if(left<=0){if(shoot)fin(pick.length?pick[0]:Math.floor(Math.random()*5));else{const all=[0,1,2,3,4].filter(x=>!pick.includes(x));while(pick.length<4)pick.push(all.splice(Math.floor(Math.random()*all.length),1)[0]);fin(pick.slice().sort())}}},1000)})}
 function mgReflex(dl){return new Promise(res=>{const st=$('#mst');st.innerHTML=`<div class="mhd ogoal">WAIT...</div><div class="mu">Click the instant it turns green. Too early and you lose it.</div><button class="pri" id="mgb" style="padding:22px 64px;font-size:24px;background:#7f1d1d;border-color:#7f1d1d;color:#fff">...</button>`;
  let t0=0,done=false,to1,to2;const fin=v=>{if(done)return;done=true;clearTimeout(to1);clearTimeout(to2);document.removeEventListener('keydown',kd);MGC=null;res(v)};
  const hit=()=>fin(t0?Math.round(performance.now()-t0):9999),kd=e=>{if(e.code==='Space'&&!e.repeat){e.preventDefault();hit()}};
@@ -545,7 +576,7 @@ const SHM={perfect:2.0,good:1.45,ok:1.0,miss:.55,late:.5,none:1},SVM={perfect:.1
 const aiShot=eff=>{const r=Math.random(),pp=.08+(eff-75)*.004;return r<pp?'perfect':r<pp+.22?'good':r<pp+.57?'ok':'miss'};
 const wait=ms=>M&&M.skip?Promise.resolve():sleep(ms);
 const mClk=()=>{const rm=Math.max(0,PL-M.t),mm=Math.floor(rm),ss=Math.floor((rm-mm)*60);return(M.ot?'OT':'P'+M.pd)+' '+mm+':'+String(ss).padStart(2,'0')};
-function mUp(){const rem=M.ot?.05:1-((M.pd-1)+M.t/PL)/NP,lead=M.sc.A-M.sc.B,p0=Math.min(.98,Math.max(.02,M.p0)),lg=Math.log(p0/(1-p0))*Math.max(0,rem)+lead*(1+1.7*(1-Math.max(0,rem)));V.sc=[M.sc.A,M.sc.B];V.sh=[M.sh.A,M.sh.B];V.clk=mClk();V.per=M.ot?'OT':'P'+M.pd;V.wp=Math.min(.97,Math.max(.03,1/(1+Math.exp(-lg))))}
+function mUp(){const rem=M.ot?.05:1-((M.pd-1)+M.t/PL)/NP,lead=M.sc.A-M.sc.B,p0=Math.min(.98,Math.max(.02,M.p0)),lg=Math.log(p0/(1-p0))*Math.max(0,rem)+lead*(.3+2.3*Math.pow(1-Math.max(0,rem),1.5));V.sc=[M.sc.A,M.sc.B];V.sh=[M.sh.A,M.sh.B];V.clk=mClk();V.per=M.ot?'OT':'P'+M.pd;V.wp=Math.min(.97,Math.max(.03,1/(1+Math.exp(-lg))))}
 const mSay=(h,sub,cls,ttl)=>{V.head=h;V.sub=sub||'';V.cls=cls||'';if(ttl!==undefined)V.ttl=ttl;vPush()};
 const mLog=(t,c)=>{V.log.unshift({t,c:c||''});if(V.log.length>8)V.log.length=8};
 const stI=(s,k)=>{M.st[s][k]=(M.st[s][k]||0)+1};
@@ -571,7 +602,7 @@ async function mChance(a){const R=Math.random,X=a.s==='A'?M.A:M.B,Y=a.s==='A'?M.
    mSay(sav==='perfect'?'What a SAVE!':sav==='good'?'Good stop attempt':(sav==='miss'||sav==='late')&&(gs==='good'||gs==='perfect')?'The goalie is beat!':shown?GR[shown]:GR[sav]||'Here it comes...',M.mode==='host'?sn+': '+(GR[ans[a.s]]||'-')+'  |  '+dn+': '+(GR[ans[d]]||'-'):(M.need.includes(a.s)?'Your shot: ':'Their shot was '+(GR[gs]||'')+'. Your save: ')+(GR[M.need.includes(a.s)?gs:gd]||'-'),(gs==='perfect'||gd==='perfect')?'goal':'','THE SHOT');await wait(V.pen?1500:750)}}
  else{mUp();mSay(sn+' shoots','','','SHOT');await wait(320)}
  const gy=42.5+(R()-.5)*14;V.ice={x:a.s==='A'?186:14,y:gy,t:a.s,k:'shot',s:a.s,i:idx,l:pn};vPush();await wait(380);
- if(R()<p){M.sc[a.s]++;const oi=LINEI[M.line[a.s]].map(i=>X.e[i]).filter(x=>x!==sd),as=R()<.8&&oi.length?oi[Math.floor(R()*oi.length)].p.name:'';M.ev.push({pr:M.ot?'OT':'P'+M.pd,t:a.s,s:pn,a:as});mUp();V.fl=(V.fl||0)+1;V.ice.k='goal';mLog(mClk()+' GOAL '+sn+': '+pn,'g'+a.s.toLowerCase());mSay('GOAL! '+pn,as?'Assist: '+as:'Unassisted','g'+a.s,'GOAL!');await wait(1300)}
+ if(R()<p){M.sc[a.s]++;if(V.pp&&V.pp.s===a.s){V.pp=null;mLog(mClk()+' Power play over (goal)','')}const oi=LINEI[M.line[a.s]].map(i=>X.e[i]).filter(x=>x!==sd),as=R()<.8&&oi.length?oi[Math.floor(R()*oi.length)].p.name:'';M.ev.push({pr:M.ot?'OT':'P'+M.pd,t:a.s,s:pn,a:as});mUp();V.fl=(V.fl||0)+1;V.ice.k='goal';mLog(mClk()+' GOAL '+sn+': '+pn,'g'+a.s.toLowerCase());mSay('GOAL! '+pn,as?'Assist: '+as:'Unassisted','g'+a.s,'GOAL!');await wait(1300)}
  else{const r=R(),k=r<.7?'Saved by '+gk+'!':r<.85?'Shot wide.':'Blocked!';V.ice={x:r<.7?(a.s==='A'?172:28):r<.85?(a.s==='A'?197:3):(a.s==='A'?152:48),y:r<.7?gy+(R()-.5)*26:r<.85?(R()<.5?6:79):gy+(R()-.5)*20,t:r<.7?(a.s==='A'?'B':'A'):'N',k:'save',s:a.s,i:-1,l:pn};mUp();mSay(k,'','','NO GOAL');mLog(mClk()+' '+pn+': '+k.replace(/!$/,''),'');await wait(big?800:280)}}
 async function mPenShot(it){const R=Math.random,s=it.s,d=s==='A'?'B':'A',X=s==='A'?M.A:M.B,Y=s==='A'?M.B:M.A,sn=s==='A'?M.nameA:M.nameB,dn=d==='A'?M.nameA:M.nameB,sd=pickOn(X,s),pn=sd.p.name,gk=Y.e[6].p.name,idx=X.e.indexOf(sd);M.t=it.t;mUp();M.sh[s]++;
  V.ice={x:s==='A'?126:74,y:42.5,t:s,k:'rush',s,i:idx,l:pn};mSay('PENALTY SHOT!',pn+' (' +sn+') vs '+gk+' ('+dn+')','','PENALTY SHOT');mLog(mClk()+' Penalty shot: '+pn,'');await wait(1000);
@@ -580,7 +611,7 @@ async function mPenShot(it){const R=Math.random,s=it.s,d=s==='A'?'B':'A',X=s==='
  if(!(Array.isArray(gs)&&gs.length===4&&gs.every(x=>Number.isInteger(x)&&x>=0&&x<=4)&&new Set(gs).size===4)){const op=Math.floor(R()*5);gs=[0,1,2,3,4].filter(x=>x!==op)}
  const cov=gs.includes(ps),diff=(sd.eff-Y.g)*.002,p=cov?Math.max(.01,Math.min(.2,.06+diff)):Math.max(.78,Math.min(.97,.92+diff)),goal=R()<p;
  V.pen={k:M.mgid,ps,gs,goal};V.ice={x:s==='A'?186:14,y:30+R()*25,t:s,k:'shot',s,i:idx,l:pn};mUp();vPush();await wait(1400);
- if(goal){M.sc[s]++;stI(s,'pk');M.ev.push({pr:M.ot?'OT':'P'+M.pd,t:s,s:pn+' (penalty shot)',a:''});V.ice.k='goal';mUp();V.fl=(V.fl||0)+1;mLog(mClk()+' GOAL '+sn+': '+pn+' (penalty shot)','g'+s.toLowerCase());mSay('GOAL! '+pn,cov?'Covered, but it beat '+gk:'Top spot left open!','g'+s,'GOAL!');await wait(1500)}
+ if(goal){M.sc[s]++;if(V.pp&&V.pp.s===s)V.pp=null;stI(s,'pk');M.ev.push({pr:M.ot?'OT':'P'+M.pd,t:s,s:pn+' (penalty shot)',a:''});V.ice.k='goal';mUp();V.fl=(V.fl||0)+1;mLog(mClk()+' GOAL '+sn+': '+pn+' (penalty shot)','g'+s.toLowerCase());mSay('GOAL! '+pn,cov?'Covered, but it beat '+gk:'Top spot left open!','g'+s,'GOAL!');await wait(1500)}
  else{stI(d,'pv');V.ice={x:s==='A'?172:28,y:42.5,t:d,k:'save',s,i:-1,l:pn};mUp();mSay('SAVED by '+gk+'!',cov?'The goalie read the shot':'The shot missed the net','','NO GOAL');mLog(mClk()+' '+pn+' penalty shot saved','');await wait(1400)}}
 async function mFifty(it){const R=Math.random,att=it.s,def=att==='A'?'B':'A',an=att==='A'?M.nameA:M.nameB,dn=def==='A'?M.nameA:M.nameB;M.t=it.t;mUp();
  V.ice={x:100,y:20+R()*45,t:'N',k:'scrum',s:'',i:-1,l:''};mSay('Loose puck battle!',an+' is breaking in. '+dn+' has to read the play.','','DEFENSE 50/50');await wait(800);
@@ -624,7 +655,7 @@ async function runMatch(){const R=Math.random,A=M.A,B=M.B;
   if(R()<.55)L.push({t:1.5+R()*(PL-3),type:'ps',s:R()<.5?'A':'B'});
   ['A','B'].forEach(side=>{const n=2+(R()<.5?1:0);for(let k=0;k<n;k++)L.push({t:(k+.6)*(PL/(n+.3))+(R()-.5),type:'lc',side})});
   L.sort((x,y)=>x.t-y.t);
-  for(const it of L){await runTo(it);
+  for(const it of L){if(it.pp&&!(V.pp&&V.pp.s===it.s))continue;await runTo(it);
    if(it.type==='lc')await mLine(it);
    else if(it.type==='pen'){mUp();const nm=it.on==='A'?M.nameA:M.nameB;const PX=it.on==='A'?M.A:M.B,pi=LINEI[M.line[it.on]][Math.floor(Math.random()*3)],pnm=PX.e[pi].p.name;V.pp={s:it.pp,end:it.t+1,pen:{side:it.on,i:pi,n:pnm}};V.ice={x:100,y:42.5,t:'N',k:'',s:'',i:-1,l:''};mSay('PENALTY!',pnm+' ('+nm+') goes to the box. 1 minute power play for '+(it.pp==='A'?M.nameA:M.nameB),'','POWER PLAY');mLog(mClk()+' Penalty on '+pnm+' ('+nm+')','');await wait(1100)}
    else if(it.type==='ps')await mPenShot(it);else if(it.type==='fifty')await mFifty(it);else if(it.type==='scr')await mScramble(it);else await mChance(it)}
@@ -769,10 +800,26 @@ function openPack(k){const d=packDef(k);if(!d)return;const pool=d.pool();if(!poo
  const art=d.img,bg=art?`background-image:url(${art})`:'background:linear-gradient(160deg,var(--pa),var(--pb))',pc=art?'im':'',lab=art?'':esc(d.evId?d.name:k);
  ov.innerHTML=`<button class="skip" onclick="summary()">Skip</button><div class="flash" id="fl"></div><div id="st"><div class="pk" id="pk" onclick="burst()"><i class="rg"></i><div class="pl pb2 ${pc}" style="${bg};clip-path:${ZZ.b}">${lab}</div><div class="pl pt2 ${pc}" style="${bg};clip-path:${ZZ.t}">${lab}</div></div><div class="hint">Tap to open</div></div>`}
 function burst(){if(anim.busy)return;anim.busy=true;$('#pk').classList.add('go');setTimeout(()=>$('#fl').classList.add('go'),800);setTimeout(()=>{anim.busy=false;show()},1100)}
-function show(){const a=anim,c=a.cards[a.i];$('#ov').classList.remove('lit');a.fl=false;$('#ov').style.setProperty('--glow',TC[c.p.tier]);if(c.p.tier>=2)$('#ov').classList.add('lit');$('#st').innerHTML=`<div class="fw t${c.p.tier}" id="fw" onclick="flip()"><div class="fp" id="fp"><div class="face bk" style="--pa:${TC[c.p.tier]};--pb:color-mix(in srgb,${TC[c.p.tier]} 35%,#000)"></div><div class="face fr">${card(c.p,c.dup?'<span class="tag d">DUPLICATE</span>':'<span class="tag">NEW</span>',false)}</div></div></div><div class="hint" id="hint">Tap to reveal · ${a.i+1}/${a.cards.length}</div>`}
+function show(){const a=anim,c=a.cards[a.i];
+ if(c.p.tier===3&&!c.wo){c.wo=1;a.busy=true;$('#ov').classList.remove('lit');walkout(c.p).then(()=>{if(anim!==a||a.sum)return;a.busy=false;show();const fp=$('#fp');if(fp){fp.classList.add('f');$('#ov').classList.add('lit');a.fl=true;const h=$('#hint');if(h)h.textContent='Legendary · tap to continue';const f=$('#fl');if(f){f.classList.remove('go');void f.offsetWidth;f.classList.add('go')}}});return}
+$('#ov').classList.remove('lit');a.fl=false;$('#ov').style.setProperty('--glow',TC[c.p.tier]);if(c.p.tier>=2)$('#ov').classList.add('lit');$('#st').innerHTML=`<div class="fw t${c.p.tier}" id="fw" onclick="flip()"><div class="fp" id="fp"><div class="face bk" style="--pa:${TC[c.p.tier]};--pb:color-mix(in srgb,${TC[c.p.tier]} 35%,#000)"></div><div class="face fr">${card(c.p,c.dup?'<span class="tag d">DUPLICATE</span>':'<span class="tag">NEW</span>',false)}</div></div></div><div class="hint" id="hint">Tap to reveal · ${a.i+1}/${a.cards.length}</div>`}
+function woSound(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;const a=new C(),T=a.currentTime;
+ const mk=(f0,f1,t,d,v,type)=>{const o=a.createOscillator(),g=a.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f0,T+t);o.frequency.exponentialRampToValueAtTime(f1,T+t+d);g.gain.setValueAtTime(v,T+t);g.gain.exponentialRampToValueAtTime(.0001,T+t+d);o.connect(g);g.connect(a.destination);o.start(T+t);o.stop(T+t+d+.05)};
+ const len=a.sampleRate*2.6,buf=a.createBuffer(1,len,a.sampleRate),d=buf.getChannelData(0);for(let i=0;i<len;i++)d[i]=Math.random()*2-1;const n=a.createBufferSource(),lp=a.createBiquadFilter(),g=a.createGain();n.buffer=buf;lp.type='lowpass';lp.frequency.value=150;g.gain.setValueAtTime(.0001,T);g.gain.exponentialRampToValueAtTime(.45,T+1.6);g.gain.exponentialRampToValueAtTime(.0001,T+2.7);n.connect(lp);lp.connect(g);g.connect(a.destination);n.start(T+.1);
+ for(let k=0;k<6;k++)mk(120,40,1.3+k*.5,.18,.3);
+ mk(90,28,4.05,.9,.6);mk(880,1320,4.1,.5,.08,'triangle');mk(1320,1760,4.15,.6,.06,'triangle');
+ setTimeout(()=>{try{a.close()}catch(e){}},7500)}catch(e){}}
+function walkout(p){return new Promise(res=>{const st=$('#st'),sk=skOf(p),mc=encodeURIComponent(p.mc||p.name),src=sk&&sk.b?sk.b:sk&&sk.x?SIL:SKC[mc.toLowerCase()]===false?SIL:'https://mc-heads.net/body/'+mc+'/220';
+ const sp=Array.from({length:44},()=>`<i style="left:${(8+Math.random()*84).toFixed(1)}%;--d:${(2.6+Math.random()*2.8).toFixed(2)}s;--t:${(1.2+Math.random()*1.8).toFixed(2)}s;--s:${(2+Math.random()*5).toFixed(1)}px;--x:${(Math.random()*90-45).toFixed(0)}px"></i>`).join('');
+ $('#ov').style.setProperty('--glow','#ffc83d');
+ st.innerHTML=`<div class="wo" id="wo"><div class="wo-bg"></div><div class="wo-rays"></div><div class="wo-door"></div><div class="wo-fog f1"></div><div class="wo-fog f2"></div><div class="wo-floor"></div>
+ <div class="wo-fig"><div class="wo-aura"></div><img class="wo-sk" alt="" referrerpolicy="no-referrer" src="${esc(src)}" data-mc="${mc}"${sk&&(sk.b||sk.x)?' data-s="1"':''} onerror="serr(this)"></div>
+ <div class="wo-sparks">${sp}</div><div class="wo-ring r1"></div><div class="wo-ring r2"></div><div class="wo-flash"></div>
+ <div class="wo-tag"><small>LEGENDARY WALKOUT</small><b>${esc(p.name)}</b><span>${p.rating} OVR · ${p.pos} · ${esc(p.team)}</span></div><div class="wo-hint">tap to skip</div></div>`;
+ const t0=Date.now();let done=false;const fin=()=>{if(done)return;done=true;clearTimeout(tm);res()},tm=setTimeout(fin,7000);const w=$('#wo');if(w)w.onclick=()=>{if(Date.now()-t0>700)fin()};woSound()})}
 function flip(){const a=anim;if(a.busy)return;const c=a.cards[a.i];if(a.fl){a.i++;return a.i<a.cards.length?show():summary()}a.busy=true;$('#ov').style.setProperty('--glow',TC[c.p.tier]);const hi=c.p.tier>=2;if(hi)$('#fw').classList.add('ch');
 setTimeout(()=>{$('#fp').classList.add('f');$('#ov').classList.add('lit');if(hi){const f=$('#fl');f.classList.remove('go');void f.offsetWidth;f.classList.add('go')}a.fl=true;a.busy=false;$('#hint').textContent=`${TN[c.p.tier]} · tap to continue`},hi?650:0)}
-function summary(){const a=anim;if(!a)return;a.busy=false;$('#ov').classList.remove('lit');const b=a.cards[a.cards.length-1].p;
+function summary(){const a=anim;if(!a)return;a.sum=true;a.busy=false;$('#ov').classList.remove('lit');const b=a.cards[a.cards.length-1].p;
 $('#st').innerHTML=`<h2 style="margin:0 0 4px">Pack opened</h2><p class="mu" style="margin:0 0 14px">Best pull: ${esc(b.name)} (${b.rating})</p><div class="sg">${a.cards.map(c=>card(c.p,c.dup?'<span class="tag d">DUPLICATE</span>':'<span class="tag">NEW</span>',false)).join('')}</div><div class="row" style="justify-content:center;margin-top:20px"><button class="pri" onclick="closePack()">Collect</button><button onclick="again()" ${(()=>{const d=packDef(a.k);return S.bb<d.cost||(d.evId&&d.limit&&((S.evB||{})[d.evId]||0)>=d.limit)||(d.end&&Date.now()>d.end)?'disabled':''})()}>Open another · ${packDef(a.k).cost}</button></div>`}
 function closePack(){const o=$('#ov');o.className='ov';o.innerHTML='';anim=null;render()}function again(){const k=anim.k;closePack();openPack(k)}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){anim?closePack():closeM()}});
