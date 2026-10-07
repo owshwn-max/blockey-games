@@ -452,7 +452,7 @@ function sqLinks(){const box=document.querySelector('.sqrk');if(!box||tab!=='Ult
  box.querySelectorAll('.sqs').forEach(el=>{const c=el.querySelector('.sqc')||el,r=c.getBoundingClientRect();pos[el.dataset.i]=[r.left-br.left+r.width/2,r.top-br.top+r.height/2]});
  const byT={};e.forEach((x,i)=>{if(x)(byT[x.p.team]=byT[x.p.team]||[]).push(i)});let h='';
  Object.entries(byT).forEach(([t,ids])=>{if(ids.length<2)return;const lv=Math.min(3,ids.length-1),col='color-mix(in srgb,'+tcol(t)+' 55%,#ffffff)';
-  for(let a=0;a<ids.length;a++)for(let b=a+1;b<ids.length;b++){const p=pos[ids[a]],q=pos[ids[b]];if(!p||!q)continue;const mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2,dx=q[0]-p[0],dy=q[1]-p[1],cx=mx-dy*.14,cy=my+dx*.14,d=`M${p[0].toFixed(1)} ${p[1].toFixed(1)} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${q[0].toFixed(1)} ${q[1].toFixed(1)}`;
+  for(let a=0;a<ids.length;a++)for(let b=a+1;b<ids.length;b++){const p=pos[ids[a]],q=pos[ids[b]];if(!p||!q)continue;const d=`M${Math.round(p[0])} ${Math.round(p[1])} L${Math.round(q[0])} ${Math.round(q[1])}`;
    if(lv===1)h+=`<path d="${d}" class="lk1" style="stroke:${col}"/>`;else if(lv===2)h+=`<path d="${d}" class="lk2" style="stroke:${col}"/>`;else h+=`<path d="${d}" class="lk3g" style="stroke:${col}"/><path d="${d}" class="lk3" style="stroke:${col}"/>`}});
  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','sqlk');svg.setAttribute('width',box.clientWidth);svg.setAttribute('height',box.clientHeight);svg.innerHTML='<defs><filter id="sqblur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter></defs>'+h;box.insertBefore(svg,box.firstChild)}
 window.addEventListener('resize',()=>{if(typeof tab!=='undefined'&&tab==='Ultimate'&&UTT==='squad')sqLinks()});
