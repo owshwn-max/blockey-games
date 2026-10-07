@@ -167,46 +167,64 @@ button.pgc:hover{transform:scale(1.12);background:#7dd3fc55}.pgc.on{background:#
 .pgc.on{transform:scale(1.18)}.pgc.on.sht{background:#facc15;border-color:#fff;box-shadow:0 0 0 4px #facc1566,0 0 26px #facc15}
 .pgc.on.cvr{background:#22c55e;border-color:#fff;box-shadow:0 0 0 4px #22c55e55,0 0 22px #22c55e}
 #ov .skip{z-index:20}
-.wo{position:fixed;inset:0;overflow:hidden;background:#02040a;z-index:2;cursor:pointer;animation:wosh .55s 4s}
-.wo-arena{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,#0f1d3a 0,#060b18 55%,#010206 100%)}
-.wo-crowd i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:0;animation:wocam var(--t) var(--d) infinite}
-.wo-boards{position:absolute;left:0;right:0;top:34%;height:9%;background:linear-gradient(#1b2a4a,#0c1426);border-top:4px solid #e5e7eb;box-shadow:0 8px 30px #000a}
-.wo-glass{position:absolute;left:0;right:0;bottom:100%;height:64%;background:linear-gradient(#ffffff0d,#ffffff03);border-bottom:2px solid #ffffff22}
-.wo-tunnel{position:absolute;left:50%;top:-4px;bottom:0;width:min(17vw,150px);transform:translateX(-50%);background:#000;border:3px solid #0b1020;border-bottom:0;overflow:hidden;box-shadow:0 0 40px 6px #7dd3fc55}
-.wo-tl{position:absolute;inset:0;background:linear-gradient(#bfe8ff,#3b82f6 60%,#0b1e44);opacity:0;animation:wotl 1.1s .2s forwards,wotlf 3.6s 1.2s infinite alternate}
-.wo-floor{position:absolute;left:-30%;right:-30%;top:43%;height:90%;transform-origin:50% 0;transform:perspective(420px) rotateX(62deg);opacity:.9}
+.wo{position:fixed;inset:0;overflow:hidden;background:#02040a;z-index:2;cursor:pointer;--sk:none}
+.wo-cam{position:absolute;inset:0;perspective:1000px;perspective-origin:50% 38%;animation:wosh .6s 4.05s}
+.wo-world{position:absolute;left:50%;top:48%;width:0;height:0;transform-style:preserve-3d}
+.wo-wall{position:absolute;left:-3500px;width:7000px;height:1100px;background:linear-gradient(#05080f,#0a1020)}
+.wo-crowd i{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff;opacity:0;animation:wocam var(--t) var(--d) infinite}
+.wo-glass{position:absolute;left:0;right:0;bottom:170px;height:420px;background:linear-gradient(#ffffff10,#ffffff04);border-bottom:3px solid #ffffff2a}
+.wo-boards{position:absolute;left:0;right:0;bottom:0;height:170px;background:linear-gradient(#22345c,#0c1426);border-top:8px solid #e5e7eb}
+.wo-tunnel{position:absolute;left:3370px;bottom:0;width:260px;height:470px;background:#000;border:6px solid #0b1020;border-bottom:0;box-shadow:0 0 120px 20px #7dd3fc66;overflow:hidden}
+.wo-tl{position:absolute;inset:0;background:linear-gradient(#d4f0ff,#3b82f6 62%,#0b1e44);opacity:0;animation:wotl 1.1s .2s forwards,wotlf 3.6s 1.2s infinite alternate}
+.wo-floor{position:absolute;left:0;width:7000px;height:3500px;transform-origin:50% 0;filter:brightness(.55) saturate(.85)}.wo-fv{position:absolute;inset:0;background:linear-gradient(#2a1500,#6b3a00);opacity:0;mix-blend-mode:multiply;animation:wofv 1.2s 4.02s forwards}@keyframes wofv{to{opacity:.8}}
 .wo-floor svg{width:100%;height:100%;display:block}
-.wo-sheen{position:absolute;left:0;right:0;top:43%;bottom:0;background:linear-gradient(#000e,#0004 40%,#0008);pointer-events:none;animation:wolit 1s 4.05s forwards}
-.wo-beam{position:absolute;top:-10%;width:22vw;height:90%;background:linear-gradient(#fff6,transparent 85%);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);transform-origin:50% 0;opacity:.18;animation:wobeam 3.2s ease-in-out infinite alternate}
-.wo-beam.b1{left:6%;--r:-14deg}.wo-beam.b2{left:28%;--r:8deg;animation-delay:-1s}.wo-beam.b3{left:52%;--r:-8deg;animation-delay:-2s}.wo-beam.b4{left:74%;--r:14deg;animation-delay:-.6s}
-.wo-fog{position:absolute;left:0;right:0;top:34%;height:30%;background:radial-gradient(ellipse at 50% 40%,#9bd5ff55,transparent 62%);filter:blur(14px);opacity:.8;animation:wofog 5s ease-in-out infinite alternate}
-.wo-stage{position:absolute;left:50%;bottom:3%;height:min(72vh,580px);aspect-ratio:2/3;transform:translateX(-50%)}
-.wo-glow{position:absolute;inset:-18%;background:radial-gradient(ellipse at 50% 55%,#ffd54acc,#ff8a0066 45%,transparent 70%);filter:blur(22px);opacity:0;animation:woglow 1s 4.05s forwards,woaurap 1.1s 5.1s ease-in-out infinite alternate}
-.wo-card{position:absolute;inset:0;opacity:0;transform:scale(.55);animation:wocard .75s 4.05s cubic-bezier(.2,1.5,.4,1) forwards}
-.wo-card .pc{width:100%;height:100%;aspect-ratio:auto;box-shadow:0 0 40px #ffc83d,0 0 100px #ff8a0088}.wo-card .pc .bd{visibility:hidden}
-.wo-fig{position:absolute;left:50%;bottom:15%;height:58%;aspect-ratio:1/2;transform-origin:50% 100%;transform:translateX(-50%) translateY(-34vh) scale(.1);opacity:0;z-index:3;animation:wowalk 3s 1s cubic-bezier(.5,.1,.55,1) forwards}
-.wo-sk{display:block;height:100%;width:auto;margin:0 auto;filter:brightness(0) drop-shadow(0 0 3px #fffb);animation:wobob .46s 1s 7 alternate ease-in-out,worev .7s 4.05s both}
-.wo-refl{position:absolute;left:0;right:0;top:100%;height:100%;transform:scaleY(-1);opacity:.22;-webkit-mask-image:linear-gradient(to top,#000 0,transparent 55%);mask-image:linear-gradient(to top,#000 0,transparent 55%)}
-.wo-refl .wo-sk{animation:worev .7s 4.05s both}
-.wo-shadow{position:absolute;left:10%;right:10%;bottom:-3%;height:8%;background:radial-gradient(ellipse,#0009,transparent 70%)}
-.wo-aura{position:absolute;left:-60%;right:-60%;bottom:-4%;height:118%;background:radial-gradient(ellipse at 50% 70%,#fff6b0cc 0,#ffc83dcc 24%,#ff8a00aa 46%,transparent 70%);filter:blur(14px);opacity:0;animation:woaura 1s 4.05s forwards,woaurap .9s 5.1s ease-in-out infinite alternate}
-.wo-sparks i{position:absolute;bottom:8%;width:var(--s);height:var(--s);border-radius:50%;background:var(--c);box-shadow:0 0 8px 2px var(--c);opacity:0;animation:wospark var(--t) var(--d) ease-out infinite}
-.wo-ring{position:absolute;left:50%;top:62%;width:60px;height:60px;margin:-30px;border-radius:50%;border:4px solid #ffe27a;opacity:0;animation:woring 1.2s 4.05s ease-out forwards}.wo-ring.r2{animation-delay:4.3s;border-color:#fff}
-.wo-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;animation:woflash .8s 4.03s ease-out}
-.wo-tag{position:absolute;left:0;right:0;top:3%;text-align:center;color:#fff;opacity:0;z-index:4;animation:woslam .55s 4.4s cubic-bezier(.2,1.6,.4,1) forwards;text-shadow:0 0 20px #ffb300,0 3px 0 #000}
-.wo-tag small{display:block;letter-spacing:.4em;color:#ffd54a;font-weight:800;font-size:13px}.wo-tag b{display:block;font:900 clamp(34px,8vw,72px) "Barlow Condensed","Arial Black",sans-serif;line-height:1.05}
+.wo-gold{position:absolute;width:5200px;height:3400px;background:radial-gradient(ellipse at 50% 46%,#ffefb0 0,#d9a22a 20%,#6b4600 46%,#120b00 72%,#000 100%);opacity:0;animation:wofade .9s 4.02s forwards}
+.wo-gr{position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 46%,#ffe27a40 0 4deg,transparent 4deg 13deg);-webkit-mask-image:radial-gradient(ellipse at 50% 46%,#000 0,transparent 60%);mask-image:radial-gradient(ellipse at 50% 46%,#000 0,transparent 60%);animation:worays 40s linear infinite}
+.wo-fgold{position:absolute;width:1400px;height:1400px;border-radius:50%;background:radial-gradient(circle,#ffd54acc,#ff9a0055 40%,transparent 68%);opacity:0;animation:wofade .9s 4.1s forwards}
+.wo-rg{position:absolute;width:1040px;height:1040px;border-radius:50%;background:conic-gradient(#fff3b0,#e0a020,#7a4a00,#ffe27a,#fff6c8,#b36b00,#fff3b0);-webkit-mask-image:radial-gradient(circle,transparent 66%,#000 67%,#000 74%,transparent 75%);mask-image:radial-gradient(circle,transparent 66%,#000 67%,#000 74%,transparent 75%);opacity:0;animation:wofade .8s 4.2s forwards,worspin 7s linear infinite}
+.wo-rg.b{animation-duration:.8s,11s;animation-direction:normal,reverse;width:820px;height:820px;margin:110px 0 0 110px}
+.wo-rg.c{width:900px;height:900px;margin:70px 0 0 70px;animation:wofade .8s 4.2s forwards,wopulse 2.4s 5s ease-in-out infinite alternate}
+.wo-bn{position:absolute;left:-120px;top:-190px;width:240px;height:380px}
+.wo-bn .in{width:100%;height:100%;border-radius:10px;border:3px solid #fff3b0;background:linear-gradient(160deg,#fff0a8,#d9a22a 55%,#8a5a00);box-shadow:0 0 40px #ffc83d99,inset 0 0 30px #fff8;display:flex;flex-direction:column;align-items:center;padding:22px 0;gap:6px;color:#3a2600;opacity:0;transform:translateY(520px);animation:wobn .8s 4.45s cubic-bezier(.2,1.3,.4,1) forwards}
+.wo-bn b{font:900 72px "Barlow Condensed","Arial Black",sans-serif;line-height:1}.wo-bn span{font-weight:900;font-size:26px;letter-spacing:.1em}.wo-bn img{width:110px;height:110px;object-fit:contain;margin-top:14px;filter:drop-shadow(0 4px 6px #0006)}.wo-bn small{font-weight:800;letter-spacing:.2em;margin-top:auto}
+.wo-cw{position:absolute;left:-180px;top:-250px;width:360px;height:540px}
+.wo-cw .in{width:100%;height:100%;opacity:0;transform:translateY(520px) rotateY(80deg) scale(.6);animation:wocwin 1s 4.2s cubic-bezier(.2,1.2,.35,1) forwards}
+.wo-cw .pc{width:100%;height:100%;aspect-ratio:auto;box-shadow:0 0 50px #ffc83d,0 0 140px #ff8a0099}
+.wo-char{position:absolute;left:0;top:0;transform-style:preserve-3d;animation:wowalk 3.1s .9s cubic-bezier(.35,.1,.5,1) both}
+.wo-char.arr{animation:warr 1.3s cubic-bezier(.3,.1,.3,1) both}
+#wom{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.mcr,.cb,.pv,.pa{position:absolute;left:0;top:0;transform-style:preserve-3d}.pa{transform-origin:0 0}
+.mf{position:absolute;left:0;top:0;background-image:var(--sk);image-rendering:pixelated;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.mcr.walk{animation:mbob .24s ease-in-out infinite alternate}
+.mcr.walk .a1,.mcr.walk .l2{animation:swA .48s ease-in-out infinite alternate}.mcr.walk .a2,.mcr.walk .l1{animation:swB .48s ease-in-out infinite alternate}
+.nod{animation:wonod 1.9s ease-in-out infinite alternate}
+.wo-dark{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,#0003 0,#000b 55%,#000 100%);pointer-events:none;animation:wodk 3.3s .8s forwards}
+.wo-beam{position:absolute;top:-10%;width:24vw;height:100%;background:linear-gradient(#fff5,transparent 80%);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);transform-origin:50% 0;opacity:0;pointer-events:none;animation:wobeam 3s ease-in-out infinite alternate,wofade2 1s 4.2s forwards}
+.wo-beam.b1{left:2%;--r:-16deg}.wo-beam.b2{left:38%;--r:6deg;animation-delay:-1s,4.2s}.wo-beam.b3{left:72%;--r:16deg;animation-delay:-2s,4.2s}
+.wo-bank{position:absolute;left:0;bottom:28%;width:22%;display:grid;grid-template-columns:repeat(6,1fr);gap:3.2vw 1.4vw;padding:0 1vw;pointer-events:none;transform:perspective(500px) rotateY(55deg);transform-origin:0 50%}.wo-bank.r{left:auto;right:0;transform:perspective(500px) rotateY(-55deg);transform-origin:100% 50%}
+.wo-bank i{width:2.1vw;height:2.1vw;border-radius:50%;background:radial-gradient(circle,#fff,#ffe27a 55%,#c8921a);box-shadow:0 0 14px 5px #ffe27acc;opacity:0;animation:wolamp .7s var(--d) forwards,wotw 1.4s calc(var(--d) + .7s) infinite alternate}
+.wo-conf{position:absolute;inset:0;pointer-events:none;overflow:hidden}.wo-conf i{position:absolute;top:-4%;width:8px;height:14px;background:var(--c);opacity:0;animation:wocf var(--t) var(--d) linear infinite}
+.wo-fw{position:absolute;width:0;height:0;pointer-events:none}.wo-fw i{position:absolute;left:0;top:0;width:5px;height:5px;margin:-2px;border-radius:50%;background:var(--c);box-shadow:0 0 10px 3px var(--c);opacity:0;animation:wofw 1.3s var(--d) ease-out forwards}
+.wo-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;animation:woflash .9s 4.02s ease-out}
+.wo-tag{position:absolute;left:0;right:0;top:3%;text-align:center;color:#fff;opacity:0;z-index:4;pointer-events:none;animation:woslam .55s 4.7s cubic-bezier(.2,1.6,.4,1) forwards;text-shadow:0 0 22px #ffb300,0 3px 0 #000}
+.wo-tag small{display:block;letter-spacing:.4em;color:#ffd54a;font-weight:800;font-size:13px}.wo-tag b{display:block;font:900 clamp(34px,8vw,76px) "Barlow Condensed","Arial Black",sans-serif;line-height:1.05}
 .wo-hint{position:absolute;right:16px;bottom:10px;color:#fffa;font-size:12px;letter-spacing:.1em;z-index:5}
 @keyframes wocam{0%,86%,100%{opacity:0}90%{opacity:1}94%{opacity:.2}}
-@keyframes wotl{from{opacity:0}30%{opacity:.5}45%{opacity:.15}to{opacity:1}}@keyframes wotlf{from{filter:brightness(1)}to{filter:brightness(1.35)}}
+@keyframes wotl{from{opacity:0}30%{opacity:.5}45%{opacity:.15}to{opacity:1}}@keyframes wotlf{from{filter:brightness(1)}to{filter:brightness(1.3)}}
+@keyframes wowalk{from{transform:translate3d(0,0,-2400px)}to{transform:translate3d(0,0,60px)}}
+@keyframes warr{0%{transform:translate3d(0,0,60px) rotateY(0)}50%{transform:translate3d(-200px,-26px,150px) rotateY(380deg)}100%{transform:translate3d(-300px,0,100px) rotateY(724deg)}}
+@keyframes mbob{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+@keyframes swA{from{transform:rotateX(-36deg)}to{transform:rotateX(36deg)}}@keyframes swB{from{transform:rotateX(36deg)}to{transform:rotateX(-36deg)}}
+@keyframes wonod{from{transform:rotateY(-7deg) rotateX(-2deg)}to{transform:rotateY(7deg) rotateX(3deg)}}
+@keyframes wodk{to{opacity:0}}@keyframes wofl{to{filter:brightness(.5) sepia(.7) saturate(1.6) hue-rotate(-12deg)}}
+@keyframes wofade{to{opacity:1}}@keyframes wopulse{from{transform:translate3d(-520px,-120px,-950px) scale(1)}to{transform:translate3d(-520px,-120px,-950px) scale(1.06)}}
+@keyframes wofade2{to{opacity:.55}}
+@keyframes worays{to{transform:rotate(360deg)}}@keyframes worspin{to{transform:rotateZ(360deg)}}
+@keyframes wobn{to{opacity:1;transform:translateY(0)}}@keyframes wocwin{to{opacity:1;transform:translateY(0) rotateY(0) scale(1)}}
 @keyframes wobeam{from{transform:rotate(calc(var(--r)*-1))}to{transform:rotate(var(--r))}}
-@keyframes wolit{to{opacity:0}}@keyframes wofog{from{transform:translateX(-5%)}to{transform:translateX(5%)}}
-@keyframes wowalk{0%{opacity:0;transform:translateX(-50%) translateY(-34vh) scale(.1)}8%{opacity:1}100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
-@keyframes wobob{from{transform:rotate(-2.2deg) translateY(0)}to{transform:rotate(2.2deg) translateY(-7px)}}
-@keyframes worev{from{filter:brightness(0) drop-shadow(0 0 3px #fffb)}to{filter:brightness(1.08) drop-shadow(0 0 20px #ffc83d)}}
-@keyframes woglow{to{opacity:1}}@keyframes wocard{to{opacity:1;transform:scale(1)}}
-@keyframes woaura{to{opacity:1}}@keyframes woaurap{from{transform:scale(1)}to{transform:scale(1.07)}}
-@keyframes wospark{0%{opacity:0;transform:translate(0,0)}12%{opacity:1}100%{opacity:0;transform:translate(var(--x),-70vh)}}
-@keyframes woring{0%{opacity:.95;transform:scale(1)}100%{opacity:0;transform:scale(20)}}
+@keyframes wolamp{to{opacity:1}}@keyframes wotw{from{filter:brightness(1)}to{filter:brightness(1.6)}}
+@keyframes wocf{0%{opacity:0;transform:translate(0,0) rotate(var(--r))}6%{opacity:1}100%{opacity:1;transform:translate(var(--x),112vh) rotate(calc(var(--r) + 900deg))}}
+@keyframes wofw{0%{opacity:1;transform:rotate(var(--a)) translateX(0)}100%{opacity:0;transform:rotate(var(--a)) translateX(var(--rr))}}
 @keyframes woflash{0%{opacity:.95}100%{opacity:0}}
 @keyframes woslam{0%{opacity:0;transform:scale(2.6)}100%{opacity:1;transform:scale(1)}}
 @keyframes wosh{0%,100%{transform:translate(0)}20%{transform:translate(-9px,5px)}40%{transform:translate(8px,-6px)}60%{transform:translate(-6px,-4px)}80%{transform:translate(5px,5px)}}
@@ -826,22 +844,47 @@ function woSound(){try{const C=window.AudioContext||window.webkitAudioContext;if
  mk(90,28,4.05,.9,.6);mk(880,1320,4.1,.5,.08,'triangle');mk(1320,1760,4.15,.6,.06,'triangle');
  {const l2=a.sampleRate*3,b2=a.createBuffer(1,l2,a.sampleRate),d2=b2.getChannelData(0);for(let i=0;i<l2;i++)d2[i]=Math.random()*2-1;const n2=a.createBufferSource(),bp=a.createBiquadFilter(),g2=a.createGain();n2.buffer=b2;bp.type='bandpass';bp.frequency.value=900;bp.Q.value=.6;g2.gain.setValueAtTime(.0001,T+3.7);g2.gain.exponentialRampToValueAtTime(.22,T+4.3);g2.gain.exponentialRampToValueAtTime(.0001,T+6.7);n2.connect(bp);bp.connect(g2);g2.connect(a.destination);n2.start(T+3.7)}
  setTimeout(()=>{try{a.close()}catch(e){}},7500)}catch(e){}}
-function walkout(p){return new Promise(res=>{const st=$('#st'),sk=skOf(p),mc=encodeURIComponent(p.mc||p.name),src=sk&&sk.b?sk.b:sk&&sk.x?SIL:SKC[mc.toLowerCase()]===false?SIL:'https://mc-heads.net/body/'+mc+'/220',R=Math.random;
- const img=cls=>`<img class="${cls}" alt="" referrerpolicy="no-referrer" src="${esc(src)}" data-mc="${mc}"${sk&&(sk.b||sk.x)?' data-s="1"':''} onerror="serr(this)">`;
- const crowd=Array.from({length:46},()=>`<i style="left:${(R()*100).toFixed(1)}%;top:${(R()*34).toFixed(1)}%;--d:${(R()*5).toFixed(2)}s;--t:${(.8+R()*2.4).toFixed(2)}s"></i>`).join('');
- const sp=Array.from({length:60},()=>`<i style="left:${(R()*100).toFixed(1)}%;--d:${(4.1+R()*2.5).toFixed(2)}s;--t:${(1.6+R()*2).toFixed(2)}s;--s:${(3+R()*6).toFixed(1)}px;--x:${(R()*160-80).toFixed(0)}px;--c:${['#ffe27a','#fff','#ffb300','#7dd3fc'][Math.floor(R()*4)]}"></i>`).join('');
- const rink=`<svg viewBox="0 0 200 100" preserveAspectRatio="none"><rect width="200" height="100" fill="#e6f4ff"/><circle cx="100" cy="50" r="15" fill="none" stroke="#2563eb" stroke-width="1.2"/><line x1="100" y1="0" x2="100" y2="100" stroke="#dc2626" stroke-width="1.6"/><line x1="70" y1="0" x2="70" y2="100" stroke="#2563eb" stroke-width="2"/><line x1="130" y1="0" x2="130" y2="100" stroke="#2563eb" stroke-width="2"/><circle cx="40" cy="25" r="10" fill="none" stroke="#dc2626" stroke-width=".9"/><circle cx="40" cy="75" r="10" fill="none" stroke="#dc2626" stroke-width=".9"/><circle cx="160" cy="25" r="10" fill="none" stroke="#dc2626" stroke-width=".9"/><circle cx="160" cy="75" r="10" fill="none" stroke="#dc2626" stroke-width=".9"/></svg>`;
+function mcDefaultSkin(){const c=document.createElement('canvas');c.width=64;c.height=64;const g=c.getContext('2d'),f=(col,x,y,w,h)=>{g.fillStyle=col;g.fillRect(x,y,w,h)};
+ f('#b98a63',0,0,32,16);f('#4a2f1b',8,0,8,8);f('#4a2f1b',0,8,32,3);f('#4a2f1b',8,8,8,2);f('#fff',9,11,2,1);f('#fff',13,11,2,1);f('#3b3bc8',10,11,1,1);f('#3b3bc8',14,11,1,1);f('#7a4a2c',10,14,4,1);
+ f('#2fb3c4',16,16,24,16);f('#2fb3c4',40,16,16,16);f('#b98a63',40,28,16,4);f('#3b4ba8',0,16,16,16);f('#2fb3c4',32,48,16,16);f('#b98a63',32,60,16,4);f('#3b4ba8',16,48,16,16);return c.toDataURL()}
+function wTex(p,sk){return new Promise(res=>{const nm=encodeURIComponent(String(p.mc||p.name)),c=[];if(sk&&sk.t)c.push(sk.t);if(!(sk&&sk.x))c.push('https://mc-heads.net/skin/'+nm,'https://minotar.net/skin/'+nm);let i=0;
+ const nx=()=>{if(i>=c.length)return res({u:mcDefaultSkin(),h:64,slim:false});const u=c[i++],im=new Image();const to=setTimeout(()=>{im.onload=im.onerror=null;nx()},2500);im.onload=()=>{clearTimeout(to);res({u,h:im.height||64,slim:!!(sk&&sk.a&&u===sk.t)})};im.onerror=()=>{clearTimeout(to);nx()};im.src=u};nx()})}
+function mcCube(w,h,d,ox,oy,K,inf,tx,ty){const W=(w+inf)*K,H=(h+inf)*K,D=(d+inf)*K,R={t:[ox+d,oy,w,d],b:[ox+d+w,oy,w,d],r:[ox,oy+d,d,h],f:[ox+d,oy+d,w,h],l:[ox+d+w,oy+d,d,h],k:[ox+2*d+w,oy+d,w,h]},sh={f:1,k:.9,r:.8,l:.8,t:1.12,b:.6};
+ const fc=(k,fw,fh,tf)=>{const[x,y,ww,hh]=R[k],sx=fw/(ww*K),sy=fh/(hh*K);return `<i class="mf" style="width:${fw}px;height:${fh}px;margin:${-fh/2}px 0 0 ${-fw/2}px;background-size:${64*K*sx}px ${64*K*sy}px;background-position:${-x*K*sx}px ${-y*K*sy}px;transform:${tf};filter:brightness(${sh[k]})"></i>`};
+ return `<div class="cb" style="transform:translate3d(${tx}px,${ty}px,0)">`+fc('f',W,H,`translateZ(${D/2}px)`)+fc('k',W,H,`rotateY(180deg) translateZ(${D/2}px)`)+fc('r',D,H,`rotateY(-90deg) translateZ(${W/2}px)`)+fc('l',D,H,`rotateY(90deg) translateZ(${W/2}px)`)+fc('t',W,D,`rotateX(90deg) translateZ(${H/2}px)`)+fc('b',W,D,`rotateX(-90deg) translateZ(${H/2}px)`)+`</div>`}
+function mcChar(K,slim,old){const aw=slim?3:4,part=(px,py,cls,inner)=>`<div class="pv" style="transform:translate3d(${px*K}px,${py*K}px,0)"><div class="pa ${cls}">${inner}</div></div>`,lo=old?[40,16]:[32,48],ll=old?[0,16]:[16,48],ov=(w,h,d,ox,oy,ty)=>old?'':mcCube(w,h,d,ox,oy,K,.6,0,ty);
+ return `<div class="mcr walk">${mcCube(8,12,4,16,16,K,0,0,0)}${ov(8,12,4,16,32,0)}`
+ +part(0,-6,'nod',mcCube(8,8,8,0,0,K,0,0,-4*K)+mcCube(8,8,8,32,0,K,.9,0,-4*K))
+ +part(-(4+aw/2),-6,'a1',mcCube(aw,12,4,40,16,K,0,0,6*K)+ov(aw,12,4,40,32,6*K))
+ +part(4+aw/2,-6,'a2',mcCube(aw,12,4,lo[0],lo[1],K,0,0,6*K)+ov(aw,12,4,48,48,6*K))
+ +part(-2,6,'l1',mcCube(4,12,4,0,16,K,0,0,6*K)+ov(4,12,4,0,32,6*K))
+ +part(2,6,'l2',mcCube(4,12,4,ll[0],ll[1],K,0,0,6*K)+ov(4,12,4,0,48,6*K))+`</div>`}
+function walkout(p){return new Promise(async res=>{const st=$('#st'),sk=skOf(p),R=Math.random,K=Math.max(6,Math.min(10,Math.round(innerHeight/76))),FY=18*K,
+ crowd=Array.from({length:70},()=>`<i style="left:${(R()*100).toFixed(1)}%;top:${(R()*55).toFixed(1)}%;--d:${(R()*5).toFixed(2)}s;--t:${(.8+R()*2.2).toFixed(2)}s"></i>`).join(''),
+ conf=Array.from({length:70},()=>`<i style="left:${(R()*100).toFixed(1)}%;--d:${(4.1+R()*3).toFixed(2)}s;--t:${(2.6+R()*3).toFixed(2)}s;--c:${['#ffe27a','#fff','#ffb300','#f5d061','#fff6c0'][Math.floor(R()*5)]};--r:${Math.floor(R()*360)}deg;--x:${(R()*140-70).toFixed(0)}px"></i>`).join(''),
+ fw=Array.from({length:5},(_,j)=>{const x=10+R()*80,y=8+R()*36,d=(4.2+j*.75).toFixed(2);return `<div class="wo-fw" style="left:${x.toFixed(1)}%;top:${y.toFixed(1)}%">`+Array.from({length:26},(_,k)=>`<i style="--a:${k*360/26}deg;--rr:${(60+R()*70).toFixed(0)}px;--d:${d}s;--c:${['#ffe27a','#fff','#ffb300'][k%3]}"></i>`).join('')+`</div>`}).join(''),
+ bank=`<div class="wo-bank">${Array.from({length:24},(_,k)=>`<i style="--d:${(4.3+(k%6)*.08).toFixed(2)}s"></i>`).join('')}</div>`,
+ rink=`<svg viewBox="0 0 200 100" preserveAspectRatio="none"><rect width="200" height="100" fill="#e3f1fc"/><circle cx="100" cy="50" r="14" fill="none" stroke="#2563eb" stroke-width="1"/><line x1="100" y1="0" x2="100" y2="100" stroke="#dc2626" stroke-width="1.4"/><line x1="72" y1="0" x2="72" y2="100" stroke="#2563eb" stroke-width="1.6"/><line x1="128" y1="0" x2="128" y2="100" stroke="#2563eb" stroke-width="1.6"/><circle cx="40" cy="25" r="9" fill="none" stroke="#dc2626" stroke-width=".7"/><circle cx="40" cy="75" r="9" fill="none" stroke="#dc2626" stroke-width=".7"/><circle cx="160" cy="25" r="9" fill="none" stroke="#dc2626" stroke-width=".7"/><circle cx="160" cy="75" r="9" fill="none" stroke="#dc2626" stroke-width=".7"/></svg>`,
+ ban=(x,ry)=>`<div class="wo-bn" style="transform:translate3d(${x}px,${-2*K}px,${-330}px) rotateY(${ry}deg)"><div class="in"><b>${p.rating}</b><span>${p.pos}</span><img alt="" src="${esc(logo(p.team))}" data-t="${esc(p.team)}" onerror="lerr(this)"><small>${p.league}</small></div></div>`;
  $('#ov').style.setProperty('--glow','#ffc83d');
- st.innerHTML=`<div class="wo" id="wo"><div class="wo-arena"></div><div class="wo-crowd">${crowd}</div><div class="wo-boards"><div class="wo-glass"></div><div class="wo-tunnel"><div class="wo-tl"></div></div></div>
- <div class="wo-floor">${rink}</div><div class="wo-sheen"></div>
- <div class="wo-beam b1"></div><div class="wo-beam b2"></div><div class="wo-beam b3"></div><div class="wo-beam b4"></div><div class="wo-fog"></div>
- <div class="wo-stage"><div class="wo-glow"></div><div class="wo-card">${card(p,'',false)}</div>
-  <div class="wo-fig"><div class="wo-aura"></div><div class="wo-shadow"></div>${img('wo-sk')}<div class="wo-refl">${img('wo-sk')}</div></div></div>
- <div class="wo-sparks">${sp}</div><div class="wo-ring r1"></div><div class="wo-ring r2"></div><div class="wo-flash"></div>
+ st.innerHTML=`<div class="wo" id="wo" style="--K:${K}px"><div class="wo-cam"><div class="wo-world">
+  <div class="wo-gold" style="left:-2600px;top:${FY-3000}px;transform:translateZ(-1500px)"><div class="wo-gr"></div></div>
+  <div class="wo-wall" style="top:${FY-1100}px;transform:translateZ(-2600px)"><div class="wo-crowd">${crowd}</div><div class="wo-glass"></div><div class="wo-boards"></div><div class="wo-tunnel"><div class="wo-tl"></div></div></div>
+  <div class="wo-floor" style="top:${FY}px;transform:translate3d(-3500px,0,-2600px) rotateX(90deg)">${rink}<i class="wo-fv"></i></div>
+  <div class="wo-fgold" style="top:${FY-1}px;transform:translate3d(-700px,0,-300px) rotateX(90deg)"></div>
+  <div class="wo-rg a" style="transform:translate3d(-520px,-${12*K}px,-500px) rotateX(72deg)"></div><div class="wo-rg b" style="transform:translate3d(-520px,-${12*K}px,-500px) rotateX(-66deg) rotateY(25deg)"></div><div class="wo-rg c" style="transform:translate3d(-520px,-${12*K}px,-950px)"></div>
+  ${ban(-620,18)}${ban(620,-18)}
+  <div class="wo-cw" style="transform:translate3d(${14*K}px,${3*K}px,-260px) rotateY(-6deg)"><div class="in">${card(p,'',false)}</div></div>
+  <div class="wo-char" id="woch"><div class="wo-sh"></div><div id="wom"></div></div>
+ </div></div>
+ <div class="wo-dark"></div><div class="wo-beam b1"></div><div class="wo-beam b2"></div><div class="wo-beam b3"></div>${bank}<div class="wo-bank r">${Array.from({length:24},(_,k)=>`<i style="--d:${(4.4+(k%6)*.08).toFixed(2)}s"></i>`).join('')}</div>
+ <div class="wo-conf">${conf}</div>${fw}<div class="wo-flash"></div>
  <div class="wo-tag"><small>★ LEGENDARY WALKOUT ★</small><b>${esc(p.name)}</b></div><div class="wo-hint" id="wohint">tap to skip</div></div>`;
- const t0=Date.now();let done=false,rev=false;const fin=()=>{if(done)return;done=true;clearTimeout(t1);clearTimeout(t2);res()};
- const t1=setTimeout(()=>{rev=true;const h=$('#wohint');if(h)h.textContent='tap to continue'},4700),t2=setTimeout(fin,24000);
- const w=$('#wo');if(w)w.onclick=()=>{if(Date.now()-t0>600)fin()};woSound()})}
+ const t0=Date.now();let done=false;const fin=()=>{if(done)return;done=true;clearTimeout(t1);clearTimeout(t2);clearTimeout(t3);res()};
+ const t1=setTimeout(()=>{const c=$('#woch'),m=document.querySelector('#wom .mcr');if(c)c.classList.add('arr');if(m)m.classList.remove('walk')},4050),t2=setTimeout(()=>{const h=$('#wohint');if(h)h.textContent='tap to continue'},5400),t3=setTimeout(fin,40000);
+ const w=$('#wo');if(w)w.onclick=()=>{const h=$('#wohint');if(h&&h.textContent==='tap to continue'||Date.now()-t0>800)fin()};
+ woSound();
+ const tx=await wTex(p,sk);if(done)return;const m=$('#wom');if(m){m.innerHTML=mcChar(K,tx.slim,tx.h<64);const root=$('#wo');if(root)root.style.setProperty('--sk','url("'+tx.u+'")')}})}
 function flip(){const a=anim;if(a.busy)return;const c=a.cards[a.i];if(a.fl){a.i++;return a.i<a.cards.length?show():summary()}a.busy=true;$('#ov').style.setProperty('--glow',TC[c.p.tier]);const hi=c.p.tier>=2;if(hi)$('#fw').classList.add('ch');
 setTimeout(()=>{$('#fp').classList.add('f');$('#ov').classList.add('lit');if(hi){const f=$('#fl');f.classList.remove('go');void f.offsetWidth;f.classList.add('go')}a.fl=true;a.busy=false;$('#hint').textContent=`${TN[c.p.tier]} · tap to continue`},hi?650:0)}
 function summary(){const a=anim;if(!a)return;a.sum=true;a.busy=false;$('#ov').classList.remove('lit');const b=a.cards[a.cards.length-1].p;
@@ -933,7 +976,11 @@ function skinFig(im){const k=im.width/64,old=im.height*2===im.width,S=document.c
  if(!old){d(4,36,4,12,4,20);d(4,52,4,12,8,20);d(20,36,8,12,4,8);d(44,36,aw,12,slim?1:0,8);d(52,52,aw,12,12,8)}
  d(8,8,8,8,4,0);d(40,8,8,8,4,0);
  const h=document.createElement('canvas');h.width=8;h.height=8;const hx=h.getContext('2d');hx.imageSmoothingEnabled=false;hx.drawImage(S,8*k,8*k,8*k,8*k,0,0,8,8);hx.drawImage(S,40*k,8*k,8*k,8*k,0,0,8,8);
- return{b:c.toDataURL('image/png'),h:h.toDataURL('image/png')}}
+ const T=document.createElement('canvas');T.width=64;T.height=64;const tx=T.getContext('2d');tx.imageSmoothingEnabled=false;tx.drawImage(S,0,0,64,old?32:64);
+ if(old){const fl=(a,b2,w,h2,dx,dy)=>{tx.save();tx.translate(dx+w,dy);tx.scale(-1,1);tx.drawImage(T,a,b2,w,h2,0,0,w,h2);tx.restore()};
+  fl(44,16,4,4,36,48);fl(48,16,4,4,40,48);fl(48,20,4,12,32,52);fl(44,20,4,12,36,52);fl(40,20,4,12,40,52);fl(52,20,4,12,44,52);
+  fl(4,16,4,4,20,48);fl(8,16,4,4,24,48);fl(8,20,4,12,16,52);fl(4,20,4,12,20,52);fl(0,20,4,12,24,52);fl(12,20,4,12,28,52)}
+ return{b:c.toDataURL('image/png'),h:h.toDataURL('image/png'),t:T.toDataURL('image/png'),a:slim?1:0}}
 const okSkin=im=>im.width>=64&&(im.height===im.width||im.height*2===im.width);
 async function blobImg(u,chk){const r=await fetch(u);if(!r.ok)throw 0;if(chk&&!chk(r))throw 0;const url=URL.createObjectURL(await r.blob());try{return await loadImg(url)}finally{setTimeout(()=>URL.revokeObjectURL(url),5000)}}
 async function fetchSkin(name){const n=encodeURIComponent(name);let id='',ex=null,tex='';
@@ -948,7 +995,7 @@ async function fetchSkin(name){const n=encodeURIComponent(name);let id='',ex=nul
  if(!tex){for(const u of ['https://minotar.net/skin/'+n,'https://mc-heads.net/skin/'+n]){try{const im=await blobImg(u);if(okSkin(im))return skinFig(im)}catch(e){}}}
  return null}
 let SKRUN=false;
-async function fetchSkins(all){if(SKRUN)return;DB.skins=DB.skins||{};if(all)DB.skins={};const names=[...new Set(DB.players.map(p=>String(p.mc||p.name)))].filter(n=>all||!(DB.skins[n.toLowerCase()]||{}).b);
+async function fetchSkins(all){if(SKRUN)return;DB.skins=DB.skins||{};if(all)DB.skins={};const names=[...new Set(DB.players.map(p=>String(p.mc||p.name)))].filter(n=>all||!(DB.skins[n.toLowerCase()]||{}).t);
  if(!names.length){AD.msg='Every player already has a saved skin.';return render()}
  SKRUN=true;let ok=0,miss=0;const fail=[];
  try{for(let i=0;i<names.length;i++){const st=$('#skst');if(st)st.textContent='Fetching '+(i+1)+' of '+names.length+': '+names[i];const r=await fetchSkin(names[i]);
