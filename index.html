@@ -126,8 +126,8 @@ h1,h2,h3,.logo{font-weight:800;letter-spacing:.4px}h3{font-size:14px}
 .sqw{display:grid;gap:14px}.sqo{color:var(--ac,#4f9dff);font-size:1.2em}
 .sqr{border-radius:16px;padding:16px 10px;border:2px solid #7dd3fc55;background:linear-gradient(180deg,#0b2236,#0f3350 50%,#0b2236);position:relative;overflow:hidden}
 .sqr:before{content:'';position:absolute;left:0;right:0;top:50%;height:3px;background:#ef444466}.sqr:after{content:'';position:absolute;left:50%;top:50%;width:90px;height:90px;margin:-45px;border-radius:50%;border:3px solid #3b82f655}
-.sqrk{position:relative;z-index:1;display:grid;gap:8px}.sql{text-align:center;font-weight:800;letter-spacing:.15em;font-size:12px;color:#bae6fd}.sql span{opacity:.7;margin-left:6px}
-.sqrow{display:grid;grid-template-columns:repeat(3,minmax(0,170px));gap:12px;justify-content:center}.sq1{grid-template-columns:minmax(0,170px)}
+.sqrk{position:relative;z-index:1;display:grid;gap:26px}.sql{text-align:center;font-weight:800;letter-spacing:.15em;font-size:12px;color:#bae6fd}.sql span{opacity:.7;margin-left:6px}
+.sqrow{display:grid;grid-template-columns:repeat(3,minmax(0,170px));gap:12px clamp(14px,6vw,64px);justify-content:center}.sq1{grid-template-columns:minmax(0,170px)}
 .sqs{cursor:pointer;display:flex;flex-direction:column;gap:6px;align-items:stretch;transition:transform .15s}.sqs:hover{transform:translateY(-4px)}
 .sqc .pc,.sqpk .pc,.sqo2 .pc{width:100%}.sqb{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;font-size:12px;font-weight:700}.sqb b{opacity:.7}
 .sqb .ok{color:#34d399}.sqb .bad{color:#fbbf24}.chm{color:#7dd3fc}.oop{color:#fbbf24;font-size:12px;font-weight:700}
@@ -135,7 +135,7 @@ h1,h2,h3,.logo{font-weight:800;letter-spacing:.4px}h3{font-size:14px}
 .sqsg{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0;border-color:#34d39988}
 .sqpk{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}.sqo2{cursor:pointer;text-align:center;transition:transform .15s}.sqo2:hover{transform:translateY(-4px)}
 .sqd{font-weight:800;margin-top:4px;font-size:13px}.sqd.up{color:#34d399}.sqd.dn{color:#f87171}
-@media(max-width:520px){.sqrow{gap:6px}}
+@media(max-width:520px){.sqrow{gap:6px 12px}.sqrk{gap:16px}}
 .cnw{flex:none;perspective:500px;height:104px;display:flex;justify-content:center;margin-bottom:6px}
 .cn{width:92px;height:92px;position:relative;transform-style:preserve-3d;animation:cfh 1.5s cubic-bezier(.2,.7,.3,1) forwards}.cn.ct{animation-name:cft}
 .cf,.cb{position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font:900 15px "Barlow Condensed","Arial Black",sans-serif;letter-spacing:.06em;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:4px solid #fde68a}
@@ -153,6 +153,16 @@ button.pgc:hover{transform:scale(1.12);background:#7dd3fc55}.pgc.on{background:#
 .cn.cH{background:radial-gradient(circle at 35% 30%,#fff3a8,#f5b82e 60%,#b7791f);color:#6b4a07;box-shadow:0 0 22px #f5b82e88}
 .cn.cT{background:radial-gradient(circle at 35% 30%,#fff,#aeb7c4 60%,#6b7686);color:#2c3440;border-color:#e5e7eb;box-shadow:0 0 18px #cbd5e166}
 .cnw{perspective:none;height:124px;align-items:flex-end;padding-bottom:6px}
+.sqlk{position:absolute;left:0;top:0;pointer-events:none;z-index:0;overflow:visible}
+.sqs{position:relative;z-index:1}.sqrk{position:relative}
+.lk1{fill:none;stroke-width:4;stroke-linecap:round;stroke-dasharray:1 9;opacity:.75}
+.lk2{fill:none;stroke-width:3.5;stroke-linecap:round;opacity:.92}
+.lk3{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-dasharray:14 6;animation:lkf 1.2s linear infinite}
+.lk3g{fill:none;stroke-width:12;stroke-linecap:round;opacity:.55;filter:url(#sqblur);animation:lkp 1.6s ease-in-out infinite alternate}
+@keyframes lkf{to{stroke-dashoffset:-20}}@keyframes lkp{from{opacity:.3}to{opacity:.8}}
+.sqs.cm3 .pc{box-shadow:0 0 18px var(--tm),0 0 4px var(--tm)}.sqs.cm2 .pc{box-shadow:0 0 10px color-mix(in srgb,var(--tm) 70%,transparent)}
+.sqlg{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin:0;padding:10px 14px}.sqlg span{display:flex;align-items:center;gap:6px;font-size:13px}.sqlg svg{overflow:visible}
+.rc.pbx{opacity:.4;outline:2px solid #ef4444}
 </style></head><body><div id="fx"></div>
 <div class="top"><div class="hdr"><div class="logo" id="logo"></div><div style="display:flex;gap:6px;align-items:center"><span id="bb" class="box" style="margin:0;padding:6px 11px;font-weight:800"></span><select id="th" style="width:auto" onchange="setTheme(this.value)"></select></div></div><nav id="tabs"></nav></div>
 <main class="wrap" id="view"></main><div id="ov" class="ov"></div><div id="mo" class="ov"></div><div id="modal" class="modal" onclick="if(event.target===this)closeM()"></div>
@@ -354,9 +364,9 @@ const winP=d=>Math.min(.99,Math.max(.01,1/(1+Math.exp(-0.071*d))));
 const ownCards=()=>Object.keys(S.owned).map(n=>BN[n]).filter(Boolean);
 function sqBest(){const u=S.ut,own=ownCards(),base=utOvr(u.sq);let best=null;
  FS.forEach((pos,i)=>{const used=new Set(u.sq.filter((n,j)=>n&&j!==i));own.filter(p=>sqOk(p,pos)&&!used.has(p.name)&&p.name!==u.sq[i]).forEach(p=>{const t=[...u.sq];t[i]=p.name;const g=utOvr(t)-base;if(!best||g>best.g)best={i,p,g}})});return best&&best.g>0?best:null}
-function sqSlot(i,x){const pos=FS[i];if(!x)return `<div class="sqs sqe" onclick="sqOpen(${i})"><div class="sqp">+</div><b>${ULAB[i]}</b><span class="mu">Add ${PN[pos]}</span></div>`;
- return `<div class="sqs" onclick="sqOpen(${i})"><div class="sqc">${card(x.p,'',false)}</div><div class="sqb"><b>${ULAB[i]}</b><span class="${x.oop?'bad':'ok'}">${x.eff}</span>${x.chem?`<span class="chm">+${x.chem} chem</span>`:''}${x.oop?`<span class="oop">-${x.oop} OOP</span>`:''}</div></div>`}
-function vSquad(){const u=S.ut,e=utEff(u.sq),ovr=utOvr(u.sq),filled=e.filter(Boolean),n=filled.length,own=ownCards();
+function sqSlot(i,x){const pos=FS[i];if(!x)return `<div class="sqs sqe" data-i="${i}" onclick="sqOpen(${i})"><div class="sqp">+</div><b>${ULAB[i]}</b><span class="mu">Add ${PN[pos]}</span></div>`;
+ return `<div class="sqs cm${x.chem}" data-i="${i}" style="--tm:${tcol(x.p.team)}" onclick="sqOpen(${i})"><div class="sqc">${card(x.p,'',false)}</div><div class="sqb"><b>${ULAB[i]}</b><span class="${x.oop?'bad':'ok'}">${x.eff}</span>${x.chem?`<span class="chm">+${x.chem} chem</span>`:''}${x.oop?`<span class="oop">-${x.oop} OOP</span>`:''}</div></div>`}
+function vSquad(){setTimeout(sqLinks,30);const u=S.ut,e=utEff(u.sq),ovr=utOvr(u.sq),filled=e.filter(Boolean),n=filled.length,own=ownCards();
  const fw=[e[0],e[1],e[3],e[4]].filter(Boolean),df=[e[2],e[5]].filter(Boolean),gl=e[6],A=fw.length?Math.round(avg(fw.map(x=>x.eff))):0,D=df.length?Math.round(avg(df.map(x=>x.eff))):0,G=gl?gl.eff:0,chem=filled.reduce((a,x)=>a+x.chem,0),chemMax=n*3,
  l1=[e[0],e[1],e[2]].filter(Boolean),l2=[e[3],e[4],e[5]].filter(Boolean),lo=l=>l.length?Math.round(avg(l.map(x=>x.eff))):0;
  const tm={};filled.forEach(x=>tm[x.p.team]=(tm[x.p.team]||0)+1);const links=Object.entries(tm).filter(([t,c])=>c>1).sort((a,b)=>b[1]-a[1]);
@@ -368,10 +378,19 @@ function vSquad(){const u=S.ut,e=utEff(u.sq),ovr=utOvr(u.sq),filled=e.filter(Boo
  <div class="hmt">${st('Attack',A||'-','forwards')}${st('Defense',D||'-','D pair')}${st('Goalie',G||'-','')}${st('Chemistry',chem+'/'+chemMax,'teammate bonus')}</div>
  ${sug?`<div class="box sqsg"><div><b>Best upgrade:</b> put ${esc(sug.p.name)} (${sug.p.rating}) at ${ULAB[sug.i]} for <b>+${sug.g} team OVR</b></div><button class="pri" data-i="${sug.i}" data-n="${esc(sug.p.name)}" onclick="utSet(+this.dataset.i,this.dataset.n)">Do it</button></div>`:''}
  <div class="sqr"><div class="sqrk"><div class="sql">LINE 1 <span>${lo(l1)||'-'} OVR</span></div><div class="sqrow">${sqSlot(1,e[1])}${sqSlot(0,e[0])}${sqSlot(2,e[2])}</div><div class="sql">LINE 2 <span>${lo(l2)||'-'} OVR</span></div><div class="sqrow">${sqSlot(4,e[4])}${sqSlot(3,e[3])}${sqSlot(5,e[5])}</div><div class="sql">GOALIE</div><div class="sqrow sq1">${sqSlot(6,e[6])}</div></div></div>
+ <div class="box sqlg"><b>Chemistry links</b><span><svg width="46" height="12"><path d="M2 6H44" class="lk1" style="stroke:#9dd8ff"/></svg>Linked +1</span><span><svg width="46" height="12"><path d="M2 6H44" class="lk2" style="stroke:#9dd8ff"/></svg>Strong +2</span><span><svg width="46" height="12"><path d="M2 6H44" class="lk3g" style="stroke:#9dd8ff"/><path d="M2 6H44" class="lk3" style="stroke:#9dd8ff"/></svg>Max +3</span><span class="mu">Players from the same team connect. More teammates, stronger link.</span></div>
  <div class="hmg"><div class="box"><h3 style="margin-top:0">Win chances</h3><p class="mu" style="margin-top:0">Against a team of this overall:</p>${bm.map(([o,p])=>`<div class="row" style="justify-content:space-between;margin:2px 0"><span>${o} OVR</span><b>${n===7?p+'%':'-'}</b></div><div class="bar"><i style="display:block;height:100%;width:${n===7?p:0}%;background:${p>=50?'#34d399':'#f87171'}"></i></div>`).join('')}${n<7?'<p class="warn">Fill all 7 slots to play matches.</p>':''}</div>
  <div class="box"><h3 style="margin-top:0">Chemistry</h3>${links.length?links.map(([t,c])=>`<div class="rw"><img class="lg2" alt="" src="${esc(logo(t))}" data-t="${esc(t)}" onerror="lerr(this)" style="width:26px;height:26px;object-fit:contain"><div class="l"><b>${esc(t)}</b><span class="mu">${c} players · +${Math.min(3,c-1)} OVR each</span></div></div>`).join(''):'<p class="mu">No teammates yet. Players from the same team give each other +1 OVR each (up to +3).</p>'}<p class="mu">A winger at center costs -4 OVR and a center at wing costs -2. Goalies and defense are locked to their position.</p></div></div>
  <div class="hmg"><div class="box"><h3 style="margin-top:0">Saved lineups</h3>${[0,1,2].map(k=>{const p=pre[k];return `<div class="rw"><div class="l"><b>${p?esc(p.n):'Slot '+(k+1)}</b><span class="mu">${p?'Team OVR '+utOvr(p.sq):'Empty'}</span></div>${p?`<button data-k="${k}" onclick="sqLoad(+this.dataset.k)">Load</button>`:''}<button data-k="${k}" onclick="sqSave(+this.dataset.k)" ${n?'':'disabled'}>${p?'Overwrite':'Save'}</button>${p?`<button class="dg" data-k="${k}" onclick="sqDel(+this.dataset.k)">✕</button>`:''}</div>`}).join('')}</div>
  <div class="box"><h3 style="margin-top:0">Best on the bench</h3>${bench.length?`<div class="hmb">${bench.map(p=>card(p,'',false)).join('')}</div>`:'<p class="mu">Every card you own is in the lineup.</p>'}</div></div></div>`}
+function sqLinks(){const box=document.querySelector('.sqrk');if(!box||tab!=='Ultimate'||UTT!=='squad')return;const old=box.querySelector('svg.sqlk');if(old)old.remove();const u=S.ut,e=utEff(u.sq),br=box.getBoundingClientRect(),pos={};
+ box.querySelectorAll('.sqs').forEach(el=>{const c=el.querySelector('.sqc')||el,r=c.getBoundingClientRect();pos[el.dataset.i]=[r.left-br.left+r.width/2,r.top-br.top+r.height/2]});
+ const byT={};e.forEach((x,i)=>{if(x)(byT[x.p.team]=byT[x.p.team]||[]).push(i)});let h='';
+ Object.entries(byT).forEach(([t,ids])=>{if(ids.length<2)return;const lv=Math.min(3,ids.length-1),col='color-mix(in srgb,'+tcol(t)+' 55%,#ffffff)';
+  for(let a=0;a<ids.length;a++)for(let b=a+1;b<ids.length;b++){const p=pos[ids[a]],q=pos[ids[b]];if(!p||!q)continue;const mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2,dx=q[0]-p[0],dy=q[1]-p[1],cx=mx-dy*.14,cy=my+dx*.14,d=`M${p[0].toFixed(1)} ${p[1].toFixed(1)} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${q[0].toFixed(1)} ${q[1].toFixed(1)}`;
+   if(lv===1)h+=`<path d="${d}" class="lk1" style="stroke:${col}"/>`;else if(lv===2)h+=`<path d="${d}" class="lk2" style="stroke:${col}"/>`;else h+=`<path d="${d}" class="lk3g" style="stroke:${col}"/><path d="${d}" class="lk3" style="stroke:${col}"/>`}});
+ const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','sqlk');svg.setAttribute('width',box.clientWidth);svg.setAttribute('height',box.clientHeight);svg.innerHTML='<defs><filter id="sqblur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter></defs>'+h;box.insertBefore(svg,box.firstChild)}
+window.addEventListener('resize',()=>{if(typeof tab!=='undefined'&&tab==='Ultimate'&&UTT==='squad')sqLinks()});
 function sqOpen(i){const u=S.ut,pos=FS[i],used=new Set(u.sq.filter((n,j)=>n&&j!==i)),base=utOvr(u.sq);
  const opts=ownCards().filter(p=>sqOk(p,pos)&&!used.has(p.name)).map(p=>{const t=[...u.sq];t[i]=p.name;return{p,o:utOvr(t)}}).sort((a,b)=>b.o-a.o||b.p.rating-a.p.rating);
  $('#modal').innerHTML=`<div class="box" style="max-width:900px;width:100%;max-height:92vh;overflow:auto"><div class="row" style="justify-content:space-between"><h3 style="margin:0">Pick your ${PN[pos]} (${ULAB[i]})</h3><span class="row" style="margin:0">${u.sq[i]?`<button class="dg" onclick="closeM();utSet(${i},'')">Remove</button>`:''}<button onclick="closeM()">Close</button></span></div><p class="mu">Sorted by the team overall you would get. ${pos==='C'||pos==='W'?'Out-of-position players lose overall.':''}</p>${opts.length?`<div class="sqpk">${opts.map(({p,o})=>{const d=o-base,cur=p.name===u.sq[i];return `<div class="sqo2" data-n="${esc(p.name)}" onclick="closeM();utSet(${i},this.dataset.n)">${card(p,'',false)}<div class="sqd ${cur?'':d>0?'up':d<0?'dn':''}">${cur?'Current':(d>0?'+':'')+d+' team'}</div>${p.pos!==pos?`<div class="oop">${p.pos} at ${pos}: -${pos==='C'?4:2}</div>`:''}</div>`}).join('')}</div>`:`<p class="mu">You don't own any ${PN[pos]} cards yet. Open some packs!</p>`}</div>`;$('#modal').className='modal show'}
@@ -445,12 +464,12 @@ function clkTick(){const e=$('#mclk');if(e&&V)e.textContent=clkText();ppUpdate()
 function iceUpdate(){if(!ICEQ)return;const st=ICEQ.st,I=(V&&V.ice)||{x:100,y:42.5,t:'N',i:-1,s:'',k:''},x0=+I.x,y0=+I.y,L=V&&V.lines?arr(V.lines):[0,0];if(isNaN(x0))return;ICEQ.shot=I.k==='shot';
  if(st.puck){st.puck.tx=x0;st.puck.ty=y0;st.puck.to=1}
  if(document.querySelectorAll)document.querySelectorAll('.rc.hot,.rc.hotg').forEach(e=>e.classList.remove('hot','hotg'));
- ['A','B'].forEach((side,si)=>{const line=+L[si]||0;for(let i=0;i<6;i++){const s=st['p'+side+i],e=ICEQ.els['p'+side+i];if(!s)continue;const on=Math.floor(i/3)===line,card=$('#r'+side+i);if(card)card.classList.toggle('on',on);
+ ['A','B'].forEach((side,si)=>{const line=+L[si]||0;for(let i=0;i<6;i++){const s=st['p'+side+i],e=ICEQ.els['p'+side+i];if(!s)continue;const pbx=V&&V.pp&&V.pp.pen&&V.pp.pen.side===side&&V.pp.pen.i===i&&!V.fin,on=Math.floor(i/3)===line&&!pbx,card=$('#r'+side+i);if(card){card.classList.toggle('on',on);card.classList.toggle('pbx',!!pbx)}
    if(!on){s.tx=side==='A'?90:110;s.ty=94;s.to=0;e.classList.remove('hot');continue}
    const b=ICE_B[i],hot=I.s===side&&I.i===i&&I.k!=='save';let x=(side==='A'?b[0]:200-b[0])+(x0-100)*ICE_K[i]+(I.t===side?(side==='A'?7:-7):0),y=b[1]+(y0-42.5)*.5;if(hot){x=x0+(side==='A'?-5:5);y=y0}
    s.tx=Math.max(8,Math.min(192,x));s.ty=Math.max(7,Math.min(78,y));s.to=1;e.classList.toggle('hot',hot);if(hot&&card)card.classList.add('hot')}
   const gk=st['g'+side];if(gk){gk.tx=side==='A'?12:188;gk.ty=42.5+(y0-42.5)*.18;gk.to=1;const hg=!!(['rush','shot','goal','save'].includes(I.k)&&I.s&&I.s!==side);ICEQ.els['g'+side].classList.toggle('hot',hg);const gc=$('#r'+side+'6');if(gc&&hg)gc.classList.add('hotg')}});
- const cap=$('#icecap');if(cap)cap.textContent=(I.k==='goal'?(I.l||'')+' scores!':I.k==='save'?'Shot stopped':I.k==='shot'?(I.l||'')+' shoots':I.k==='rush'?(I.l||'')+' with the puck':I.k==='scrum'?'Scramble for the puck':I.k==='faceoff'?'Face-off':'Play in progress')+'  ·  Line '+((+L[0]||0)+1)+' vs Line '+((+L[1]||0)+1)+' on the ice'}
+ const cap=$('#icecap');if(cap)cap.textContent=(I.k==='goal'?(I.l||'')+' scores!':I.k==='save'?'Shot stopped':I.k==='shot'?(I.l||'')+' shoots':I.k==='rush'?(I.l||'')+' with the puck':I.k==='scrum'?'Scramble for the puck':I.k==='faceoff'?'Face-off':'Play in progress')+'  ·  Line '+((+L[0]||0)+1)+' vs Line '+((+L[1]||0)+1)+' on the ice'+(V&&V.pp&&V.pp.pen&&!V.fin?'  ·  '+V.pp.pen.n+' in the penalty box':'')}
 function applyEv(R,typ,m){const segs=String(m.path||'/').split('/').filter(Boolean);if(typ==='put'){if(!segs.length)return m.data||{};setP(R,segs,m.data)}else if(m.data)Object.entries(m.data).forEach(([k,v])=>setP(R,[...segs,k],v));return R}
 function liveWatch(url,cb){let R={},last=Date.now(),es,stop=false;try{es=new EventSource(url);['put','patch'].forEach(t=>es.addEventListener(t,e=>{try{R=applyEv(R,t,JSON.parse(e.data));last=Date.now();cb(R)}catch(x){}}))}catch(x){}
  const iv=setInterval(async()=>{if(stop||Date.now()-last<3500)return;try{const r=await fetch(url,{cache:'no-store'}),j=await r.json();if(j){R=j;last=Date.now()-2500;cb(R)}}catch(x){}},1200);
@@ -540,7 +559,7 @@ async function mChance(a){const R=Math.random,X=a.s==='A'?M.A:M.B,Y=a.s==='A'?M.
  let p=pGoal(X,Y,sd,lineOff(X,a.s),lineDef(Y,a.s==='A'?'B':'A'))*(M.mom[a.s]||1);M.mom[a.s]=1;p=big?Math.min(.6,p*2.1):p*.8;
  const idx=X.e.indexOf(sd);V.ice={x:a.s==='A'?126:74,y:18+R()*50,t:a.s,k:'rush',s:a.s,i:idx,l:pn};
  if(big){mUp();mSay(pn+' is in on a breakaway!',sn+' shooting, '+gk+' in goal','','BREAKAWAY');await wait(700);
-  if(!M.skip){const d=a.s==='A'?'B':'A',diff=sd.eff-Y.g,zw=Math.max(15,Math.min(34,24+diff*.4)),zv=Math.max(14,Math.min(44,30-diff*.5)),sp={id:++M.mgid,kind:'chance',v:R()<.5?'circ':'time',shooter:a.s,need:M.need,zs:{w:zw,l:12+R()*(76-zw),sp:1.2+R()*.5},zv:{w:zv,l:12+R()*(76-zv),sp:.9+R()*.4}};
+  if(!M.skip){const d=a.s==='A'?'B':'A',diff=sd.eff-Y.g,zw=Math.max(15,Math.min(34,24+diff*.4)),zv=Math.max(14,Math.min(44,30-diff*.5)),sp={id:++M.mgid,kind:'chance',v:R()<.3?'circ':'time',shooter:a.s,need:M.need,zs:{w:zw,l:12+R()*(76-zw),sp:1.2+R()*.5},zv:{w:zv,l:12+R()*(76-zv),sp:.9+R()*.4}};
    V.mg=sp;mUp();vPush();const ans=await mWaitAns(sp);V.mg=null;
    let gs=ans[a.s],gd=ans[d];
    if(sp.v==='circ'){let ps=gs,cv=gd;if(!(Number.isInteger(ps)&&ps>=0&&ps<=4))ps=Math.floor(R()*5);if(!(Array.isArray(cv)&&cv.length===4&&cv.every(x=>Number.isInteger(x)&&x>=0&&x<=4)&&new Set(cv).size===4)){const op=Math.floor(R()*5);cv=[0,1,2,3,4].filter(x=>x!==op)}const cov=cv.includes(ps);gs=cov?'ok':'perfect';gd=cov?'perfect':'miss';V.pen={k:sp.id,ps,gs:cv,goal:null}}
@@ -587,7 +606,7 @@ async function mReady(){M.ans.readyB=M.mode==='solo'?true:undefined;V.ph='ready'
  for(let n=3;n>=1;n--){if(!M)return false;V.ph='count';V.head=String(n);V.ttl='GET READY';vPush();await sleep(700)}V.ph='';return true}
 let LASTHB=0;
 const LINEI=[[0,1,2],[3,4,5]];
-function pickOn(X,side){const pool=LINEI[M.line[side]].map(i=>X.e[i]),w=pool.map(x=>Math.pow(x.eff/60,3)*(x.pos==='D'?.45:1)),t=w.reduce((a,b)=>a+b,0);let r=Math.random()*t;for(let i=0;i<pool.length;i++){r-=w[i];if(r<=0)return pool[i]}return pool[0]}
+function pickOn(X,side){const pb=V&&V.pp&&V.pp.pen&&V.pp.pen.side===side?V.pp.pen.i:-1;let pool=LINEI[M.line[side]].filter(i=>i!==pb).map(i=>X.e[i]);if(!pool.length)pool=LINEI[M.line[side]].map(i=>X.e[i]);const w=pool.map(x=>Math.pow(x.eff/60,3)*(x.pos==='D'?.45:1)),t=w.reduce((a,b)=>a+b,0);let r=Math.random()*t;for(let i=0;i<pool.length;i++){r-=w[i];if(r<=0)return pool[i]}return pool[0]}
 const lineOff=(X,side)=>{const l=LINEI[M.line[side]];return avg([X.e[l[0]].eff,X.e[l[1]].eff])},lineDef=(X,side)=>X.e[LINEI[M.line[side]][2]].eff;
 async function runTo(it){V.coin=null;V.pen=null;const ppOff=()=>{if(V.pp&&M.t>=V.pp.end)V.pp=null};const t1=it.t,lc=it.type==='lc';if(t1<=M.t+.001){V.ck={t:M.t,run:lc};ppOff();return}
  if(M.skip){M.t=t1;V.ck={t:t1,run:lc};ppOff();return}
@@ -607,7 +626,7 @@ async function runMatch(){const R=Math.random,A=M.A,B=M.B;
   L.sort((x,y)=>x.t-y.t);
   for(const it of L){await runTo(it);
    if(it.type==='lc')await mLine(it);
-   else if(it.type==='pen'){mUp();const nm=it.on==='A'?M.nameA:M.nameB;V.pp={s:it.pp,end:it.t+1};mSay('PENALTY!',nm+' goes to the box. 1 minute power play for '+(it.pp==='A'?M.nameA:M.nameB),'','POWER PLAY');mLog(mClk()+' Penalty on '+nm,'');await wait(1100)}
+   else if(it.type==='pen'){mUp();const nm=it.on==='A'?M.nameA:M.nameB;const PX=it.on==='A'?M.A:M.B,pi=LINEI[M.line[it.on]][Math.floor(Math.random()*3)],pnm=PX.e[pi].p.name;V.pp={s:it.pp,end:it.t+1,pen:{side:it.on,i:pi,n:pnm}};V.ice={x:100,y:42.5,t:'N',k:'',s:'',i:-1,l:''};mSay('PENALTY!',pnm+' ('+nm+') goes to the box. 1 minute power play for '+(it.pp==='A'?M.nameA:M.nameB),'','POWER PLAY');mLog(mClk()+' Penalty on '+pnm+' ('+nm+')','');await wait(1100)}
    else if(it.type==='ps')await mPenShot(it);else if(it.type==='fifty')await mFifty(it);else if(it.type==='scr')await mScramble(it);else await mChance(it)}
   await runTo({t:PL});M.t=PL;V.ck={t:PL,run:false};mUp();M.per.push([M.sc.A,M.sc.B]);mSay('End of period '+pd,M.sc.A+' - '+M.sc.B,'','INTERMISSION');mLog('End of P'+pd+': '+M.sc.A+'-'+M.sc.B,'');await wait(900)}
  if(M.sc.A===M.sc.B){M.ot=true;M.pd=NP+1;M.t=0;V.ck={t:0,run:false};mUp();mSay('OVERTIME','Next goal wins it. Sudden death.','','OVERTIME');mLog('Overtime!','');await wait(1200);
